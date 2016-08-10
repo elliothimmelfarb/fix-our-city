@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import createRoutes from './routes';
 import configureStore from './store/configureStore';
@@ -90,6 +91,7 @@ export default function render(req, res) {
       )
       .then(() => {
         const initialState = store.getState();
+        injectTapEventPlugin();
         const componentHTML = renderToString(
           <Provider store={store}>
             <RouterContext {...props} />

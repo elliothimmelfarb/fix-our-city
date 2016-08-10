@@ -10,9 +10,9 @@
  */
 
 // Import all your needed files first (webpack will grab the url)
-import chromecon from './images/chrome-ninja192-precomposed.png';
-import applecon from './images/apple-ninja152-precomposed.png';
-import mscon from './images/ms-ninja144-precomposed.png';
+import chromecon from './images/favicon.png';
+import applecon from './images/favicon.png';
+import mscon from './images/favicon.png';
 import favicon from './images/favicon.png';
 
 const config = {
@@ -45,7 +45,7 @@ const config = {
     { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
     { name: 'apple-mobile-web-app-title', content: 'React Webpack Node' },
     // Tile icon for Win8 (144x144 + tile color)
-    { name: 'msapplication-TileImage', content: mscon },
+    { name: 'msapplication-TileImage', content: favicon },
     { name: 'msapplication-TileColor', content: '#3372DF' }
   ]
 };

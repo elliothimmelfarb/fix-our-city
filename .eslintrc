@@ -16,19 +16,19 @@
         },
     },
     "rules": {
-        "comma-dangle": 0,
-        "indent": 0,
-        "react/prop-types": 0,
-        "react/jsx-indent-props" : 0,
-        "react/jsx-closing-bracket-location" : 0,
-        "object-curly-spacing" : 0,
-        "arrow-body-style": 0,
-        "no-console": 0,
-        "max-len": 0,
-        "prefer-template": 0,
-        "import/no-unresolved": 0,
+        "comma-dangle": 2,
+        "indent": 2,
+        "react/prop-types": 2,
+        "react/jsx-indent-props" : 2,
+        "react/jsx-closing-bracket-location" : 2,
+        "object-curly-spacing" : 2,
+        "arrow-body-style": 2,
+        "no-console": 1,
+        "max-len": 2,
+        "prefer-template": 2,
+        "import/no-unresolved": 2,
         "global-require": 0,
-        "no-underscore-dangle": 0
+        "no-underscore-dangle": 2
     },
     "plugins": [
         "react"

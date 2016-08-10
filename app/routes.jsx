@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './containers/App';
+import App from './components/App';
 // import Vote from 'containers/Vote';
 // import About from 'containers/About';
 // import LoginOrRegister from 'containers/LoginOrRegister';
 // import Dashboard from 'containers/Dashboard';
-import AppArea from './containers/AppArea';
+import AppArea from './components/AppArea';
 
 /*
  * @param {Redux Store}

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 // import Navigation from 'containers/Navigation';
 import classNames from 'classnames/bind';
-import styles from '../css/main';
+import styles from '../css/main.css';
 
 const cx = classNames.bind(styles);
 
@@ -16,16 +16,15 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  <Navigation />
  */
-const App = ({children}) => {
-  return (
-    <div className={cx('app')}>
-        {children}
-    </div>
-  );
-};
+const App = ({ children }) => (
+  <div className={cx('app')}>
+      {children}
+  </div>
+);
+
 
 App.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
 };
 
 export default App;

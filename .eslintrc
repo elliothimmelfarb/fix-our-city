@@ -16,6 +16,7 @@
         },
     },
     "rules": {
+        "no-shadow": 0,
         "comma-dangle": 2,
         "indent": 2,
         "react/prop-types": 2,

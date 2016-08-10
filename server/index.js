@@ -2,10 +2,12 @@ import express from 'express';
 import webpack from 'webpack';
 import { ENV } from './config/appConfig';
 import { connect } from './db';
-import passportConfig from './config/passport';
+// import passportConfig from './config/passport';
 import expressConfig from './config/express';
 import routesConfig from './config/routes';
+
 const App = require('../public/assets/server');
+
 const app = express();
 
 /*
@@ -26,7 +28,7 @@ if (ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: webpackDevConfig.output.publicPath
+    publicPath: webpackDevConfig.output.publicPath,
   }));
 
   app.use(require('webpack-hot-middleware')(compiler));

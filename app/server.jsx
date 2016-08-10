@@ -10,7 +10,7 @@ import header from './components/Meta';
 
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
-  port: process.env.PORT || '3000'
+  port: process.env.PORT || '3000',
 };
 
 // configure baseURL for axios requests (for serverside API calls)
@@ -75,7 +75,7 @@ export default function render(req, res) {
    * If all three parameters are `undefined`, this means that there was no route found matching the
    * given location.
    */
-  match({routes, location: req.url}, (err, redirect, props) => {
+  match({ routes, location: req.url }, (err, redirect, props) => {
     if (err) {
       res.status(500).json(err);
     } else if (redirect) {

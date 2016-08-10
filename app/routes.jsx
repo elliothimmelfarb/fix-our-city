@@ -13,7 +13,7 @@ import AppArea from './components/AppArea';
  * We require store as an argument here because we wish to get
  * state from the store after it has been authenticated.
  */
-export default (store) => {
+export default () => (
   // const requireAuth = (nextState, replace, callback) => {
   //   const { user: { authenticated }} = store.getState();
   //   if (!authenticated) {
@@ -34,12 +34,10 @@ export default (store) => {
   //   }
   //   callback();
   // };
-  return (
-    <Route path="/" component={App}>
-      <IndexRoute component={AppArea} />
-    </Route>
-  );
-};
+  <Route path="/" component={App}>
+    <IndexRoute component={AppArea} />
+  </Route>
+);
 
 // BoilerPlateRoutes
 // <Route path="login" component={LoginOrRegister} /*onEnter={redirectAuth}*/ />

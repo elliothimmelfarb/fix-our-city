@@ -21,7 +21,7 @@ export default () => {
 
     passport.deserializeUser(dbPassport.deserializeUser);
   } else {
-    console.warn(unsupportedMessage('(de)serialize User'));
+    console.warn(unsupportedMessage('(de)serialize User')); // eslint-disable-line no-console
   }
 
   // use the following strategies

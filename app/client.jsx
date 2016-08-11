@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import createRoutes from './routes';
 import configureStore from './store/configureStore';
 import preRenderMiddleware from './middlewares/preRenderMiddleware';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -14,6 +15,7 @@ const initialState = window.__INITIAL_STATE__; // eslint-disable-line no-undersc
 const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes();
+
 
 /**
  * Callback function handling frontend route changes.
@@ -35,7 +37,7 @@ function onUpdate() {
   preRenderMiddleware(store.dispatch, components, params);
 }
 
-
+injectTapEventPlugin();
 // Router converts <Route> element hierarchy to a route config:
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(

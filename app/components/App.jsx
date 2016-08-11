@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 // import Navigation from 'containers/Navigation';
 import classNames from 'classnames/bind';
 import styles from '../css/main.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const cx = classNames.bind(styles);
 
@@ -17,9 +18,13 @@ const cx = classNames.bind(styles);
  <Navigation />
  */
 const App = ({ children }) => (
+
   <div className={cx('app')}>
+    <MuiThemeProvider>
       {children}
+      </MuiThemeProvider>
   </div>
+
 );
 
 

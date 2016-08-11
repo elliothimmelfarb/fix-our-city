@@ -6,6 +6,8 @@ import { connect } from './db';
 import expressConfig from './config/express';
 import routesConfig from './config/routes';
 
+global.navigator = { userAgent: 'all' };
+
 const App = require('../public/assets/server');
 
 const app = express();

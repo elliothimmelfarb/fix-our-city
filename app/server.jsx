@@ -9,10 +9,13 @@ import configureStore from './store/configureStore';
 import preRenderMiddleware from './middlewares/preRenderMiddleware';
 import header from './components/Meta';
 
+
+global.navigator = { userAgent: 'all' };
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
   port: process.env.PORT || '3000',
 };
+
 
 // configure baseURL for axios requests (for serverside API calls)
 axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
@@ -90,10 +93,11 @@ export default function render(req, res) {
         props.params
       )
       .then(() => {
-        const initialState = store.getState();
         injectTapEventPlugin();
+        const initialState = store.getState();
         const componentHTML = renderToString(
           <Provider store={store}>
+          
             <RouterContext {...props} />
           </Provider>
         );

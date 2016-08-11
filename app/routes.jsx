@@ -6,7 +6,9 @@ import App from './components/App';
 // import About from 'containers/About';
 // import LoginOrRegister from 'containers/LoginOrRegister';
 // import Dashboard from 'containers/Dashboard';
-import AppArea from './components/AppArea';
+import SplashPage from './components/splashPage/SplashPage';
+import ViewIssues from './components/viewIssues/ViewIssues';
+import AddAnIssue from './components/addAnIssue/AddAnIssue';
 
 /*
  * @param {Redux Store}
@@ -34,8 +36,13 @@ export default () => (
   //   }
   //   callback();
   // };
+
+
   <Route path="/" component={App}>
-    <IndexRoute component={AppArea} />
+    <IndexRoute component={SplashPage} />
+    <Route path="/view-issues" component={ViewIssues} />
+    <Route path="/add-an-issue" component={AddAnIssue} />
+
   </Route>
 );
 

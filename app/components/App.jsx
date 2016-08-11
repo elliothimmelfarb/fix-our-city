@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-// import Navigation from 'containers/Navigation';
+import { Grid } from 'react-flexbox-grid';
 import classNames from 'classnames/bind';
 import styles from '../css/main.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -17,11 +17,14 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  <Navigation />
  */
+
 const App = ({ children }) => (
 
   <div className={cx('app')}>
     <MuiThemeProvider>
-      {children}
+      <Grid>
+        {children}
+      </Grid>
       </MuiThemeProvider>
   </div>
 

@@ -11,6 +11,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__; // eslint-disable-line no-underscore-dangle
+injectTapEventPlugin();
 
 const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
@@ -37,7 +38,6 @@ function onUpdate() {
   preRenderMiddleware(store.dispatch, components, params);
 }
 
-injectTapEventPlugin();
 // Router converts <Route> element hierarchy to a route config:
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(

@@ -25,7 +25,7 @@ const App = ({ children }) => (
       <Grid>
         {children}
       </Grid>
-      </MuiThemeProvider>
+    </MuiThemeProvider>
   </div>
 
 );

@@ -4,7 +4,6 @@
 // import passport from 'passport';
 // import unsupportedMessage from '../db/unsupportedMessage';
 // import { controllers, passport as passportConfig } from '../db';
-
 // const usersController = controllers && controllers.users;
 // const topicsController = controllers && controllers.topics;
 
@@ -46,6 +45,8 @@ export default (app) => {
   app.get('/test', (req, res) => {
     res.send('hello');
   });
+
+  app.use('/api', require('./api/index'));
 
   // topic routes
   // if (topicsController) {

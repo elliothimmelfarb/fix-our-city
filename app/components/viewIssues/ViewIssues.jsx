@@ -15,4 +15,4 @@ function ViewIssues() {
   );
 }
 
-export default connect()(ViewIssues);
+export default ViewIssues;

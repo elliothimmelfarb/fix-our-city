@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-flexbox-grid';
-import AutoComplete from './AutoComplete';
+import AutoCompleteInput from './AutoComplete';
+import IssueButton from './IssueButton';
+import GetLocation from './GetLocation';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // injectTapEventPlugin();
@@ -16,11 +17,9 @@ const style = {
    margin: "0 auto",
    textAlign: 'center',
    display: 'inline-block',
+   padding: '5%',
 };
-const buttonStyle = {
-  width: "100%",
-  padding: 20,
-};
+
 const getLocationButton = {
   marginTop: 20,
   marginLeft: -20,
@@ -33,7 +32,7 @@ const bgImage = {
   height: '100vh',
   width: '100%',
   backgroundColor: 'skyblue',
-  padding: 20,
+  padding: '5%',
 };
 
 
@@ -47,29 +46,14 @@ export default function SplashPage() {
             <Paper style={style} zDepth={3}>
               <h1>Fix Our City!</h1>
               <Row>
-                <Col xs={8} md={8} lg={8}>
-                  <AutoComplete />
+                <Col xs={12} md={8} lg={8}>
+                  <AutoCompleteInput />
                 </Col>
-                <Col xs={4} md={4} lg={4}>
-                  <RaisedButton
-                    secondary={true}
-                    icon={<FontIcon className="muidocs-icon-action-home" />}
-                    style={getLocationButton}
-                  />
+                <Col xs={12} md={4} lg={4}>
+                  <GetLocation />
                 </Col>
               </Row>
-              <Row>
-                <Col xs={6} md={6} lg={6}>
-                  <Link to="/add-an-issue">
-                    <RaisedButton label="Add Issue" primary={true} style={buttonStyle} />
-                  </Link>
-                </Col>
-                <Col xs={6} md={6} lg={6}>
-                  <Link to="/view-issues">
-                    <RaisedButton label="View Issues" primary={true} style={buttonStyle} />
-                  </Link>
-                </Col>
-              </Row>
+              <IssueButton />
             </Paper>
           </Row>
         </Col>

@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 
-class AutoComplete extends React.Component {
+class AutoCompleteInput extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,8 +18,9 @@ class AutoComplete extends React.Component {
   }
   render() {
     const formStyle = {
-      width: "80%",
-    }
+      width: '80%',
+      marginBottom: '5%',
+    };
     return (
       <div>
         <form onSubmit={this.onSubmit} style={formStyle}>
@@ -34,6 +35,7 @@ class AutoComplete extends React.Component {
           hintText="City"
           floatingLabelText="Your Location"
           value={this.state.city}
+          fullWidth={true}
           onChange={e => this.setState({ city: e.target.value })}
         />
         </form>
@@ -42,4 +44,4 @@ class AutoComplete extends React.Component {
   }
 }
 
-export default AutoComplete;
+export default AutoCompleteInput;

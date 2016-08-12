@@ -5,7 +5,9 @@ import AutoComplete from './AutoComplete';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
+// injectTapEventPlugin();
 
 
 const style = {

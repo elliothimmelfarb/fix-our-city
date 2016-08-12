@@ -3,6 +3,9 @@ import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
 import config from '../helmconfig.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 // Remove stylesheets because we do not extract them into a css file
 // in development mode

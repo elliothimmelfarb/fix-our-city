@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "autoprefixer": "^6.3.3",
+    "aws-sdk": "^2.5.0",
     "axios": "^0.13.1",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.2",
@@ -97,6 +98,7 @@
     "material-ui": "^0.15.3",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.7",
+    "multer": "^1.2.0",
     "node-libs-browser": "^1.0.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",

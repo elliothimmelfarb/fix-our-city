@@ -10,6 +10,7 @@ const IssueSchema = new mongoose.Schema({
   imgUrl: String,
   isFixed: Boolean,
   dateAdded: { type: Date, default: Date.now },
+  votes: { type: Number, default: 0 },
   dateMarkedFixed: { type: Date },
   location: {
     type: { type: String, default: 'Point' },

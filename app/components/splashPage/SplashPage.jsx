@@ -19,7 +19,6 @@ const style = {
 };
 const buttonStyle = {
   width: "100%",
-  padding: 20,
 };
 const getLocationButton = {
   marginTop: 20,

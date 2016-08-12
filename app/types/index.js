@@ -1,1 +1,1 @@
-export const MAP_BOUNDS_CHANGED = 'MAP_BOUNDS_CHANGED';
+export const UPDATE_MAP_DATA = 'UPDATE_MAP_DATA';

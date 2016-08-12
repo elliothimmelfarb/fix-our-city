@@ -3,7 +3,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import UploadImage from './UploadImage';
+
 
 const style = {
   height: 400,

@@ -3,7 +3,6 @@ import { Row, Col } from 'react-flexbox-grid';
 import UploadImage from './UploadImage';
 import Dropzone from 'react-dropzone';
 
-
 class AddAnIssue2 extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +45,7 @@ class AddAnIssue2 extends React.Component {
           value={this.state.issue}
           onChange={ e => this.setState({issue: e.target.value })}/>
 
-        <button onClick={this.onSubmit}>Submit</button>
+        {/*<button onClick={this.onSubmit}>Submit</button>*/}
       </form>
     );
   }

@@ -25,6 +25,7 @@ export default (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(methodOverride());
 
+
   if (ENV === 'production') {
     app.use(gzip());
   }

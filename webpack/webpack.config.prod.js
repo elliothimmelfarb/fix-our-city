@@ -135,7 +135,7 @@ module.exports = [
     },
     resolve: {
       root: [path.join(__dirname, '..', 'app')],
-      extensions: ['', '.js', '.jsx', '.css']
+      extensions: ['', '.js', '.jsx', '.css'],
     },
     plugins: [
         // Order the modules and chunks by occurrence.

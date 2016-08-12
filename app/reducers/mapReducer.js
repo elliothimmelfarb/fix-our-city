@@ -7,12 +7,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.MAP_BOUNDS_CHANGED: {
+    case types.UPDATE_MAP_DATA: {
       const { bounds, center, size, zoom, marginBounds } = action.newMapInfo;
       return Object.assign(
         {},
         state,
-        { bounds, center, size, zoom, marginBounds }
+        { bounds, center, size, zoom, marginBounds, issues: action.issues }
       );
     }
     default:

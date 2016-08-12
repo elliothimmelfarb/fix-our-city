@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
-import styles from '../../css/components/googleMapContainer.css';
 import { mapBoundsChanged } from '../../actions/mapActions';
 
 

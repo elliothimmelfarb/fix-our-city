@@ -1,4 +1,5 @@
 import * as types from '../types';
+import getRadius from '../gMaps/getRadius';
 
 const initialState = {
   zoom: 15,

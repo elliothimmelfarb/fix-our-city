@@ -53,16 +53,18 @@ export function add(req, res) {
 }
 
 export function findNearLocation(req, res) {
+  console.log('req.body:', req.body);
   const centerLongitude = req.body.center.lng;
   const centerLatitude = req.body.center.lat;
-  const cornorLongitude = req.body.cornor.lng;
-  const cornorLatitude = req.body.cornor.lat;
+  const cornerLongitude = req.body.corner.lng;
+  const cornerLatitude = req.body.corner.lat;
 
   const distance = geolib.getDistance(
     { latitude: centerLatitude, longitude: centerLongitude },
-    { latitude: cornorLatitude, longitude: cornorLongitude }
+    { latitude: cornerLatitude, longitude: cornerLongitude }
     );
   const miles = distance * 1609.34;
+  console.log('miles', miles)
 
   Issue.find({ location: { $nearSphere:
     { $geommetry:
@@ -150,4 +152,3 @@ export default {
   upvote,
   downvote,
 };
-

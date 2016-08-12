@@ -3,14 +3,15 @@ import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import UploadImage from './UploadImage';
 
 const style = {
-   height: 400,
-   padding: '5%',
-   width: '80%',
-   margin: "0 auto",
-   textAlign: 'center',
-   display: 'inline-block',
+  height: 400,
+  padding: '5%',
+  width: '80%',
+  margin: "0 auto",
+  textAlign: 'center',
+  display: 'inline-block',
 };
 const bgImage = {
   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
@@ -29,6 +30,7 @@ const TextFieldStyle = {
 };
 export default function AddAnIssue() {
   return (
+
     <div style={bgImage}>
       <Row>
         <Col xs={12} md={12} lg={12}>
@@ -66,6 +68,7 @@ export default function AddAnIssue() {
         </Col>
       </Row>
     </div>
+
 
   );
 }

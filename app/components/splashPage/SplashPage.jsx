@@ -20,6 +20,10 @@ const style = {
    padding: '5%',
 };
 
+const buttonStyle = {
+  width: "100%",
+};
+
 const getLocationButton = {
   marginTop: 20,
   marginLeft: -20,

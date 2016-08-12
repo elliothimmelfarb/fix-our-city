@@ -18,7 +18,7 @@ class AutoCompleteInput extends React.Component {
   }
   render() {
     const formStyle = {
-      width: '80%',
+      width: '100%',
       marginBottom: '5%',
     };
     return (

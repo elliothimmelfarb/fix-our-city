@@ -3,14 +3,14 @@ import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
+import Dropzone from 'react-dropzone';
 
 const style = {
   height: 400,
   padding: '5%',
   width: '80%',
   margin: "0 auto",
-  textAlign: 'center',
+  // textAlign: 'center',
   display: 'inline-block',
 };
 const bgImage = {
@@ -24,51 +24,107 @@ const bgImage = {
 };
 const buttonStyle = {
   width: '100%',
+  marginBottom: '2%',
 };
 const TextFieldStyle = {
   marginBottom: '5%',
 };
-export default function AddAnIssue() {
-  return (
+const dropZoneStyle = {
+  width: '100%',
+  height: '95%',
+  border: '2px solid #eee',
+  marginBottom: '5%',
+  textAlign: 'center',
+};
+class AddAnIssue extends React.Component {
+  constructor(props) {
+    super(props);
 
-    <div style={bgImage}>
-      <Row>
-        <Col xs={12} md={12} lg={12}>
-          <Row center="xs">
-            <Paper style={style} zDepth={3}>
-              <Row>
-                <Col xs={9} md={9} lg={9}>
-                  <TextField hintText="Location" fullWidth={true} />
-                </Col>
-                <Col xs={3} md={3} lg={3}>
-                  <RaisedButton label="location" primary={true} style={buttonStyle} />
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={9} md={9} lg={9}>
-                  <TextField
-                    hintText="Message Field"
-                    floatingLabelText="Issue"
-                    multiLine={true}
-                    rows={3}
-                    style={TextFieldStyle}
-                    fullWidth={true}
-                  />
-                </Col>
-                <Col xs={3} md={3} lg={3}>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12} lg={12}>
-                  <RaisedButton label="Submit" primary={true} style={buttonStyle} />
-                </Col>
-              </Row>
-            </Paper>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+    this.state = {
+      location: '',
+      issue: '',
+      files: '',
+    };
+
+    this.onDrop = this.onDrop.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onDrop(files) {
+    this.setState({ files });
+    // send to server
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+  }
+  render() {
+    let imgStyle = {
+      width: '200px',
+      height: '200px',
+    };
+    let imgPreview = this.state.files ? this.state.files.map((file) =>
+      <img role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
+
+    return (
+
+      <div style={bgImage}>
+        <Row>
+          <Col xs={12} md={12} lg={12}>
+            <Row>
+              <Paper style={style} zDepth={3}>
+                <Row>
+                  <Col xs={8} md={8} lg={8}>
+                    <TextField
+                      hintText="Location"
+                      fullWidth={true}
+                      value={this.state.location}
+                      onChange={e => this.setState({ location: e.target.value })}
+                    />
+                  </Col>
+                  <Col xs={4} md={4} lg={4}>
+                    <RaisedButton label="location" primary={true} style={buttonStyle} />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={8} md={8} lg={8}>
+                    <TextField
+                      hintText="Message Field"
+                      floatingLabelText="Issue"
+                      multiLine={true}
+                      rows={5}
+                      style={TextFieldStyle}
+                      fullWidth={true}
+                      value={this.state.issue}
+                      onChange={e => this.setState({ issue: e.target.value })}
+                    />
+                  </Col>
+                  <Col xs={4} md={4} lg={4}>
+                    <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
+                      {imgPreview}
+                    </Dropzone>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12} md={12} lg={12}>
+                    <RaisedButton
+                      label="Submit"
+                      primary={true}
+                      style={buttonStyle}
+                      onClick={this.onSubmit}
+                    />
+                  </Col>
+                </Row>
+              </Paper>
+            </Row>
+          </Col>
+        </Row>
+      </div>
 
 
-  );
+    );
+  }
 }
+
+export default AddAnIssue;

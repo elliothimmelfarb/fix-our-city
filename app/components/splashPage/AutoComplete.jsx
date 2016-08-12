@@ -1,4 +1,5 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
 
 class AutoComplete extends React.Component {
   constructor(props) {
@@ -12,18 +13,30 @@ class AutoComplete extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
+    console.log("work");
     // send to backend
   }
   render() {
+    const formStyle = {
+      width: "80%",
+    }
     return (
       <div>
-        <input
-          type="text"
-          placeholder="City"
+        <form onSubmit={this.onSubmit} style={formStyle}>
+        {/*
+          <AutoComplete
+          hintText="Type anything"
+          dataSource={this.state.dataSource}
+          onUpdateInput={this.handleUpdateInput}
+        />
+        */}
+        <TextField
+          hintText="City"
+          floatingLabelText="Your Location"
           value={this.state.city}
           onChange={e => this.setState({ city: e.target.value })}
         />
-        <button onClick={this.onSubmit}>Submit</button>
+        </form>
       </div>
     );
   }

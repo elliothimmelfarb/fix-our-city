@@ -8,7 +8,7 @@ const IssueSchema = new mongoose.Schema({
   title: String,
   description: String,
   imgUrl: String,
-  isFixed: Boolean,
+  isFixed: { type: Boolean, default: false },
   dateAdded: { type: Date, default: Date.now },
   votes: { type: Number, default: 0 },
   dateMarkedFixed: { type: Date },

@@ -16,9 +16,9 @@ const issuesController = controllers && controllers.issues;
 router.get('/', issuesController.all);
 router.post('/add-issue', upload.single('photo'), issuesController.add);
 router.post('/find-issues', issuesController.findNearLocation);
-router.post('/toggle-fixed', issuesController.toggleFixed);
-router.post('/upvote', issuesController.upvote);
-router.post('/downvote', issuesController.downvote);
+router.put('/toggle-fixed', issuesController.toggleFixed);
+router.put('/upvote', issuesController.upvote);
+router.put('/downvote', issuesController.downvote);
 
 
 module.exports = router;

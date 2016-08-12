@@ -1,6 +1,8 @@
 import AWS from 'aws-sdk';
 import path from 'path';
+import geolib from 'geolib';
 import Issue from '../models/issues';
+
 
 const s3 = new AWS.S3();
 const s3BaseUrl = 'https://s3-us-west-2.amazonaws.com/fix-our-city/';
@@ -29,6 +31,7 @@ export function add(req, res) {
     }
     // add the image to s3
     console.log('saved issue:', savedIssue);
+    return res.send(savedIssue);
     s3.putObject({
       Bucket: 'fix-our-city',
       Key: `savedIssue._id${fileExt}`, // eslint-disable-line no-underscore-dangle
@@ -50,14 +53,21 @@ export function add(req, res) {
 }
 
 export function findNearLocation(req, res) {
-  const longitude = req.body.longitude;
-  const latitude = req.body.latitude;
-  const miles = req.body.meters * 1609.34;
+  const centerLongitude = req.body.center.lng;
+  const centerLatitude = req.body.center.lat;
+  const cornorLongitude = req.body.cornor.lng;
+  const cornorLatitude = req.body.cornor.lat;
+
+  const distance = geolib.getDistance(
+    { latitude: centerLatitude, longitude: centerLongitude },
+    { latitude: cornorLatitude, longitude: cornorLongitude }
+    );
+  const miles = distance * 1609.34;
 
   Issue.find({ location: { $nearSphere:
     { $geommetry:
     {
-      type: 'Point', coordinates: [longitude, latitude],
+      type: 'Point', coordinates: [centerLongitude, centerLatitude],
     },
      $maxDistance: miles } } })
   .exec((err, issues) => {
@@ -137,5 +147,7 @@ export default {
   add,
   findNearLocation,
   toggleFixed,
+  upvote,
+  downvote,
 };
 

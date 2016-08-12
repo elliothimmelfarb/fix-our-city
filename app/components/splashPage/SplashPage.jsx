@@ -10,7 +10,7 @@ import FontIcon from 'material-ui/FontIcon';
 
 const style = {
    height: 400,
-   width: 700,
+   width: '80%',
    margin: "0 auto",
    textAlign: 'center',
    display: 'inline-block',
@@ -22,14 +22,14 @@ const buttonStyle = {
 const getLocationButton = {
   marginTop: 20,
   marginLeft: -20,
-  width: 150,
+  width: '20%',
 };
 const bgImage = {
   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
   backgroundRepeat: 'repeat-x',
   backgroundPosition: 'bottom',
-  height: 600,
-  width: 1024,
+  height: '100vh',
+  width: '100%',
   backgroundColor: 'skyblue',
   padding: 20,
 };

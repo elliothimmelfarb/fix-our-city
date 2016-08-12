@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import styles from '../../css/components/googleMapContainer.css';
+import { mapBoundsChanged } from '../../actions/mapActions';
 
 
 const style = {
   map: {
-    height: '400px',
+    height: '500px',
   },
 };
 
@@ -14,6 +15,7 @@ const GoogleMapContainer = (mapProps) => {
   const {
     mapCenter,
     mapZoom,
+    onBoundsChange,
   } = mapProps;
 
   return (
@@ -23,14 +25,16 @@ const GoogleMapContainer = (mapProps) => {
         center={mapCenter}
         zoom={mapZoom}
         minZoom={10}
+        onChange={onBoundsChange}
       />
     </div>
   );
 };
 
 GoogleMapContainer.propTypes = {
-  mapCenter: PropTypes.array,
+  mapCenter: PropTypes.object,
   mapZoom: PropTypes.number,
+  onBoundsChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -38,5 +42,11 @@ const mapStateToProps = (state) => ({
   mapCenter: state.map.center,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onBoundsChange(mapInfo) {
+    return dispatch(mapBoundsChanged(mapInfo));
+  },
+});
 
-export default connect(mapStateToProps)(GoogleMapContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleMapContainer);

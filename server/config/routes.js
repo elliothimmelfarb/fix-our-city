@@ -3,8 +3,8 @@
  */
 // import passport from 'passport';
 // import unsupportedMessage from '../db/unsupportedMessage';
-// import { controllers, passport as passportConfig } from '../db';
-// const usersController = controllers && controllers.users;
+// import { controllers } from '../db';
+
 // const topicsController = controllers && controllers.topics;
 
 export default (app) => {

@@ -7,12 +7,17 @@ import createRoutes from './routes';
 import configureStore from './store/configureStore';
 import preRenderMiddleware from './middlewares/preRenderMiddleware';
 import header from './components/Meta';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+
 
 
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
   port: process.env.PORT || '3000',
 };
+
 
 
 // configure baseURL for axios requests (for serverside API calls)
@@ -55,6 +60,12 @@ export default function render(req, res) {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
   const routes = createRoutes(store);
+  const {headers} = req;
+
+  global.navigator = {
+    userAgent: headers['user-agent']
+  };
+
 
   /*
    * From the react-router docs:

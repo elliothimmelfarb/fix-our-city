@@ -6,6 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const buttonStyle = {
   width: "100%",
+  marginBottom: '2%',
 };
 
 export default function IssueButton() {

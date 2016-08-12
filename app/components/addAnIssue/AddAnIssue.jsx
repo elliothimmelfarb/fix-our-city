@@ -10,7 +10,7 @@ const style = {
   padding: '5%',
   width: '80%',
   margin: "0 auto",
-  textAlign: 'center',
+  // textAlign: 'center',
   display: 'inline-block',
 };
 const bgImage = {
@@ -24,9 +24,17 @@ const bgImage = {
 };
 const buttonStyle = {
   width: '100%',
+  marginBottom: '2%',
 };
 const TextFieldStyle = {
   marginBottom: '5%',
+};
+const dropZoneStyle = {
+  width: '100%',
+  height: '95%',
+  border: '2px solid #eee',
+  marginBottom: '5%',
+  textAlign: 'center',
 };
 class AddAnIssue extends React.Component {
   constructor(props) {
@@ -34,8 +42,8 @@ class AddAnIssue extends React.Component {
 
     this.state = {
       location: '',
-      issue:'',
-      files:'',
+      issue: '',
+      files: '',
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -49,7 +57,7 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
   }
   render() {
     let imgStyle = {
@@ -57,47 +65,55 @@ class AddAnIssue extends React.Component {
       height: '200px',
     };
     let imgPreview = this.state.files ? this.state.files.map((file) =>
-      <img role="presentation" src={file.preview} style={imgStyle} />) : 'No images uploaded';
+      <img role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
 
     return (
 
       <div style={bgImage}>
         <Row>
           <Col xs={12} md={12} lg={12}>
-            <Row center="xs">
+            <Row>
               <Paper style={style} zDepth={3}>
                 <Row>
-                  <Col xs={9} md={9} lg={9}>
-                    <TextField hintText="Location" fullWidth={true} value={this.state.location}
-                      onChange={e => this.setState({location: e.target.value})}
-                     />
-                    </Col>
-                    <Col xs={3} md={3} lg={3}>
+                  <Col xs={8} md={8} lg={8}>
+                    <TextField
+                      hintText="Location"
+                      fullWidth={true}
+                      value={this.state.location}
+                      onChange={e => this.setState({ location: e.target.value })}
+                    />
+                  </Col>
+                  <Col xs={4} md={4} lg={4}>
                     <RaisedButton label="location" primary={true} style={buttonStyle} />
-                    </Col>
-                    </Row>
-                    <Row>
-                    <Col xs={9} md={9} lg={9}>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={8} md={8} lg={8}>
                     <TextField
                       hintText="Message Field"
                       floatingLabelText="Issue"
                       multiLine={true}
-                      rows={3}
+                      rows={5}
                       style={TextFieldStyle}
                       fullWidth={true}
                       value={this.state.issue}
-                      onChange={e => this.setState({issue: e.target.value})}
+                      onChange={e => this.setState({ issue: e.target.value })}
                     />
-                    </Col>
-                    <Col xs={3} md={3} lg={3}>
-                      <Dropzone onDrop={this.onDrop}>
-                        {imgPreview}
-                      </Dropzone>
-                    </Col>
-                    </Row>
-                    <Row>
-                    <Col xs={12} md={12} lg={12}>
-                    <RaisedButton label="Submit" primary={true} style={buttonStyle} onClick={this.onSubmit} />
+                  </Col>
+                  <Col xs={4} md={4} lg={4}>
+                    <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
+                      {imgPreview}
+                    </Dropzone>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12} md={12} lg={12}>
+                    <RaisedButton
+                      label="Submit"
+                      primary={true}
+                      style={buttonStyle}
+                      onClick={this.onSubmit}
+                    />
                   </Col>
                 </Row>
               </Paper>

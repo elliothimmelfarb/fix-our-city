@@ -7,11 +7,12 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const getLocationButton = {
   width: '100%',
+  marginBottom: '2%',
 };
 export default function getLocation() {
   return (
     <div>
-      <Row middle="xs">
+      <Row bottom="xs">
         <Col xs={12} md={12} lg={12}>
           <RaisedButton
             secondary={true}

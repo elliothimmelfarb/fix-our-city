@@ -8,6 +8,7 @@ import MapMarker from './MapMarker';
 const style = {
   map: {
     height: '500px',
+    width: '100%',
   },
 };
 
@@ -43,7 +44,6 @@ class GoogleMapContainer extends React.Component {
   render() {
     const {
       mapCenter,
-      mapZoom,
       onBoundsChange,
       issues,
     } = this.props;
@@ -59,7 +59,7 @@ class GoogleMapContainer extends React.Component {
           onChange={onBoundsChange}
           options={this.createMapOptions}
         >
-        {markers}
+          {markers}
         < /GoogleMap>
       </div>
     );

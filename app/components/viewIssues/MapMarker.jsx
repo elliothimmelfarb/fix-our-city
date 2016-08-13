@@ -6,6 +6,8 @@ const styles = {
     height: '10px',
     width: '10px',
     backgroundColor: 'red',
+    borderRadius: '100%',
+    boxShadow: '0px 0px 7px 3px black',
   },
   hover: {
     height: '20px',
@@ -14,6 +16,8 @@ const styles = {
     right: '5px',
     bottom: '5px',
     backgroundColor: 'blue',
+    borderRadius: '100%',
+    boxShadow: '0px 0px 7px 3px black',
   },
 };
 

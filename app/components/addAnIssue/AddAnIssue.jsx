@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as addIssueActions from '../../actions/addIssueActions';
 import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 
+console.log('addIssueActions: ', addIssueActions);
 const style = {
   height: 400,
   padding: '5%',
@@ -45,7 +48,7 @@ class AddAnIssue extends React.Component {
       issue: '',
       files: '',
     };
-
+    this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -59,6 +62,11 @@ class AddAnIssue extends React.Component {
     event.preventDefault();
     console.log(this.state);
   }
+
+  getLocation() {
+    console.log('click!');
+    this.props.getUserLocation();
+  }
   render() {
     let imgStyle = {
       width: '200px',
@@ -66,7 +74,7 @@ class AddAnIssue extends React.Component {
     };
     let imgPreview = this.state.files ? this.state.files.map((file) =>
       <img role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
-
+    console.log('userLocation: ',this.props.userLocation);
     return (
 
       <div style={bgImage}>
@@ -84,7 +92,12 @@ class AddAnIssue extends React.Component {
                     />
                   </Col>
                   <Col xs={4} md={4} lg={4}>
-                    <RaisedButton label="location" primary={true} style={buttonStyle} />
+                    <RaisedButton
+                      label="location"
+                      primary={true}
+                      style={buttonStyle}
+                      onClick={this.getLocation}
+                    />
                   </Col>
                 </Row>
                 <Row>
@@ -127,4 +140,17 @@ class AddAnIssue extends React.Component {
   }
 }
 
-export default AddAnIssue;
+function mapStateToProps(state) {
+  return {
+    userLocation: state.location.userLocation,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getUserLocation: () => dispatch(addIssueActions.getUserLocation()),
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAnIssue);

@@ -41,7 +41,7 @@ const bgImage = {
 
 
 
-export default function SplashPage() {
+export default function SplashPage(props) {
   return (
     <div style={bgImage}>
       <Row>

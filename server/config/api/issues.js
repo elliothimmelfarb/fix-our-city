@@ -15,14 +15,7 @@ const issuesController = controllers && controllers.issues;
 
 router.get('/', issuesController.all);
 
-router.post('/add-issue', upload.single('photo'), (req, res) => {
-  console.log('in add issue', req.file);
-  res.send('hi');
-});
-
-
-
-
+router.post('/add-issue', upload.single('file'),issuesController.add);
 
 
 router.post('/find-issues', issuesController.findNearLocation);

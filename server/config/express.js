@@ -10,6 +10,7 @@ import gzip from 'compression';
 // import { sessionSecret } from './secrets';
 import { DB_TYPE, ENV } from './appConfig';
 // import { session as dbSession } from '../db';
+require('dotenv').config();
 
 
 export default (app) => {

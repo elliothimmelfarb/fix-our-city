@@ -6,7 +6,12 @@ import Issue from '../models/issues';
 
 const s3 = new AWS.S3();
 const s3BaseUrl = 'https://s3-us-west-2.amazonaws.com/fix-our-city/';
-AWS.config.loadFromPath('./awsconfig.json');
+AWS.config.update(
+  {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    subregion: 'us-west-2',
+  });
 
 export function all(req, res) {
   Issue.find({}).exec((err, issues) => {

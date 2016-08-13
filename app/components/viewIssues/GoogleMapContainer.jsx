@@ -54,7 +54,7 @@ class GoogleMapContainer extends React.Component {
         <GoogleMap
           bootstrapURLKeys={{ key: 'AIzaSyBkDcntoiu9E5hKuT1l2toW-77XSvd3suo' }}
           center={mapCenter}
-          zoom={mapZoom}
+          defaultZoom={15}
           minZoom={10}
           onChange={onBoundsChange}
           options={this.createMapOptions}
@@ -68,13 +68,11 @@ class GoogleMapContainer extends React.Component {
 
 GoogleMapContainer.propTypes = {
   mapCenter: PropTypes.object,
-  mapZoom: PropTypes.number,
   onBoundsChange: PropTypes.func,
   issues: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
-  mapZoom: state.map.zoom,
   mapCenter: state.map.center,
   issues: state.issues.list,
 });

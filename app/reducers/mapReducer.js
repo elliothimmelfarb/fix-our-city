@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
       return Object.assign(
         {},
         state,
-        { bounds, center, size, zoom, marginBounds, issues: action.issues }
+        { bounds, center, size, zoom, marginBounds}
       );
     }
     default:

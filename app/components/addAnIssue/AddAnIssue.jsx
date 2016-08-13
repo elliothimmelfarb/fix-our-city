@@ -78,7 +78,7 @@ class AddAnIssue extends React.Component {
       .attach(this.state.files[0].name, this.state.files[0])
       // .attach('issueObj', issueObj)
       .end((err, res) => {
-        if(err) console.log(err);
+        if (err) console.log(err);
         console.log('res:', res);
       })
 
@@ -121,7 +121,7 @@ class AddAnIssue extends React.Component {
                   </Col>
                   <Col xs={4} md={4} lg={4}>
                     <RaisedButton
-                      label={this.state.loading ? "Loading..." : "Get Current Location"}
+                      label={"Get Current Location"}
                       primary={true}
                       style={buttonStyle}
                       onClick={this.getLocation}

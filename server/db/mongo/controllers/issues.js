@@ -23,20 +23,20 @@ export function all(req, res) {
  * Add a Issue
  */
 export function add(req, res) {
-  console.log('in add', req.body.file);
-  const fileExt = path.extname(req.body.file);
+  console.log('in add', req.file);
+  const fileExt = path.extname(req.file.originalname);
+  const issueObj = JSON.parse(req.body.issueObj);
 
-  Issue.create(req.body, (err, savedIssue) => { // eslint-disable-line consistent-return
+  Issue.create(issueObj, (err, savedIssue) => { // eslint-disable-line consistent-return
     if (err) {
       console.log(err);
       return res.status(400).send(err);
     }
     // add the image to s3
     console.log('saved issue:', savedIssue);
-    return res.send(savedIssue);
     s3.putObject({
       Bucket: 'fix-our-city',
-      Key: `savedIssue._id${fileExt}`, // eslint-disable-line no-underscore-dangle
+      Key: savedIssue._id + fileExt, // eslint-disable-line no-underscore-dangle
       Body: req.file.buffer,
       ACL: 'public-read',
     }, (err) => { // eslint-disable-line consistent-return
@@ -44,6 +44,7 @@ export function add(req, res) {
 
       // add the s3 url to the db
       savedIssue.imgUrl = s3BaseUrl + savedIssue._id + fileExt;  // eslint-disable-line no-underscore-dangle,max-len,no-param-reassign
+      console.log('savedIssue:', savedIssue);
       savedIssue.save(err => {
         if (err) {
           return res.status(400).send(err);

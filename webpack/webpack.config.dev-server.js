@@ -48,6 +48,7 @@ module.exports = {
       publicPath: '/assets/',
       libraryTarget: 'commonjs2'
     },
+    
     module: {
       loaders: commonLoaders.concat([
            {

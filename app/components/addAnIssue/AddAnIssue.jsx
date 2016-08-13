@@ -46,11 +46,10 @@ class AddAnIssue extends React.Component {
     super(props);
 
     this.state = {
-      location: this.props.userLocation,
+      location: '' ,
       title: '',
       description: '',
       files: '',
-      loading: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -58,8 +57,8 @@ class AddAnIssue extends React.Component {
   }
 
   onDrop(files) {
+    console.log('files', files);
     this.setState({ files });
-    // send to server
   }
 
   onSubmit(event) {
@@ -75,11 +74,11 @@ class AddAnIssue extends React.Component {
     };
     // console.log(this.state.files[0]);
     superagent.post('/api/issues/add-issue')
-      .attach(this.state.files[0].name, this.state.files[0])
-      // .attach('issueObj', issueObj)
+      .attach('file', this.state.files[0])
+      .field('issueObj', JSON.stringify(issueObj))
       .end((err, res) => {
         if (err) console.log(err);
-        console.log('res:', res);
+        alert('Issue added! Thanks!');
       })
 
 
@@ -87,8 +86,7 @@ class AddAnIssue extends React.Component {
 
   getLocation() {
     console.log('click!');
-    this.setState({loading: true});
-    this.props.getUserLocation()
+    this.props.getUserLocation();
   }
 
   render() {
@@ -96,8 +94,8 @@ class AddAnIssue extends React.Component {
       width: '200px',
       height: '200px',
     };
-    let imgPreview = this.state.files ? this.state.files.map((file) =>
-      <img role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
+    let imgPreview = this.state.files ? this.state.files.map((file, i) =>
+      <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
     console.log('userLocation: ',this.props.userLocation);
     return (
 
@@ -110,13 +108,13 @@ class AddAnIssue extends React.Component {
                 <Row>
                   <Col xs={8} md={8} lg={8}>
                     <TextField
-                      hintText="Location"
-                      floatingLabelText="Location"
+                      hintText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
+                      floatingLabelText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
                       fullWidth={true}
-                      disabled={this.props.userLocation}
+                      disabled={Object.keys(this.props.userLocation).length > 0}
                       value={this.state.location}
                       onChange={e => this.setState({ location: e.target.value })}
-                      required
+                      required={Object.keys(this.props.userLocation).length === 0}
                     />
                   </Col>
                   <Col xs={4} md={4} lg={4}>

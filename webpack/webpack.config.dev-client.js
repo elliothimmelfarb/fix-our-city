@@ -108,6 +108,7 @@ module.exports = {
           __DEVSERVER__: false,
           "global.GENTLY": false
         }),
+        new webpack.DefinePlugin({ "global.GENTLY": false }),
         new styleLintPlugin({
           configFile: path.join(__dirname, '..', '.stylelintrc'),
           context: path.join(__dirname, '..', 'app'),

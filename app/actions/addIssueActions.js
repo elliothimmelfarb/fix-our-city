@@ -31,7 +31,7 @@ const toggleLoading = () => ({
 
 export const getUserLocation = () => {
     return dispatch => {
-      dispatch(toggleLoading());
+      // dispatch(toggleLoading());
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(res => {
           if (res === undefined) {

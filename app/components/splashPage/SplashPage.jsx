@@ -7,6 +7,7 @@ import GetLocation from './GetLocation';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import styles from '../../css/common/card.css';
 
 // injectTapEventPlugin();
 

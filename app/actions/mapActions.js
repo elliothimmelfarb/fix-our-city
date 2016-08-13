@@ -14,6 +14,7 @@ export const mapBoundsChanged = (newMapInfo) =>
   dispatch => {
     findIssues(newMapInfo.center, newMapInfo.bounds.nw)
     .then(response => {
+      console.log('response', response);
       newMapInfo.radius = response.data.radius; // eslint-disable-line no-param-reassign
       dispatch(updateMapInfo(newMapInfo, response.data.issues));
     });

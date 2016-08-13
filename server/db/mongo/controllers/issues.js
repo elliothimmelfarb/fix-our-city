@@ -63,22 +63,32 @@ export function findNearLocation(req, res) {
     { latitude: centerLatitude, longitude: centerLongitude },
     { latitude: cornerLatitude, longitude: cornerLongitude }
     );
-  const miles = distance * 1609.34;
-  console.log('miles', miles)
+  const meters = distance * 1609.34;
 
-  Issue.find({ location: { $nearSphere:
-    { $geommetry:
-    {
-      type: 'Point', coordinates: [centerLongitude, centerLatitude],
-    },
-     $maxDistance: miles } } })
-  .exec((err, issues) => {
+
+  const point = { type: 'Point', coordinates: [centerLongitude, centerLatitude] };
+  Issue.geoNear(point, { maxDistance: meters, spherical: true }, (err, issues) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
-    return res.json(issues);
+    console.log('issues:', issues);
+    const output = { issues, meters };
+    return res.json(output);
   });
+  // Issue.find({ location: { $nearSphere:
+  //   { $geommetry:
+  //   {
+  //     type: 'Point', coordinates: [centerLongitude, centerLatitude],
+  //   },
+  //    $maxDistance: miles } } })
+  // .exec((err, issues) => {
+  //   if (err) {
+  //     console.log('Error in first query');
+  //     return res.status(500).send('Something went wrong getting the data');
+  //   }
+  //   return res.json(issues);
+  // });
 }
 
 export function toggleFixed(req, res) {

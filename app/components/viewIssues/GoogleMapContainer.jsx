@@ -10,35 +10,47 @@ const style = {
   },
 };
 
-const GoogleMapContainer = (mapProps) => {
-  const {
-    mapCenter,
-    mapZoom,
-    onBoundsChange,
-  } = mapProps;
+class GoogleMapContainer extends React.Component {
 
-  return (
-    <div style={style.map}>
-      <GoogleMap
-        bootstrapURLKeys={{ key: 'AIzaSyBkDcntoiu9E5hKuT1l2toW-77XSvd3suo' }}
-        center={mapCenter}
-        zoom={mapZoom}
-        minZoom={10}
-        onChange={onBoundsChange}
-      />
-    </div>
-  );
-};
+  createMarkers(issues) {
+    return issues.map(issue => {});
+  }
+
+  render() {
+    const {
+      mapCenter,
+      mapZoom,
+      onBoundsChange,
+      issues,
+    } = this.props;
+
+    const markers = issues && this.createMarkers(issues);
+
+    return (
+      <div style={style.map}>
+        <GoogleMap
+          bootstrapURLKeys={{ key: 'AIzaSyBkDcntoiu9E5hKuT1l2toW-77XSvd3suo' }}
+          center={mapCenter}
+          zoom={mapZoom}
+          minZoom={10}
+          onChange={onBoundsChange}
+        />
+      </div>
+    );
+  }
+}
 
 GoogleMapContainer.propTypes = {
   mapCenter: PropTypes.object,
   mapZoom: PropTypes.number,
   onBoundsChange: PropTypes.func,
+  issues: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
   mapZoom: state.map.zoom,
   mapCenter: state.map.center,
+  issues: state.map.issues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

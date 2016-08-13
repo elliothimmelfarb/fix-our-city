@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as addIssueActions from '../../actions/addIssueActions';
 import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
+import * as addIssueActions from '../../actions/addIssueActions';
 
 
 console.log('addIssueActions: ', addIssueActions);
@@ -14,7 +14,7 @@ const style = {
   height: 400,
   padding: '5%',
   width: '80%',
-  margin: "0 auto",
+  margin: '0 auto',
   // textAlign: 'center',
   display: 'inline-block',
 };
@@ -50,7 +50,6 @@ class AddAnIssue extends React.Component {
       title: '',
       description: '',
       files: '',
-      loading: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -64,7 +63,6 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
 
     const issueObj = {
       location: {
@@ -110,8 +108,8 @@ class AddAnIssue extends React.Component {
                 <Row>
                   <Col xs={8} md={8} lg={8}>
                     <TextField
-                      hintText="Location"
-                      floatingLabelText="Location"
+                      hintText={this.props.userLocation ? "My Current Location" : "Location"}
+                      floatingLabelText={this.props.userLocation ? "My Current Location" : "Location"}
                       fullWidth={true}
                       disabled={this.props.userLocation}
                       value={this.state.location}
@@ -121,7 +119,7 @@ class AddAnIssue extends React.Component {
                   </Col>
                   <Col xs={4} md={4} lg={4}>
                     <RaisedButton
-                      label={this.state.loading ? "Loading..." : "Get Current Location"}
+                      label={this.props.loading ? "Loading..." : "Get Current Location"}
                       primary={true}
                       style={buttonStyle}
                       onClick={this.getLocation}
@@ -177,9 +175,15 @@ class AddAnIssue extends React.Component {
   }
 }
 
+AddAnIssue.propTypes = {
+  userLocation: PropTypes.object,
+  loading: PropTypes.bool,
+};
+
 function mapStateToProps(state) {
   return {
     userLocation: state.location.location,
+    loading: state.loading,
   };
 }
 

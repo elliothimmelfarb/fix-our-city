@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 
 class AutoCompleteInput extends React.Component {
@@ -32,11 +33,12 @@ class AutoCompleteInput extends React.Component {
         />
         */}
         <TextField
-          hintText="City"
-          floatingLabelText="Your Location"
+          hintText={ this.props.userLocation ? "My Currrent Location" : "City" }
+          floatingLabelText={ this.props.userLocation ? "My Current Locaiton" : "Your Location" }
           value={this.state.city}
           fullWidth={true}
           onChange={e => this.setState({ city: e.target.value })}
+          disabled = {this.props.userLocation}
         />
         </form>
       </div>
@@ -44,4 +46,10 @@ class AutoCompleteInput extends React.Component {
   }
 }
 
-export default AutoCompleteInput;
+function mapStateToProps(state) {
+  return {
+    userLocation: state.location.location,
+  };
+}
+
+export default connect(mapStateToProps)(AutoCompleteInput);

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Grid } from 'react-flexbox-grid';
 import classNames from 'classnames/bind';
-import styles from '../css/main.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import styles from '../css/main.css';
 
 const cx = classNames.bind(styles);
 

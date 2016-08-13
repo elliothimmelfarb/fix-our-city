@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import LoadingLocation from 'material-ui/svg-icons/navigation/more-horiz';
+import CircularProgress from 'material-ui/CircularProgress';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const getLocationButton = {
@@ -28,7 +29,7 @@ class getLocation extends React.Component {
           <Col xs={12} md={12} lg={12}>
             <RaisedButton
               secondary={true}
-              icon={this.props.loading ? <LoadingLocation /> : <ActionLocation />}
+              icon={this.props.loading ? <CircularProgress size={0.4}/> : <ActionLocation />}
               style={getLocationButton}
               onClick={this.getLocation}
             />

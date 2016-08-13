@@ -33,12 +33,13 @@ class AutoCompleteInput extends React.Component {
         />
         */}
         <TextField
-          hintText={ this.props.userLocation ? "My Currrent Location" : "City" }
-          floatingLabelText={ this.props.userLocation ? "My Current Locaiton" : "Your Location" }
+          hintText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
+          floatingLabelText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
           value={this.state.city}
           fullWidth={true}
           onChange={e => this.setState({ city: e.target.value })}
-          disabled = {this.props.userLocation}
+          disabled={Object.keys(this.props.userLocation).length > 0}
+          required={Object.keys(this.props.userLocation).length === 0}
         />
         </form>
       </div>

@@ -96,6 +96,7 @@ class AddAnIssue extends React.Component {
     let imgPreview = this.state.files ? this.state.files.map((file, i) =>
       <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
     console.log('userLocation: ',this.props.userLocation);
+
     return (
 
       <div style={bgImage}>
@@ -107,8 +108,10 @@ class AddAnIssue extends React.Component {
                 <Row>
                   <Col xs={8} md={8} lg={8}>
                     <TextField
-                      hintText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
-                      floatingLabelText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
+                      hintText={Object.keys(this.props.userLocation).length > 0 ?
+                         'Using your current location' : 'Location'}
+                      floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
+                         'Using your current location' : 'Location'}
                       fullWidth={true}
                       disabled={Object.keys(this.props.userLocation).length > 0}
                       value={this.state.location}
@@ -118,7 +121,7 @@ class AddAnIssue extends React.Component {
                   </Col>
                   <Col xs={4} md={4} lg={4}>
                     <RaisedButton
-                      label={"Get Current Location"}
+                      label={this.props.loading ? 'Loading...' : 'Get Current Location'}
                       primary={true}
                       style={buttonStyle}
                       onClick={this.getLocation}
@@ -182,7 +185,7 @@ AddAnIssue.propTypes = {
 function mapStateToProps(state) {
   return {
     userLocation: state.location.location,
-    loading: state.loading,
+    loading: state.location.loading,
   };
 }
 

@@ -16,7 +16,7 @@ const setUserLocation = (coords) => ({
 
 const toggleLoading = () => ({
   type: types.TOGGLE_LOADING,
-})
+});
 
 // export const addNewIssue= (issue) =>
 //   dispatch => {
@@ -30,16 +30,17 @@ const toggleLoading = () => ({
 
 export const getUserLocation = () => {
     return dispatch => {
-      // dispatch(toggleLoading());
+      dispatch(toggleLoading());
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(res => {
           if (res === undefined) {
             navigator.geolocation.getCurrentPosition(res2 => {
               dispatch(setUserLocation(res.coords));
+
             });
           } else{
             dispatch(setUserLocation(res.coords));
-            // dispatch(toggleLoading());
+
           }
         });
       }

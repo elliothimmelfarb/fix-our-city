@@ -14,13 +14,29 @@ const style = {
 class GoogleMapContainer extends React.Component {
 
   createMarkers(issues) {
-    return issues.map((issue, index) => (
+    /* eslint-disable no-underscore-dangle */
+    return issues.map(issue => (
       <MapMarker
-        key={issue}
-        lat={index / 10}
-        lng={index / 10}
+        key={issue.obj._id}
+        lat={issue.obj.location.coordinates[1]}
+        lng={issue.obj.location.coordinates[0]}
       />
     ));
+    /* eslint-enable no-underscore-dangle */
+  }
+
+  createMapOptions() {
+    return {
+      mapTypeControl: true,
+      styles: [{
+        stylers: [
+          { saturation: -50 },
+          { gamma: 0.2 },
+          { lightness: 4 },
+          { visibility: 'on' },
+        ],
+      }],
+    };
   }
 
   render() {
@@ -30,7 +46,6 @@ class GoogleMapContainer extends React.Component {
       onBoundsChange,
       issues,
     } = this.props;
-
     const markers = issues && this.createMarkers(issues);
 
     return (
@@ -41,6 +56,7 @@ class GoogleMapContainer extends React.Component {
           zoom={mapZoom}
           minZoom={10}
           onChange={onBoundsChange}
+          options={this.createMapOptions}
         >
         {markers}
         < /GoogleMap>

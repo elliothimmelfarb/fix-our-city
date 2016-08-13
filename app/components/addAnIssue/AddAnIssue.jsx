@@ -6,10 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
-import * as addIssueActions from '../../actions/addIssueActions';
+import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
-
-console.log('addIssueActions: ', addIssueActions);
 const style = {
   height: 400,
   padding: '5%',
@@ -42,8 +40,8 @@ const dropZoneStyle = {
   textAlign: 'center',
 };
 class AddAnIssue extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       location: '' ,
@@ -77,10 +75,14 @@ class AddAnIssue extends React.Component {
       .field('issueObj', JSON.stringify(issueObj))
       .end((err, res) => {
         if (err) console.log(err);
+        this.redirect();
         alert('Issue added! Thanks!');
       })
 
 
+  }
+  redirect() {
+    this.context.router.push('/view-issues');
   }
 
   getLocation() {
@@ -182,7 +184,11 @@ AddAnIssue.propTypes = {
   loading: PropTypes.bool,
 };
 
-function mapStateToProps(state) {
+AddAnIssue.contextTypes = {
+  router: PropTypes.object
+};
+
+function mapStateToProps(state, ownProps) {
   return {
     userLocation: state.location.location,
     loading: state.location.loading,
@@ -191,7 +197,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUserLocation: () => dispatch(addIssueActions.getUserLocation()),
+    getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
   };
 }
 

@@ -18,6 +18,7 @@ class GoogleMapContainer extends React.Component {
     return issues.map(issue => (
       <MapMarker
         key={issue.obj._id}
+        id={issue.obj._id}
         lat={issue.obj.location.coordinates[1]}
         lng={issue.obj.location.coordinates[0]}
       />

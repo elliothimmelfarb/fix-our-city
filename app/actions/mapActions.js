@@ -10,11 +10,15 @@ const updateMapInfo = (newMapInfo, issues) => ({
   type: types.UPDATE_MAP_DATA,
 });
 
+export const selectMarker = (id) => ({
+  id,
+  type: types.SELECT_ISSUE,
+});
+
 export const mapBoundsChanged = (newMapInfo) =>
   dispatch => {
     findIssues(newMapInfo.center, newMapInfo.bounds.nw)
     .then(response => {
-      console.log('response', response);
       newMapInfo.radius = response.data.radius; // eslint-disable-line no-param-reassign
       dispatch(updateMapInfo(newMapInfo, response.data.issues));
     });

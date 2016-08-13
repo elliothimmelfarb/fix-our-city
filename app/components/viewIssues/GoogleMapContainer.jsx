@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import { mapBoundsChanged } from '../../actions/mapActions';
+import MapMarker from './MapMarker';
 
 
 const style = {
@@ -13,7 +14,13 @@ const style = {
 class GoogleMapContainer extends React.Component {
 
   createMarkers(issues) {
-    return issues.map(issue => {});
+    return issues.map((issue, index) => (
+      <MapMarker
+        key={issue}
+        lat={index / 10}
+        lng={index / 10}
+      />
+    ));
   }
 
   render() {
@@ -34,7 +41,9 @@ class GoogleMapContainer extends React.Component {
           zoom={mapZoom}
           minZoom={10}
           onChange={onBoundsChange}
-        />
+        >
+        {markers}
+        < /GoogleMap>
       </div>
     );
   }
@@ -50,7 +59,7 @@ GoogleMapContainer.propTypes = {
 const mapStateToProps = (state) => ({
   mapZoom: state.map.zoom,
   mapCenter: state.map.center,
-  issues: state.map.issues,
+  issues: state.issues.list,
 });
 
 const mapDispatchToProps = (dispatch) => ({

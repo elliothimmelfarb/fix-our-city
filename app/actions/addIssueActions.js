@@ -36,9 +36,11 @@ export const getUserLocation = () => {
           if (res === undefined) {
             navigator.geolocation.getCurrentPosition(res2 => {
               dispatch(setUserLocation(res.coords));
+
             });
           } else{
             dispatch(setUserLocation(res.coords));
+
           }
         });
       }

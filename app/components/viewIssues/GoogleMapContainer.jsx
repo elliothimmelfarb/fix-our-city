@@ -30,8 +30,8 @@ class GoogleMapContainer extends React.Component {
       mapTypeControl: true,
       styles: [{
         stylers: [
-          { saturation: -100 },
-          { gamma: 0.8 },
+          { saturation: -75 },
+          { gamma: 0.2 },
           { lightness: 4 },
           { visibility: 'on' },
         ],

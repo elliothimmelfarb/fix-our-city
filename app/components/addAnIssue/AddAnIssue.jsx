@@ -6,6 +6,8 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
+import superagent from 'superagent';
+
 
 console.log('addIssueActions: ', addIssueActions);
 const style = {
@@ -44,9 +46,11 @@ class AddAnIssue extends React.Component {
     super(props);
 
     this.state = {
-      location: '',
-      issue: '',
+      location: this.props.userLocation,
+      title: '',
+      description: '',
       files: '',
+      loading: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -61,12 +65,32 @@ class AddAnIssue extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     console.log(this.state);
+
+    const issueObj = {
+      location: {
+        coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
+      },
+      title: this.state.title,
+      description: this.state.description,
+    };
+    // console.log(this.state.files[0]);
+    superagent.post('/api/issues/add-issue')
+      .attach(this.state.files[0].name, this.state.files[0])
+      // .attach('issueObj', issueObj)
+      .end((err, res) => {
+        if(err) console.log(err);
+        console.log('res:', res);
+      })
+
+
   }
 
   getLocation() {
     console.log('click!');
-    this.props.getUserLocation();
+    this.setState({loading: true});
+    this.props.getUserLocation()
   }
+
   render() {
     let imgStyle = {
       width: '200px',
@@ -82,18 +106,22 @@ class AddAnIssue extends React.Component {
           <Col xs={12} md={12} lg={12}>
             <Row>
               <Paper style={style} zDepth={3}>
+                <form onSubmit={this.onSubmit}>
                 <Row>
                   <Col xs={8} md={8} lg={8}>
                     <TextField
                       hintText="Location"
+                      floatingLabelText="Location"
                       fullWidth={true}
+                      disabled={this.props.userLocation}
                       value={this.state.location}
                       onChange={e => this.setState({ location: e.target.value })}
+                      required
                     />
                   </Col>
                   <Col xs={4} md={4} lg={4}>
                     <RaisedButton
-                      label="location"
+                      label={this.state.loading ? "Loading..." : "Get Current Location"}
                       primary={true}
                       style={buttonStyle}
                       onClick={this.getLocation}
@@ -102,15 +130,23 @@ class AddAnIssue extends React.Component {
                 </Row>
                 <Row>
                   <Col xs={8} md={8} lg={8}>
+                  <TextField
+                    hintText="Title"
+                    floatingLabelText="Title"
+                    fullWidth={true}
+                    value={this.state.title}
+                    onChange={e => this.setState({ title: e.target.value })}
+                    required
+                  />
                     <TextField
-                      hintText="Message Field"
-                      floatingLabelText="Issue"
+                      hintText="Description"
+                      floatingLabelText="Description"
                       multiLine={true}
-                      rows={5}
+                      rows={2}
                       style={TextFieldStyle}
                       fullWidth={true}
-                      value={this.state.issue}
-                      onChange={e => this.setState({ issue: e.target.value })}
+                      value={this.state.description}
+                      onChange={e => this.setState({ description: e.target.value })}
                     />
                   </Col>
                   <Col xs={4} md={4} lg={4}>
@@ -122,13 +158,14 @@ class AddAnIssue extends React.Component {
                 <Row>
                   <Col xs={12} md={12} lg={12}>
                     <RaisedButton
+                      type="Submit"
                       label="Submit"
                       primary={true}
                       style={buttonStyle}
-                      onClick={this.onSubmit}
                     />
                   </Col>
                 </Row>
+                </form>
               </Paper>
             </Row>
           </Col>
@@ -142,7 +179,7 @@ class AddAnIssue extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    userLocation: state.location.userLocation,
+    userLocation: state.location.location,
   };
 }
 

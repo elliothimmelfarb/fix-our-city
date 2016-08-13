@@ -14,18 +14,24 @@ const setUserLocation = (coords) => ({
   type: types.GET_USER_LOCATION,
 });
 
-// export const addNewIssueAction = (issue) =>
+const toggleLoading = () => ({
+  loading,
+  type: types.TOGGLE_LOADING,
+})
+
+// export const addNewIssue= (issue) =>
 //   dispatch => {
 //     addIssue(issue)
 //     .then(response => {
-//       newMapInfo.radius = response.data.radius; // eslint-disable-line no-param-reassign
-//       dispatch(addNewIssue(newMapInfo, response.data.issues));
+//        console.log('response:', response)
+//        dispatch
+//
 //     });
 //   };
 
 export const getUserLocation = () => {
     return dispatch => {
-      // dispatch(toggleLoading());
+      dispatch(toggleLoading());
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(res => {
           if (res === undefined) {

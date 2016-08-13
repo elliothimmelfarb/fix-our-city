@@ -63,7 +63,8 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
           __DEVCLIENT__: false,
-          __DEVSERVER__: true
+          __DEVSERVER__: true,
+          "global.GENTLY": false
         }),
         new webpack.IgnorePlugin(/vertx/)
     ]

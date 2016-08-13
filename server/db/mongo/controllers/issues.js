@@ -23,7 +23,9 @@ export function all(req, res) {
  * Add a Issue
  */
 export function add(req, res) {
-  const fileExt = path.extname(req.file.originalname);
+  console.log('in add', req.body.file);
+  const fileExt = path.extname(req.body.file);
+
   Issue.create(req.body, (err, savedIssue) => { // eslint-disable-line consistent-return
     if (err) {
       console.log(err);

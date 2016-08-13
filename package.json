@@ -115,7 +115,6 @@
     "postcss-reporter": "^1.4.1",
     "postcss-simple-vars": "^3.0.0",
     "react": "^15.3.0",
-    "react-bootstrap": "^0.30.2",
     "react-dom": "^15.3.0",
     "react-dropzone": "^3.5.3",
     "react-dropzone-s3-uploader": "^0.5.2",

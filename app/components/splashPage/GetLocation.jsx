@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as addIssueActions from '../../actions/addIssueActions';
+import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 import { Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
+import LoadingLocation from 'material-ui/svg-icons/navigation/more-horiz';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const getLocationButton = {
@@ -27,7 +28,7 @@ class getLocation extends React.Component {
           <Col xs={12} md={12} lg={12}>
             <RaisedButton
               secondary={true}
-              icon={<ActionLocation />}
+              icon={this.props.loading ? <LoadingLocation /> : <ActionLocation />}
               style={getLocationButton}
               onClick={this.getLocation}
             />
@@ -41,12 +42,13 @@ class getLocation extends React.Component {
 function mapStateToProps(state) {
   return {
     userLocation: state.location.location,
+    loading: state.location.loading,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUserLocation: () => dispatch(addIssueActions.getUserLocation()),
+    getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
   };
 }
 

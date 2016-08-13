@@ -64,7 +64,6 @@ export function findNearLocation(req, res) {
     { latitude: cornerLatitude, longitude: cornerLongitude }
     );
   const meters = distance * 1609.34;
-  console.log('miles', miles);
 
 
   const point = { type: 'Point', coordinates: [centerLongitude, centerLatitude] };

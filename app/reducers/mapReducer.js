@@ -2,7 +2,7 @@ import * as types from '../types';
 
 const initialState = {
   zoom: 15,
-  center: { lat: 37.639746, lng: -121.800211 },
+  center: { lat: 0, lng: 0 },
 };
 
 export default (state = initialState, action) => {

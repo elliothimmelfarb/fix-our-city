@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
@@ -48,6 +49,7 @@ class AddAnIssue extends React.Component {
       title: '',
       description: '',
       files: '',
+      open: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -61,7 +63,7 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-
+    this.setState({ open: true })
     const issueObj = {
       location: {
         coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
@@ -76,7 +78,6 @@ class AddAnIssue extends React.Component {
       .end((err, res) => {
         if (err) console.log(err);
         this.redirect();
-        alert('Issue added! Thanks!');
       })
 
 
@@ -164,6 +165,11 @@ class AddAnIssue extends React.Component {
                       label="Submit"
                       primary={true}
                       style={buttonStyle}
+                    />
+                    <Snackbar
+                      open={this.state.open}
+                      message='Issue Submitted'
+                      autoHideDuration={4000}
                     />
                   </Col>
                 </Row>

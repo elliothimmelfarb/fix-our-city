@@ -17,15 +17,7 @@ const style = {
   // textAlign: 'center',
   display: 'inline-block',
 };
-const bgImage = {
-  backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
-  backgroundRepeat: 'repeat-x',
-  backgroundPosition: 'bottom',
-  height: '100vh',
-  width: '100vw',
-  backgroundColor: 'skyblue',
-  padding: '5%',
-};
+
 const buttonStyle = {
   width: '100%',
   marginBottom: '2%',
@@ -102,7 +94,7 @@ class AddAnIssue extends React.Component {
 
     return (
 
-      <div style={bgImage}>
+      <div>
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>

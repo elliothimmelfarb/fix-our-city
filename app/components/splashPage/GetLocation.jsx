@@ -5,13 +5,13 @@ import { Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
-import LoadingLocation from 'material-ui/svg-icons/navigation/more-horiz';
 import CircularProgress from 'material-ui/CircularProgress';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const getLocationButton = {
   width: '100%',
   marginBottom: '2%',
+  marginTop: '25',
 };
 class getLocation extends React.Component {
   constructor(props){
@@ -28,8 +28,9 @@ class getLocation extends React.Component {
         <Row bottom="xs">
           <Col xs={12} md={12} lg={12}>
             <RaisedButton
-              secondary={true}
               icon={this.props.loading ? <CircularProgress size={0.4}/> : <ActionLocation />}
+              label='GET CURRENT LOCATION'
+              primary={true}
               style={getLocationButton}
               onClick={this.getLocation}
             />

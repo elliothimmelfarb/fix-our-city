@@ -8,6 +8,7 @@ import MapMarker from './MapMarker';
 const style = {
   map: {
     height: '500px',
+    width: '100%',
   },
 };
 
@@ -18,6 +19,7 @@ class GoogleMapContainer extends React.Component {
     return issues.map(issue => (
       <MapMarker
         key={issue.obj._id}
+        id={issue.obj._id}
         lat={issue.obj.location.coordinates[1]}
         lng={issue.obj.location.coordinates[0]}
       />
@@ -42,7 +44,6 @@ class GoogleMapContainer extends React.Component {
   render() {
     const {
       mapCenter,
-      mapZoom,
       onBoundsChange,
       issues,
     } = this.props;
@@ -53,12 +54,12 @@ class GoogleMapContainer extends React.Component {
         <GoogleMap
           bootstrapURLKeys={{ key: 'AIzaSyBkDcntoiu9E5hKuT1l2toW-77XSvd3suo' }}
           center={mapCenter}
-          zoom={mapZoom}
+          defaultZoom={15}
           minZoom={10}
           onChange={onBoundsChange}
           options={this.createMapOptions}
         >
-        {markers}
+          {markers}
         < /GoogleMap>
       </div>
     );
@@ -67,13 +68,11 @@ class GoogleMapContainer extends React.Component {
 
 GoogleMapContainer.propTypes = {
   mapCenter: PropTypes.object,
-  mapZoom: PropTypes.number,
   onBoundsChange: PropTypes.func,
   issues: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
-  mapZoom: state.map.zoom,
   mapCenter: state.map.center,
   issues: state.issues.list,
 });

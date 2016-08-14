@@ -56,6 +56,9 @@ module.exports = [
   {
     // The configuration for the client
     name: 'browser',
+    node: {
+  __dirname: true,
+},
     /* The entry point of the bundle
      * Entry points for multi page app could be more complex
      * A good example of entry points would be:
@@ -110,7 +113,9 @@ module.exports = [
           __DEVCLIENT__: false,
           __DEVSERVER__: false
         }),
-        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
+        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
+        new webpack.DefinePlugin({ "global.GENTLY": false }),
+
     ],
     postcss: postCSSConfig
   }, {
@@ -120,6 +125,9 @@ module.exports = [
     entry: {
       server: './server'
     },
+    node: {
+  __dirname: true,
+},
     target: 'node',
     output: {
       // The output directory as absolute path
@@ -153,7 +161,8 @@ module.exports = [
           __DEVSERVER__: false
         }),
         new webpack.IgnorePlugin(/vertx/),
-        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
+        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
+        new webpack.DefinePlugin({ "global.GENTLY": false }),
     ],
     postcss: postCSSConfig
   }

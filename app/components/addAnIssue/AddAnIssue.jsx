@@ -63,7 +63,7 @@ class AddAnIssue extends React.Component {
       title: this.state.title,
       description: this.state.description,
     };
-    // console.log(this.state.files[0]);
+    console.log(this.state.files[0]);
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
       .field('issueObj', JSON.stringify(issueObj))

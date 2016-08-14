@@ -2,7 +2,7 @@ import * as types from '../types';
 
 const initialState = {
   zoom: 15,
-  center: { lat: 37.639746 , lng: -121.80093 },
+  center: { lat: 37.639746, lng: -121.80093 },
 };
 
 export default (state = initialState, action) => {
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
       return Object.assign(
         {},
         state,
-        { bounds, center, size, zoom, marginBounds}
+        { bounds, center, size, zoom, marginBounds }
       );
     }
     default:

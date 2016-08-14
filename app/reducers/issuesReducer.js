@@ -9,6 +9,11 @@ export default (state = initialState, action) => {
     case types.UPDATE_MAP_DATA: {
       return Object.assign({}, state, { list: action.issues });
     }
+    case types.SELECT_ISSUE: {
+      // eslint-disable-next-line no-underscore-dangle
+      const selected = state.list.filter(issue => issue.obj._id === action.id);
+      return Object.assign({}, state, { selected: selected[0] });
+    }
     default:
       return state;
   }

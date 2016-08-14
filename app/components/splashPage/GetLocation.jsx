@@ -10,6 +10,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 const getLocationButton = {
   width: '100%',
   marginBottom: '2%',
+  marginTop: '25',
 };
 class getLocation extends React.Component {
   constructor(props){
@@ -26,7 +27,8 @@ class getLocation extends React.Component {
         <Row bottom="xs">
           <Col xs={12} md={12} lg={12}>
             <RaisedButton
-              secondary={true}
+              label='GET CURRENT LOCATION'
+              primary={true}
               icon={<ActionLocation />}
               style={getLocationButton}
               onClick={this.getLocation}

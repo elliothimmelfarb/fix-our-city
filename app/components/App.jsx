@@ -17,10 +17,18 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  <Navigation />
  */
-
+ const bgImage = {
+   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
+   backgroundRepeat: 'repeat-x',
+   backgroundPosition: 'bottom',
+   height: '100vh',
+   width: '100vw',
+   backgroundColor: 'skyblue',
+   padding: '5%',
+ };
 const App = ({ children }) => (
 
-  <div className={cx('app')}>
+  <div className={cx('app')} style={bgImage}>
     <MuiThemeProvider>
       <Grid>
         {children}

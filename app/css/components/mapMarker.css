@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-position: 2px 1px;
   border-radius: 100%;
-  background-color: red;
+  box-shadow: 0px 0px 10px 2px red inset;
   position: absolute;
   z-index: 10000;
   background-image: url("../../images/issue.png");
@@ -20,5 +20,6 @@
   background-size: 19px;
   background-repeat: no-repeat;
   background-position: 2px 1px;
+  border-radius: 100%;
   background-image: url("../../images/issue.png");
 }

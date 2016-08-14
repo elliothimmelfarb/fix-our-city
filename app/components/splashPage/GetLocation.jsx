@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 import { Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import CircularProgress from 'material-ui/CircularProgress';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
 const getLocationButton = {
   width: '100%',
@@ -14,23 +12,22 @@ const getLocationButton = {
   marginTop: '25',
 };
 class getLocation extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.getLocation = this.getLocation.bind(this);
   }
   getLocation() {
-    console.log('click!');
-    this.props.getUserLocation()
+    this.props.getUserLocation();
   }
-  render(){
+  render() {
     return (
       <div>
         <Row bottom="xs">
           <Col xs={12} md={12} lg={12}>
             <RaisedButton
               icon={this.props.loading ? <CircularProgress size={0.4}/> : <ActionLocation />}
-              label='GET CURRENT LOCATION'
-              primary={true}
+              label="GET CURRENT LOCATION"
+              primary
               style={getLocationButton}
               onClick={this.getLocation}
             />
@@ -40,6 +37,8 @@ class getLocation extends React.Component {
     );
   }
 }
+
+
 
 function mapStateToProps(state) {
   return {

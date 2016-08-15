@@ -7,6 +7,8 @@ import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
+import InputInfo from './InputInfo';
+import styles from '../../css/components/AddAnIssue.css'
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
 const style = {
@@ -22,9 +24,7 @@ const buttonStyle = {
   width: '100%',
   marginBottom: '2%',
 };
-const TextFieldStyle = {
-  marginBottom: '5%',
-};
+
 const dropZoneStyle = {
   width: '100%',
   height: '95%',
@@ -37,9 +37,7 @@ class AddAnIssue extends React.Component {
     super(props, context);
 
     this.state = {
-      location: '' ,
-      title: '',
-      description: '',
+      location: '',
       files: '',
       open: false,
     };
@@ -49,38 +47,33 @@ class AddAnIssue extends React.Component {
   }
 
   onDrop(files) {
-    console.log('files', files);
     this.setState({ files });
   }
 
   onSubmit(event) {
     event.preventDefault();
-    this.setState({ open: true })
+    this.setState({ open: true });
     const issueObj = {
       location: {
         coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
       },
-      title: this.state.title,
-      description: this.state.description,
+      title: this.props.title,
+      description: this.props.description,
     };
-    console.log(this.state.files[0]);
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
       .field('issueObj', JSON.stringify(issueObj))
       .end((err, res) => {
         if (err) console.log(err);
         this.redirect();
-      })
-
-
-  }
-  redirect() {
-    this.context.router.push('/view-issues');
+      });
   }
 
   getLocation() {
-    console.log('click!');
     this.props.getUserLocation();
+  }
+  redirect() {
+    this.context.router.push('/view-issues');
   }
 
   render() {
@@ -90,7 +83,6 @@ class AddAnIssue extends React.Component {
     };
     let imgPreview = this.state.files ? this.state.files.map((file, i) =>
       <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
-    console.log('userLocation: ',this.props.userLocation);
 
     return (
 
@@ -117,33 +109,14 @@ class AddAnIssue extends React.Component {
                   <Col xs={4} md={4} lg={4}>
                     <RaisedButton
                       label={this.props.loading ? 'Loading...' : 'Get Current Location'}
-                      primary={true}
+                      primary
                       style={buttonStyle}
                       onClick={this.getLocation}
                     />
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={8} md={8} lg={8}>
-                  <TextField
-                    hintText="Title"
-                    floatingLabelText="Title"
-                    fullWidth={true}
-                    value={this.state.title}
-                    onChange={e => this.setState({ title: e.target.value })}
-                    required
-                  />
-                    <TextField
-                      hintText="Description"
-                      floatingLabelText="Description"
-                      multiLine={true}
-                      rows={2}
-                      style={TextFieldStyle}
-                      fullWidth={true}
-                      value={this.state.description}
-                      onChange={e => this.setState({ description: e.target.value })}
-                    />
-                  </Col>
+                  <InputInfo />
                   <Col xs={4} md={4} lg={4}>
                     <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
                       {imgPreview}
@@ -180,16 +153,21 @@ class AddAnIssue extends React.Component {
 AddAnIssue.propTypes = {
   userLocation: PropTypes.object,
   loading: PropTypes.bool,
+  getUserLocation: PropTypes.func,
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 AddAnIssue.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     userLocation: state.location.location,
     loading: state.location.loading,
+    title: state.input.title,
+    description: state.input.description,
   };
 }
 

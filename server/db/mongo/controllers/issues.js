@@ -71,17 +71,16 @@ export function findNearLocation(req, res) {
     { latitude: centerLatitude, longitude: centerLongitude },
     { latitude: cornerLatitude, longitude: cornerLongitude }
     );
-  const meters = distance * 1609.34;
 
-
+  console.log('distance:', distance);
   const point = { type: 'Point', coordinates: [centerLongitude, centerLatitude] };
-  Issue.geoNear(point, { maxDistance: meters, spherical: true }, (err, issues) => {
+  Issue.geoNear(point, { maxDistance: distance, spherical: true }, (err, issues) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
     console.log('issues:', issues);
-    const output = { issues, meters };
+    const output = { issues, distance };
     return res.json(output);
   });
   // Issue.find({ location: { $nearSphere:

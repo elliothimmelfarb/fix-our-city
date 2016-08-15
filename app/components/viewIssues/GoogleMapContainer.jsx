@@ -48,6 +48,7 @@ class GoogleMapContainer extends React.Component {
       onBoundsChange,
       issues,
     } = this.props;
+
     const markers = issues && this.createMarkers(issues);
 
     return (

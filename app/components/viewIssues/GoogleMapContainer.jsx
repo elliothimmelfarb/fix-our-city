@@ -47,12 +47,13 @@ class GoogleMapContainer extends React.Component {
       onBoundsChange,
       issues,
     } = this.props;
+
     const markers = issues && this.createMarkers(issues);
 
     return (
       <div style={style.map}>
         <GoogleMap
-          bootstrapURLKeys={{ key: 'AIzaSyBkDcntoiu9E5hKuT1l2toW-77XSvd3suo' }}
+          bootstrapURLKeys={{ key: 'AIzaSyC2Ljl_7KIYLlF7oui-0nmd5p-phCzamUo' }}
           center={mapCenter}
           defaultZoom={15}
           minZoom={10}

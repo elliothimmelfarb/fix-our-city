@@ -38,8 +38,6 @@ class AddAnIssue extends React.Component {
 
     this.state = {
       location: '',
-      title: '',
-      description: '',
       files: '',
       open: false,
     };
@@ -59,8 +57,8 @@ class AddAnIssue extends React.Component {
       location: {
         coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
       },
-      title: this.state.title,
-      description: this.state.description,
+      title: this.props.title,
+      description: this.props.description,
     };
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
@@ -156,6 +154,8 @@ AddAnIssue.propTypes = {
   userLocation: PropTypes.object,
   loading: PropTypes.bool,
   getUserLocation: PropTypes.func,
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 AddAnIssue.contextTypes = {
@@ -166,6 +166,8 @@ function mapStateToProps(state, ownProps) {
   return {
     userLocation: state.location.location,
     loading: state.location.loading,
+    title: state.input.title,
+    description: state.input.description,
   };
 }
 

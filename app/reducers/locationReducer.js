@@ -15,7 +15,7 @@ export default (state = { loading: false, location: {} }, action) => {
         {},
         state,
         { loading: !state.loading },
-      )
+      );
     }
     default:
       return state;

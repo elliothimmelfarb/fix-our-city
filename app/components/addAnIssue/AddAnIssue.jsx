@@ -8,7 +8,6 @@ import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import InputInfo from './InputInfo';
-import styles from '../../css/components/AddAnIssue.css'
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 

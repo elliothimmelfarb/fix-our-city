@@ -1,0 +1,26 @@
+.formStyle = {
+  width: 100%;
+  margin-bottom: 5%;
+}
+.getLocationButton = {
+  width: 100%;
+  margin-bottom: 2%;
+  margin-top: 25;
+}
+.buttonStyle = {
+  width: 100%;
+  margin-bottom: 2%;
+}
+.pageStyle = {
+  height: 40%;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  padding: 55%;
+}
+.titelImage = {
+  width: 100%;
+  height: 40%;
+  margin-bottom: 2%;
+}

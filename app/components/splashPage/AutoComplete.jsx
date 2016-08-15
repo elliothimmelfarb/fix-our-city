@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
-
+import styles from '../../css/components/splash.css';
 class AutoCompleteInput extends React.Component {
   constructor(props) {
     super(props);
@@ -18,13 +18,9 @@ class AutoCompleteInput extends React.Component {
     // send to backend
   }
   render() {
-    const formStyle = {
-      width: '100%',
-      marginBottom: '5%',
-    };
     return (
       <div>
-        <form onSubmit={this.onSubmit} style={formStyle}>
+        <form onSubmit={this.onSubmit} className={styles.formStyle}>
         {/*
           <AutoComplete
           hintText="Type anything"

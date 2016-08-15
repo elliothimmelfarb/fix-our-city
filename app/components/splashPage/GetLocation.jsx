@@ -5,11 +5,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import CircularProgress from 'material-ui/CircularProgress';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
+import styles from '../../css/components/splash.css';
 
 const getLocationButton = {
   width: '100%',
   marginBottom: '2%',
-  marginTop: '25',
+  marginTop: '12%',
+};
+const progress = {
+  top: '-5%',
 };
 class getLocation extends React.Component {
   constructor(props) {
@@ -25,7 +29,7 @@ class getLocation extends React.Component {
         <Row bottom="xs">
           <Col xs={12} md={12} lg={12}>
             <RaisedButton
-              icon={this.props.loading ? <CircularProgress size={0.4}/> : <ActionLocation />}
+              icon={this.props.loading ? <CircularProgress size={0.4} style={progress}/> : <ActionLocation />}
               label="GET CURRENT LOCATION"
               primary
               style={getLocationButton}

@@ -9,10 +9,11 @@ import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import InputInfo from './InputInfo';
 import styles from '../../css/components/AddAnIssue.css'
+import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
-const style = {
-  height: 400,
+const pageStyle = {
+  height: '40%',
   padding: '5%',
   width: '80%',
   margin: '0 auto',
@@ -21,15 +22,16 @@ const style = {
 };
 
 const buttonStyle = {
+  marginTop: '3%',
   width: '100%',
-  marginBottom: '2%',
+  // marginBottom: '2%',
 };
 
 const dropZoneStyle = {
   width: '100%',
-  height: '95%',
+  height: '100%',
   border: '2px solid #eee',
-  marginBottom: '5%',
+  marginBottom: '2%',
   textAlign: 'center',
 };
 class AddAnIssue extends React.Component {
@@ -90,10 +92,10 @@ class AddAnIssue extends React.Component {
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>
-              <Paper style={style} zDepth={3}>
+              <Paper style={pageStyle} zDepth={3}>
                 <form onSubmit={this.onSubmit}>
                 <Row>
-                  <Col xs={8} md={8} lg={8}>
+                  <Col xs={12} md={8} lg={8}>
                     <TextField
                       hintText={Object.keys(this.props.userLocation).length > 0 ?
                          'Using your current location' : 'Location'}
@@ -106,7 +108,7 @@ class AddAnIssue extends React.Component {
                       required={Object.keys(this.props.userLocation).length === 0}
                     />
                   </Col>
-                  <Col xs={4} md={4} lg={4}>
+                  <Col xs={12} md={4} lg={4}>
                     <RaisedButton
                       label={this.props.loading ? 'Loading...' : 'Get Current Location'}
                       primary
@@ -117,7 +119,7 @@ class AddAnIssue extends React.Component {
                 </Row>
                 <Row>
                   <InputInfo />
-                  <Col xs={4} md={4} lg={4}>
+                  <Col xs={12} md={8} lg={8}>
                     <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
                       {imgPreview}
                     </Dropzone>

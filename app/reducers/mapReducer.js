@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
         { bounds, center, size, zoom, marginBounds }
       );
     }
+    case types.GET_USER_LOCATION: {
+      return Object.assign(
+        {},
+        state,
+        { center: { lat: action.coords.latitude, lng: action.coords.longitude } }
+      );
+    }
     default:
       return state;
   }

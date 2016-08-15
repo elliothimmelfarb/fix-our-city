@@ -12,6 +12,7 @@ const style = {
   },
 };
 
+
 class GoogleMapContainer extends React.Component {
 
   createMarkers(issues) {
@@ -52,7 +53,7 @@ class GoogleMapContainer extends React.Component {
     return (
       <div style={style.map}>
         <GoogleMap
-          bootstrapURLKeys={{ key: 'AIzaSyBkDcntoiu9E5hKuT1l2toW-77XSvd3suo' }}
+          bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_KEY }}
           center={mapCenter}
           defaultZoom={15}
           minZoom={10}

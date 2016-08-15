@@ -4,10 +4,14 @@ import { findIssues } from '../api';
 
 polyfill();
 
-const updateMapInfo = (newMapInfo, issues) => ({
+const updateMapData = (newMapInfo, issues) => ({
   newMapInfo,
   issues,
   type: types.UPDATE_MAP_DATA,
+});
+
+const issuesLoading = () => ({
+  type: types.ISSUES_LOADING,
 });
 
 export const selectMarker = (id) => ({
@@ -17,9 +21,10 @@ export const selectMarker = (id) => ({
 
 export const mapBoundsChanged = (newMapInfo) =>
   dispatch => {
+    dispatch(issuesLoading());
     findIssues(newMapInfo.center, newMapInfo.bounds.nw)
     .then(response => {
       newMapInfo.radius = response.data.radius; // eslint-disable-line no-param-reassign
-      dispatch(updateMapInfo(newMapInfo, response.data.issues));
+      dispatch(updateMapData(newMapInfo, response.data.issues));
     });
   };

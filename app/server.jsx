@@ -11,8 +11,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
-
-
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
   port: process.env.PORT || '3000',
@@ -60,10 +58,10 @@ export default function render(req, res) {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
   const routes = createRoutes(store);
-  const {headers} = req;
+  const { headers } = req;
 
   global.navigator = {
-    userAgent: headers['user-agent']
+    userAgent: headers['user-agent'],
   };
 
 

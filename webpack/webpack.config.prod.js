@@ -115,7 +115,10 @@ module.exports = [
         }),
         new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
         new webpack.DefinePlugin({ "global.GENTLY": false }),
-
+        new webpack.EnvironmentPlugin([
+          "NODE_ENV",
+          "GOOGLE_MAPS_KEY"
+        ]),
     ],
     postcss: postCSSConfig
   }, {

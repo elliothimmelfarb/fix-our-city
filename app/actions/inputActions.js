@@ -4,23 +4,14 @@ import * as types from '../types';
 
 polyfill();
 
-const issueTitle = (title) => ({
+export const inputTitle = (title) => ({
   title,
   type: types.INPUT_ISSUE_TITLE,
-})
-const issueDescription = (description) => ({
+});
+export const inputDescription = (description) => ({
   description,
   type: types.INPUT_ISSUE_DESCRIPTION,
-})
-
-export const inputTitle = (title) => {
-  return dispatch => {
-    dispatch(issueTitle(title));
-  };
-};
-
-export const inputDescription = (description) => {
-  return dispatch => {
-    dispatch(issueDescription(description));
-  };
-};
+});
+export const clearInputs = () => ({
+  type: types.CLEAR_INPUT,
+});

@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import { Paper, RaisedButton, Dialog, FlatButton, TextField, LinearProgress } from 'material-ui';
+import { Paper, RaisedButton, Dialog, FlatButton, TextField,
+  LinearProgress, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
+import * as inputActions from '../../actions/inputActions';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
 const pageStyle = {
@@ -43,7 +45,8 @@ class AddAnIssue extends React.Component {
     this.state = {
       location: '',
       files: '',
-      open: false,
+      openDialog: false,
+      openSnackbar: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -58,7 +61,7 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.setState({ open: true });
+    this.setState({ openDialog: true });
     const issueObj = {
       location: {
         coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
@@ -66,12 +69,11 @@ class AddAnIssue extends React.Component {
       title: this.props.title,
       description: this.props.description,
     };
-    console.log('issueObj:', issueObj);
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
       .field('issueObj', JSON.stringify(issueObj))
-      .end((err, res) => {
-        if (err) console.log(err);
+      .end((err) => {
+        if (err) this.setState({ openSnackbar: true })
       });
   }
 
@@ -83,7 +85,9 @@ class AddAnIssue extends React.Component {
   }
 
   handleClose() {
-    this.setState({ open: false });
+    this.setState({ openDialog: false, files: '', location: '' });
+    this.props.clearInputs();
+
   }
 
   render() {
@@ -168,11 +172,16 @@ class AddAnIssue extends React.Component {
                   title="Issue Submitted!"
                   actions={dialogActions}
                   modal={false}
-                  open={this.state.open}
+                  open={this.state.openDialog}
                   onRequestClose={this.handleClose}
                 >
                   Thank You for your submission.
                 </Dialog>
+                <Snackbar
+                  open={this.state.openSnackbar}
+                  message="Error adding Issue"
+                  autoHideDuration={4000}
+                />
               </Paper>
             </Row>
           </Col>
@@ -188,6 +197,7 @@ AddAnIssue.propTypes = {
   userLocation: PropTypes.object,
   loading: PropTypes.bool,
   getUserLocation: PropTypes.func,
+  clearInputs: PropTypes.func,
   title: PropTypes.string,
   description: PropTypes.string,
 };
@@ -208,6 +218,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
+    clearInputs: () => dispatch(inputActions.clearInputs()),
   };
 }
 

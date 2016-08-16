@@ -16,7 +16,7 @@ class InputInfo extends React.Component {
           hintText="Title"
           floatingLabelText="Title"
           fullWidth
-
+          value={this.props.title}
           onChange={e => this.props.inputTitle(e.target.value)}
           required
         />
@@ -28,7 +28,7 @@ class InputInfo extends React.Component {
           rows={2}
           style={TextFieldStyle}
           fullWidth
-
+          value={this.props.description}
           onChange={e => this.props.inputDescription(e.target.value)}
           required
         />

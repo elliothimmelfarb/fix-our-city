@@ -2,6 +2,7 @@ import * as types from '../types';
 
 const initialState = {
   list: [],
+  issuesLoading: false,
 };
 
 export default (state = initialState, action) => {

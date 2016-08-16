@@ -8,6 +8,7 @@ import superagent from 'superagent';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
+import styles from '../../css/components/AddAnIssue.css';
 import * as inputActions from '../../actions/inputActions';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
@@ -23,14 +24,6 @@ const buttonStyle = {
   marginTop: '3%',
   width: '100%',
   marginBottom: '2%',
-};
-
-const dropZoneStyle = {
-  width: '100%',
-  height: '150px',
-  border: '2px solid #eee',
-  marginBottom: '2%',
-  textAlign: 'center',
 };
 
 const test = {
@@ -127,8 +120,8 @@ class AddAnIssue extends React.Component {
                         hintText={Object.keys(this.props.userLocation).length > 0 ?
                            'Using your current location' : 'Location'}
                         floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
-                            'Current Location at '+this.props.userLocation.lat.toFixed(2)+", "+this.props.userLocation.lng.toFixed(2) : 'Location'}
-                        fullWidth={true}
+                           'Current Location at '+this.props.userLocation.lat.toFixed(2)+", "+this.props.userLocation.lng.toFixed(2) : 'Location'}
+                        fullWidth
                         disabled={Object.keys(this.props.userLocation).length > 0}
                         value={this.state.location}
                         onChange={e => this.setState({ location: e.target.value })}
@@ -137,7 +130,9 @@ class AddAnIssue extends React.Component {
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <RaisedButton
-                        icon={this.props.loading ? <LinearProgress mode="indeterminate" style={test} /> : <ActionLocation />}
+                        icon={this.props.loading ?
+                          <LinearProgress mode="indeterminate" style={test} />
+                          : <ActionLocation />}
                         label={this.props.loading ? 'Loading...' : 'Get Current Location'}
                         primary
                         style={buttonStyle}
@@ -151,7 +146,7 @@ class AddAnIssue extends React.Component {
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <Card style={imgStyle}>
-                        <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
+                        <Dropzone onDrop={this.onDrop} className={styles.dropZoneStyle}>
                           {imgPreview}
                         </Dropzone>
                       </Card>
@@ -162,7 +157,7 @@ class AddAnIssue extends React.Component {
                       <RaisedButton
                         type="Submit"
                         label="Submit"
-                        primary={true}
+                        primary
                         style={buttonStyle}
                       />
                     </Col>
@@ -206,7 +201,7 @@ AddAnIssue.contextTypes = {
   router: PropTypes.object,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     userLocation: state.location.location,
     loading: state.location.loading,

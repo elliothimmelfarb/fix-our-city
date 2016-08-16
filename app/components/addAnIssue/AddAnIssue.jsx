@@ -1,14 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
+import { Paper, RaisedButton, Dialog, FlatButton, TextField, LinearProgress } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
-import LinearProgress from 'material-ui/LinearProgress';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
@@ -42,6 +38,7 @@ const test = {
   position: 'relative',
   left: '-5%',
 };
+
 class AddAnIssue extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -54,6 +51,8 @@ class AddAnIssue extends React.Component {
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.redirect = this.redirect.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   onDrop(files) {
@@ -75,7 +74,6 @@ class AddAnIssue extends React.Component {
       .field('issueObj', JSON.stringify(issueObj))
       .end((err, res) => {
         if (err) console.log(err);
-        this.redirect();
       });
   }
 
@@ -86,6 +84,10 @@ class AddAnIssue extends React.Component {
     this.context.router.push('/view-issues');
   }
 
+  handleClose() {
+    this.setState({ open: false });
+  }
+
   render() {
     let imgStyle = {
       width: '100%',
@@ -93,7 +95,20 @@ class AddAnIssue extends React.Component {
     };
     let imgPreview = this.state.files ? this.state.files.map((file, i) =>
       <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
-    console.log('userLocation: ', this.props.userLocation.lat);
+
+    const dialogActions = [
+      <FlatButton
+         label="Add New Issue"
+         primary
+         onTouchTap={this.handleClose}
+     />,
+     <FlatButton
+         label="View Issues"
+         primary
+         keyboardFocused
+         onTouchTap={this.redirect}
+     />,
+    ]
     return (
 
       <div>
@@ -143,15 +158,20 @@ class AddAnIssue extends React.Component {
                     <Col xs={12} md={12} lg={12}>
                       <RaisedButton
                         type="Submit"
-                        label="Submit"
-                        primary={true}
+                        label="submit"
                         style={buttonStyle}
+                        primary
                       />
-                      <Snackbar
+                      <Dialog
+                        title="Issue Submitted!"
+                        actions={dialogActions}
+                        modal={false}
                         open={this.state.open}
-                        message='Issue Submitted'
-                        autoHideDuration={4000}
-                      />
+                        onRequestClose={this.handleClose}
+                      >
+                        Thank You for your submission.
+                      </Dialog>
+
                     </Col>
                   </Row>
                 </form>

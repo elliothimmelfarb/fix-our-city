@@ -16,11 +16,23 @@ const updateIssues = (issues) => ({
   type: types.UPDATE_ISSUES,
 });
 
+const addToUpvoted = (id) => ({
+  id,
+  type: types.UPVOTE_ISSUE,
+});
+
+const addToDownvoted = (id) => ({
+  id,
+  type: types.DOWNVOTE_ISSUE,
+});
+
 export const downvoteIssue = (id, center, corner) =>
   dispatch => {
     downvote(id, center, corner)
     .then(response => {
       dispatch(updateIssues(response.data.issues));
+      dispatch(addToDownvoted(id));
+
     });
   };
 
@@ -31,6 +43,7 @@ export const upvoteIssue = (id, center, corner) =>
     .then(response => {
       console.log('res data:', response.data);
       dispatch(updateIssues(response.data.issues));
+      dispatch(addToUpvoted(id));
     });
   };
 

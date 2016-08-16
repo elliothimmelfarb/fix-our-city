@@ -19,3 +19,5 @@ export const INPUT_ISSUE_DESCRIPTION = 'INPUT_ISSUE_DESCRIPTION';
 
 // View Issue actions
 export const UPDATE_VOTES = 'UPDATE_VOTES';
+export const UPVOTE_ISSUE = 'UPVOTE_ISSUE';
+export const DOWNVOTE_ISSUE = 'DOWNVOTE_ISSUE';

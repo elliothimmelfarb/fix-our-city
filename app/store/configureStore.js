@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
+import persistState from 'redux-localstorage';
 import rootReducer from '../reducers';
 import promiseMiddleware from '../middlewares/promiseMiddleware';
 
@@ -19,13 +20,13 @@ export default function configureStore(initialState, history) {
   if (__DEVCLIENT__) {
     middleware.push(createLogger());
     store = createStore(rootReducer, initialState, compose(
-      applyMiddleware(...middleware),
+      applyMiddleware(...middleware), persistState(),
       typeof window === 'object' &&
         typeof window.devToolsExtension !== 'undefined' ?
         window.devToolsExtension() : f => f
     ));
   } else {
-    store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), f => f));
+    store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), persistState(), f => f));
   }
 
   if (module.hot) {

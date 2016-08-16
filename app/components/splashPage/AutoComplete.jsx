@@ -21,7 +21,7 @@ class AutoCompleteInput extends React.Component {
 
   onInputUpdate(e) {
     const input = document.getElementById('splashPageInput');
-    this.searchBox = new google.maps.places.SearchBox(input);
+    this.searchBox = new google.maps.places.TextSearch(input);
     this.searchBox.getPlaces();
     this.setState({ city: e.target.value });
   }

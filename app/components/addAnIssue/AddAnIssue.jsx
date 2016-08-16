@@ -25,6 +25,11 @@ const buttonStyle = {
   width: '100%',
   marginBottom: '2%',
 };
+const button2Style = {
+  marginTop: '3%',
+  width: '50%',
+  marginBottom: '2%',
+};
 
 const dropZoneStyle = {
   width: '100%',
@@ -168,10 +173,17 @@ class AddAnIssue extends React.Component {
                   <Row>
                     <Col xs={12} md={12} lg={12}>
                       <RaisedButton
+                        type="button"
+                        label="Cancel"
+                        default
+                        style={button2Style}
+                        onClick={this.handleClose}
+                      />
+                      <RaisedButton
                         type="Submit"
                         label="Submit"
                         primary
-                        style={buttonStyle}
+                        style={button2Style}
                       />
                     </Col>
                   </Row>

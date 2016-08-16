@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.UPDATE_MAP_DATA: {
+    case types.UPDATE_ISSUES: {
       return Object.assign({}, state, { list: action.issues, issuesLoading: false });
     }
     case types.ISSUES_LOADING: {
@@ -16,6 +16,11 @@ export default (state = initialState, action) => {
       // eslint-disable-next-line no-underscore-dangle
       const selected = state.list.filter(issue => issue.obj._id === action.id);
       return Object.assign({}, state, { selected: selected[0] });
+    }
+    case types.ISSUE_HIGHLIGHTED: {
+      // eslint-disable-next-line no-underscore-dangle
+      const highlighted = state.list.filter(issue => issue.obj._id === action.id);
+      return Object.assign({}, state, { highlighted: highlighted[0] });
     }
     default:
       return state;

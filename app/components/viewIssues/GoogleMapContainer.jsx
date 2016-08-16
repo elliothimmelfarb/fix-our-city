@@ -34,7 +34,7 @@ class GoogleMapContainer extends React.Component {
       styles: [{
         stylers: [
           { saturation: -50 },
-          { gamma: 0.2 },
+          { gamma: 1 },
           { lightness: 4 },
           { visibility: 'on' },
         ],
@@ -57,7 +57,7 @@ class GoogleMapContainer extends React.Component {
           bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_KEY }}
           center={mapCenter}
           defaultZoom={15}
-          minZoom={10}
+          minZoom={5}
           onChange={onBoundsChange}
           options={this.createMapOptions}
         >

@@ -8,7 +8,6 @@ import superagent from 'superagent';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
-import styles from '../../css/components/AddAnIssue.css';
 import * as inputActions from '../../actions/inputActions';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
@@ -74,7 +73,7 @@ class AddAnIssue extends React.Component {
       .attach('file', this.state.files[0])
       .field('issueObj', JSON.stringify(issueObj))
       .end((err) => {
-        if (err) this.setState({ openSnackbar: true })
+        if (err) this.setState({ openSnackbar: true });
       });
   }
 
@@ -88,7 +87,6 @@ class AddAnIssue extends React.Component {
   handleClose() {
     this.setState({ openDialog: false, files: '', location: '' });
     this.props.clearInputs();
-
   }
 
   render() {
@@ -128,7 +126,8 @@ class AddAnIssue extends React.Component {
                         hintText={Object.keys(this.props.userLocation).length > 0 ?
                            'Using your current location' : 'Location'}
                         floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
-                           'Current Location at '+this.props.userLocation.lat.toFixed(2)+", "+this.props.userLocation.lng.toFixed(2) : 'Location'}
+                           'Current Location at ' + this.props.userLocation.lat.toFixed(2) + ','
+                           + this.props.userLocation.lng.toFixed(2) : 'Location'}
                         fullWidth
                         disabled={Object.keys(this.props.userLocation).length > 0}
                         value={this.state.location}

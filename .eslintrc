@@ -36,6 +36,7 @@
       ],
      "globals": {
         "__DEVSERVER__": true,
-        "__DEVCLIENT__": true
+        "__DEVCLIENT__": true,
+        "google": true,
   }
 }

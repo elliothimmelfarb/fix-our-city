@@ -26,6 +26,14 @@ const buttonStyle = {
   marginBottom: '2%',
 };
 
+const dropZoneStyle = {
+  width: '100%',
+  height: '150px',
+  border: '2px solid #eee',
+  marginBottom: '2%',
+  textAlign: 'center',
+};
+
 const test = {
   position: 'relative',
   left: '-5%',
@@ -146,7 +154,7 @@ class AddAnIssue extends React.Component {
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <Card style={imgStyle}>
-                        <Dropzone onDrop={this.onDrop} className={styles.dropZoneStyle}>
+                        <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
                           {imgPreview}
                         </Dropzone>
                       </Card>

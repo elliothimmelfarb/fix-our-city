@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+import Badge from 'material-ui/Badge';
 import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
 
 import { Row, Col } from 'react-flexbox-grid';
@@ -38,6 +39,7 @@ const CardView = (props) => {
           <IconButton disabled={upvoteStatus} onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
             <FontIcon className="material-icons">thumb_up</FontIcon>
           </IconButton>
+          <Badge badgeContent={props.votes} secondary={true} badgeStyle={{top: 5, right: 5}} />
           <IconButton disabled={downvoteStatus} onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
             <FontIcon className="material-icons">thumb_down</FontIcon>
           </IconButton>

@@ -30,6 +30,14 @@ const config = {
     // add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
     // { 'rel': 'canonical', 'href': 'http://www.example.com/' }
   ],
+  // script: [
+  //   {
+  //     type: 'text/javascript',
+  //     src: `https://maps.google.com/maps/api/js?libraries=places&key=${process.env.GOOGLE_MAPS_KEY}`,
+  //     async: true,
+  //     defer: true,
+  //   },
+  // ],
   meta: [
     { charset: 'utf-8' },
     // Setting IE=edge tells Internet Explorer to use the latest engine to

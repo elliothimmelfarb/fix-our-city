@@ -11,7 +11,7 @@ import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import LinearProgress from 'material-ui/LinearProgress';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
-import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
+import * as locationActions from '../../actions/locationActions';
 
 const pageStyle = {
   height: '40%',
@@ -189,7 +189,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
+    getUserLocation: () => dispatch(locationActions.getUserLocation()),
   };
 }
 

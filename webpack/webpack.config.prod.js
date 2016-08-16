@@ -117,7 +117,7 @@ module.exports = [
       }),
       new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
       new webpack.DefinePlugin({ "global.GENTLY": false }),
-    ]),
+    ],
   ],
   postcss: postCSSConfig
 }, {

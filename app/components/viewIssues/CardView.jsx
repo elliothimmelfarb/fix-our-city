@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux'
 import {Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+import { upvoteIssue } from '../../actions/issueActions';
 
 import { Row, Col } from 'react-flexbox-grid';
 
@@ -30,15 +32,17 @@ const CardView = (props) =>  (
     </CardHeader>
     <CardText>
       <Col xsOffset={9} mdOffset={11} style={styles.voting}>
-        <IconButton><FontIcon className='material-icons'>thumb_up</FontIcon></IconButton>
-        <IconButton><FontIcon className='material-icons'>thumb_down</FontIcon></IconButton>
+        <IconButton onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
+          <FontIcon className="material-icons">thumb_up</FontIcon>
+        </IconButton>
+        <IconButton><FontIcon className="material-icons">thumb_down</FontIcon></IconButton>
       </Col>
     </CardText>
     <CardMedia
       expandable
       mediaStyle={styles.image}
     >
-      <img src={`${props.imgUrl}`} alt='Issue' style={styles.image} />
+      <img src={`${props.imgUrl}`} alt="Issue" style={styles.image} />
     </CardMedia>
     />
   </Card>
@@ -50,5 +54,16 @@ CardView.propTypes = {
   imgUrl: PropTypes.string.isRequired,
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  upvoteIssue(id, center, corner) {
+    console.log('in upvote ', id, center, corner);
+    return dispatch(upvoteIssue(id, center, corner));
+  },
+});
 
-export default CardView;
+const mapStateToProps = (state) => ({
+  mapCenter: state.map.center,
+  mapCorner: state.map.bounds.nw,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardView);

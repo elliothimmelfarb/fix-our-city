@@ -122,6 +122,7 @@ export function toggleFixed(req, res) {
 
 
 export function upvote(req, res) {
+  console.log(req.body);
   Issue.findById(req.body.id).exec((err, issue) => { // eslint-disable-line consistent-return
     if (err) {
       console.log('Error in first query');
@@ -130,10 +131,11 @@ export function upvote(req, res) {
     if (issue) {
       issue.votes += 1; // eslint-disable-line no-param-reassign
       issue.save((err, savedIssue) => {
+        console.log('savedIssue:', savedIssue);
         if (err) {
           return res.status(400).send('Something went wrong saving the data');
         }
-        return res.json(savedIssue);
+        return findNearLocation(req, res);
       });
     } else {
       return res.status(500).send('No issue with that ID found');

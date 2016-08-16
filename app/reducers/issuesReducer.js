@@ -23,6 +23,14 @@ export default (state = initialState, action) => {
       const highlighted = state.list.filter(issue => issue.obj._id === action.id);
       return Object.assign({}, state, { highlighted: highlighted[0] });
     }
+    case types.UPDATE_VOTES: {
+      console.log('issue', action.issue);
+      const removeIndex = state.list.findIndex((element) =>
+         element.obj._id === action.id
+      );
+      
+      return Object.assign({}, state, {list: [...list.slice(0, removeIndex), ]})
+    }
     default:
       return state;
   }

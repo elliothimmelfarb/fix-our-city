@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import styles from '../../css/components/splash.css';
+
 class AutoCompleteInput extends React.Component {
   constructor(props) {
     super(props);
@@ -17,17 +18,11 @@ class AutoCompleteInput extends React.Component {
     console.log("work");
     // send to backend
   }
+
   render() {
     return (
       <div>
         <form onSubmit={this.onSubmit} className={styles.formStyle}>
-        {/*
-          <AutoComplete
-          hintText="Type anything"
-          dataSource={this.state.dataSource}
-          onUpdateInput={this.handleUpdateInput}
-        />
-        */}
         <TextField
           hintText={Object.keys(this.props.userLocation).length > 0 ? 'Using your current location' : 'Location'}
           floatingLabelText={Object.keys(this.props.userLocation).length > 0 ? 'Current Location at '+this.props.userLocation.lat.toFixed(2)+', '+this.props.userLocation.lng.toFixed(2) : 'Location'}

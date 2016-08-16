@@ -12,7 +12,6 @@ const style = {
   },
 };
 
-
 class GoogleMapContainer extends React.Component {
 
   createMarkers(issues) {

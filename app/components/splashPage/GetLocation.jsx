@@ -4,7 +4,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import CircularProgress from 'material-ui/CircularProgress';
-import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
+import * as locationActions from '../../actions/locationActions';
 import styles from '../../css/components/splash.css';
 
 const getLocationButton = {
@@ -61,7 +61,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
+    getUserLocation: () => dispatch(locationActions.getUserLocation()),
   };
 }
 

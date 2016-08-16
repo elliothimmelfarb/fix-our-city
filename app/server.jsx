@@ -7,8 +7,6 @@ import createRoutes from './routes';
 import configureStore from './store/configureStore';
 import preRenderMiddleware from './middlewares/preRenderMiddleware';
 import header from './components/Meta';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 const clientConfig = {
@@ -116,6 +114,12 @@ export default function render(req, res) {
               ${header.link.toString()}
             </head>
             <body>
+              <script
+                type="text/javascript"
+                src="https://maps.google.com/maps/api/js?libraries=places&key=${process.env.GOOGLE_MAPS_KEY}"
+                async
+                defer
+              />
               <div id="app">${componentHTML}</div>
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
               ${analtyicsScript}

@@ -40,7 +40,11 @@ export default function SplashPage(props) {
                   <GetLocation />
                 </Col>
               </Row>
-              <IssueButton />
+              <Row>
+                <Col xs={12} md={12} lg={12}>
+                  <IssueButton />
+                </Col>
+              </Row>
             </Paper>
           </Row>
         </Col>

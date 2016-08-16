@@ -18,8 +18,8 @@ const cx = classNames.bind(styles);
  <Navigation />
  */
  const bgImage = {
-   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
-   backgroundRepeat: 'repeat-x',
+   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png'), url('http://www.ibox-security.co.uk/wp-content/uploads/2015/07/ss-2-bg.jpg')",
+   backgroundRepeat: 'repeat-x, repeat-y',
    backgroundPosition: 'bottom',
    height: '100vh',
    width: '100vw',

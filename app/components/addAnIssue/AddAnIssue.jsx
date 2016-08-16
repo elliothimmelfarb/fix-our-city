@@ -7,9 +7,11 @@ import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
-import InputInfo from './InputInfo';
-import styles from '../../css/components/AddAnIssue.css'
+import CircularProgress from 'material-ui/CircularProgress';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
+import LinearProgress from 'material-ui/LinearProgress';
+import {Card, CardActions, CardHeader, CardTitle} from 'material-ui/Card';
+import InputInfo from './InputInfo';
 import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
 
 const pageStyle = {
@@ -17,22 +19,29 @@ const pageStyle = {
   padding: '5%',
   width: '80%',
   margin: '0 auto',
-  // textAlign: 'center',
   display: 'inline-block',
 };
 
 const buttonStyle = {
   marginTop: '3%',
   width: '100%',
-  // marginBottom: '2%',
+  marginBottom: '2%',
 };
 
 const dropZoneStyle = {
   width: '100%',
-  height: '100%',
+  height: '150px',
   border: '2px solid #eee',
   marginBottom: '2%',
   textAlign: 'center',
+};
+const bgDefault = {
+  background: 'url("http://research.larc.smu.edu.sg/ge2015/assets/img/default_photo.png")',
+  backgroundSize: '100%, 100%',
+};
+const test = {
+  position: 'relative',
+  left: '-5%',
 };
 class AddAnIssue extends React.Component {
   constructor(props, context) {
@@ -80,66 +89,72 @@ class AddAnIssue extends React.Component {
 
   render() {
     let imgStyle = {
-      width: '200px',
-      height: '200px',
+      width: '100%',
+      height: '150px',
     };
     let imgPreview = this.state.files ? this.state.files.map((file, i) =>
       <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
-
+    console.log('userLocation: ', this.props.userLocation.lat);
     return (
 
       <div>
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>
-              <Paper style={pageStyle} zDepth={3}>
+              <Paper style={pageStyle} zDepth={5}>
+                <CardTitle title="Add Issue" />
                 <form onSubmit={this.onSubmit}>
-                <Row>
-                  <Col xs={12} md={8} lg={8}>
-                    <TextField
-                      hintText={Object.keys(this.props.userLocation).length > 0 ?
-                         'Using your current location' : 'Location'}
-                      floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
-                         'Using your current location' : 'Location'}
-                      fullWidth={true}
-                      disabled={Object.keys(this.props.userLocation).length > 0}
-                      value={this.state.location}
-                      onChange={e => this.setState({ location: e.target.value })}
-                      required={Object.keys(this.props.userLocation).length === 0}
-                    />
-                  </Col>
-                  <Col xs={12} md={4} lg={4}>
-                    <RaisedButton
-                      label={this.props.loading ? 'Loading...' : 'Get Current Location'}
-                      primary
-                      style={buttonStyle}
-                      onClick={this.getLocation}
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <InputInfo />
-                  <Col xs={12} md={8} lg={8}>
-                    <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
-                      {imgPreview}
-                    </Dropzone>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12} md={12} lg={12}>
-                    <RaisedButton
-                      type="Submit"
-                      label="Submit"
-                      primary={true}
-                      style={buttonStyle}
-                    />
-                    <Snackbar
-                      open={this.state.open}
-                      message='Issue Submitted'
-                      autoHideDuration={4000}
-                    />
-                  </Col>
-                </Row>
+                  <Row>
+                    <Col xs={12} md={8} lg={8}>
+                      <TextField
+                        hintText={Object.keys(this.props.userLocation).length > 0 ?
+                           'Using your current location' : 'Location'}
+                        floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
+                            'Current Location at '+this.props.userLocation.lat.toFixed(2)+", "+this.props.userLocation.lng.toFixed(2) : 'Location'}
+                        fullWidth={true}
+                        disabled={Object.keys(this.props.userLocation).length > 0}
+                        value={this.state.location}
+                        onChange={e => this.setState({ location: e.target.value })}
+                        required={Object.keys(this.props.userLocation).length === 0}
+                      />
+                    </Col>
+                    <Col xs={12} md={4} lg={4}>
+                      <RaisedButton
+                        icon={this.props.loading ? <LinearProgress mode="indeterminate" style={test} /> : <ActionLocation />}
+                        label={this.props.loading ? 'Loading...' : 'Get Current Location'}
+                        primary
+                        style={buttonStyle}
+                        onClick={this.getLocation}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12} md={8} lg={8}>
+                      <InputInfo />
+                    </Col>
+                    <Col xs={12} md={4} lg={4}>
+                      <Card style={imgStyle}>
+                        <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
+                          {imgPreview}
+                        </Dropzone>
+                      </Card>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12} md={12} lg={12}>
+                      <RaisedButton
+                        type="Submit"
+                        label="Submit"
+                        primary={true}
+                        style={buttonStyle}
+                      />
+                      <Snackbar
+                        open={this.state.open}
+                        message='Issue Submitted'
+                        autoHideDuration={4000}
+                      />
+                    </Col>
+                  </Row>
                 </form>
               </Paper>
             </Row>

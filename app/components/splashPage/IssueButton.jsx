@@ -3,15 +3,13 @@ import { Row, Col } from 'react-flexbox-grid';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import styles from '../../css/components/splash.css';
 
 const buttonStyle = {
   marginTop: '6%',
   width: '100%',
   marginBottom: '2%',
-}
+};
 export default function IssueButton() {
-  console.log('style.pageStyle: ', styles.pageStyle);
   return (
     <div>
       <Row>

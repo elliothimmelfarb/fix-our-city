@@ -111,6 +111,11 @@ class AddAnIssue extends React.Component {
         onTouchTap={this.redirect}
       />,
     ];
+
+    const {
+      userLocation,
+      loading,
+    } = this.props;
     return (
 
       <div>
@@ -125,22 +130,22 @@ class AddAnIssue extends React.Component {
                       <TextField
                         hintText={Object.keys(this.props.userLocation).length > 0 ?
                            'Using your current location' : 'Location'}
-                        floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
-                           'Current Location at ' + this.props.userLocation.lat.toFixed(2) + ','
-                           + this.props.userLocation.lng.toFixed(2) : 'Location'}
+                        floatingLabelText={Object.keys(userLocation).length > 0 ?
+                           'Current Location at ' + userLocation.lat.toFixed(2) + ','
+                           + userLocation.lng.toFixed(2) : 'Location'}
                         fullWidth
-                        disabled={Object.keys(this.props.userLocation).length > 0}
+                        disabled={Object.keys(userLocation).length > 0}
                         value={this.state.location}
                         onChange={e => this.setState({ location: e.target.value })}
-                        required={Object.keys(this.props.userLocation).length === 0}
+                        required={Object.keys(userLocation).length === 0}
                       />
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <RaisedButton
-                        icon={this.props.loading ?
+                        icon={loading ?
                           <LinearProgress mode="indeterminate" style={test} />
                           : <ActionLocation />}
-                        label={this.props.loading ? 'Loading...' : 'Get Current Location'}
+                        label={loading ? 'Loading...' : 'Get Current Location'}
                         primary
                         style={buttonStyle}
                         onClick={this.getLocation}

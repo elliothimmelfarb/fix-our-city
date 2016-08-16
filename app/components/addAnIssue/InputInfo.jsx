@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Col } from 'react-flexbox-grid';
 import TextField from 'material-ui/TextField';
@@ -9,10 +9,6 @@ const TextFieldStyle = {
 };
 
 class InputInfo extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
   render() {
     return (
       <Col xs={8} md={8} lg={8}>
@@ -41,6 +37,13 @@ class InputInfo extends React.Component {
     );
   }
 }
+
+InputInfo.propTypes = {
+  inputTitle: PropTypes.func.isRequired,
+  inputDescription: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 
 function mapStateToProps(state) {

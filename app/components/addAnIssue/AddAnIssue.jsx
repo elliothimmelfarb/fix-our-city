@@ -30,10 +30,7 @@ const dropZoneStyle = {
   marginBottom: '2%',
   textAlign: 'center',
 };
-const bgDefault = {
-  background: 'url("http://research.larc.smu.edu.sg/ge2015/assets/img/default_photo.png")',
-  backgroundSize: '100%, 100%',
-};
+
 const test = {
   position: 'relative',
   left: '-5%',
@@ -69,6 +66,7 @@ class AddAnIssue extends React.Component {
       title: this.props.title,
       description: this.props.description,
     };
+    console.log('issueObj:', issueObj);
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
       .field('issueObj', JSON.stringify(issueObj))
@@ -98,17 +96,18 @@ class AddAnIssue extends React.Component {
 
     const dialogActions = [
       <FlatButton
-         label="Add New Issue"
-         primary
-         onTouchTap={this.handleClose}
-     />,
-     <FlatButton
-         label="View Issues"
-         primary
-         keyboardFocused
-         onTouchTap={this.redirect}
-     />,
-    ]
+        label="Add New Issue"
+        primary
+        hoverColor="gray"
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="View Issues"
+        primary
+        hoverColor="gray"
+        onTouchTap={this.redirect}
+      />,
+    ];
     return (
 
       <div>
@@ -158,23 +157,22 @@ class AddAnIssue extends React.Component {
                     <Col xs={12} md={12} lg={12}>
                       <RaisedButton
                         type="Submit"
-                        label="submit"
+                        label="Submit"
+                        primary={true}
                         style={buttonStyle}
-                        primary
                       />
-                      <Dialog
-                        title="Issue Submitted!"
-                        actions={dialogActions}
-                        modal={false}
-                        open={this.state.open}
-                        onRequestClose={this.handleClose}
-                      >
-                        Thank You for your submission.
-                      </Dialog>
-
                     </Col>
                   </Row>
                 </form>
+                <Dialog
+                  title="Issue Submitted!"
+                  actions={dialogActions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose}
+                >
+                  Thank You for your submission.
+                </Dialog>
               </Paper>
             </Row>
           </Col>

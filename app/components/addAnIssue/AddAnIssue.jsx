@@ -9,7 +9,7 @@ import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
 import * as inputActions from '../../actions/inputActions';
-import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
+import * as locationActions from '../../actions/locationActions';
 
 
 const pageStyle = {
@@ -225,7 +225,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
+    getUserLocation: () => dispatch(locationActions.getUserLocation()),
     clearInputs: () => dispatch(inputActions.clearInputs()),
 
   };

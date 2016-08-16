@@ -1,5 +1,5 @@
 import { polyfill } from 'es6-promise';
-import { upvote } from '../api';
+import { upvote, downvote } from '../api';
 import * as types from '../types';
 
 polyfill();
@@ -16,6 +16,14 @@ const updateIssues = (issues) => ({
   type: types.UPDATE_ISSUES,
 });
 
+export const downvoteIssue = (id, center, corner) =>
+  dispatch => {
+    downvote(id, center, corner)
+    .then(response => {
+      dispatch(updateIssues(response.data.issues));
+    });
+  };
+
 export const upvoteIssue = (id, center, corner) =>
   dispatch => {
     console.log('cneter corner:', center, corner);
@@ -29,4 +37,5 @@ export const upvoteIssue = (id, center, corner) =>
 export default {
   highlightIssue,
   upvoteIssue,
+  downvoteIssue,
 };

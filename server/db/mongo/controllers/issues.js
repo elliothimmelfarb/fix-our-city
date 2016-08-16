@@ -156,7 +156,7 @@ export function downvote(req, res) {
         if (err) {
           return res.status(400).send('Something went wrong saving the data');
         }
-        return res.json(savedIssue);
+        return findNearLocation(req, res);
       });
     } else {
       return res.status(500).send('No issue with that ID found');

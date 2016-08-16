@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
-import { upvoteIssue } from '../../actions/issueActions';
+import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
 
 import { Row, Col } from 'react-flexbox-grid';
 
@@ -35,7 +35,9 @@ const CardView = (props) =>  (
         <IconButton onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
           <FontIcon className="material-icons">thumb_up</FontIcon>
         </IconButton>
-        <IconButton><FontIcon className="material-icons">thumb_down</FontIcon></IconButton>
+        <IconButton onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
+          <FontIcon className="material-icons">thumb_down</FontIcon>
+        </IconButton>
       </Col>
     </CardText>
     <CardMedia
@@ -58,6 +60,10 @@ const mapDispatchToProps = (dispatch) => ({
   upvoteIssue(id, center, corner) {
     console.log('in upvote ', id, center, corner);
     return dispatch(upvoteIssue(id, center, corner));
+  },
+  downvoteIssue(id, center, corner) {
+    console.log('in downvote ', id, center, corner);
+    return dispatch(downvoteIssue(id, center, corner));
   },
 });
 

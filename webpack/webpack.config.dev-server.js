@@ -28,7 +28,9 @@ var commonLoaders = [
         limit: 10000,
     }
   },
-  { test: /\.html$/, loader: 'html-loader' }
+  { test: /\.html$/, loader: 'html-loader' },
+  { test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' }
+
 ];
 
 module.exports = {

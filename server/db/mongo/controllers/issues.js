@@ -74,9 +74,11 @@ export function findNearLocation(req, res) {
 
   console.log('distance:', distance);
   const point = { type: 'Point', coordinates: [centerLongitude, centerLatitude] };
+  console.log('point:', point);
+
   Issue.geoNear(point, { maxDistance: distance, spherical: true }, (err, issues) => {
     if (err) {
-      console.log('Error in first query');
+      console.log('Error in first query', err);
       return res.status(500).send('Something went wrong getting the data');
     }
     console.log('issues:', issues);

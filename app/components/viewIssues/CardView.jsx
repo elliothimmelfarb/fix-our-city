@@ -1,10 +1,21 @@
 import React, { PropTypes } from 'react';
 import {Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+
+import { Row, Col } from 'react-flexbox-grid';
+
 
 const styles = {
   image: {
-    height: 500,
-    width: 500
+    maxHeight: 500,
+    maxWidth: 500,
+    textAlign: 'center',
+  },
+  voting: {
+    position: 'relative',
+    bottom: '65px',
+    marginBottom: '-50px'
   },
 }
 
@@ -15,8 +26,14 @@ const CardView = (props) =>  (
       avatar={props.imgUrl}
       subtitle={props.description}
       actAsExpander
-      showExpandableButton
-    />
+    >
+    </CardHeader>
+    <CardText>
+      <Col xsOffset={9} mdOffset={11} style={styles.voting}>
+        <IconButton><FontIcon className='material-icons'>thumb_up</FontIcon></IconButton>
+        <IconButton><FontIcon className='material-icons'>thumb_down</FontIcon></IconButton>
+      </Col>
+    </CardText>
     <CardMedia
       expandable
       mediaStyle={styles.image}
@@ -29,7 +46,7 @@ const CardView = (props) =>  (
   );
 
 CardView.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
 };
 

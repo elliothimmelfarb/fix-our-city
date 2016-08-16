@@ -15,16 +15,20 @@ class ListView extends React.Component {
   }
 
   render() {
+    
     const {
       issues,
+      issuesLoading,
     } = this.props;
 
     const cards = issues && this.createCards(issues);
-
+    console.log('loading?:', issuesLoading);
     return (
-      <Col xs={12}>
-        {cards}
-      </Col>
+     
+        <div>
+          {cards}
+        </div>
+      
 
     );
   }
@@ -32,11 +36,12 @@ class ListView extends React.Component {
 
 ListView.propTypes = {
   issues: PropTypes.array,
+  issuesLoading: PropTypes.boolean,
 };
-
 
 const mapStateToProps = (state) => ({
   issues: state.issues.list,
+  issuesLoading: state.issues.issuesLoading,
 });
 
 

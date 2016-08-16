@@ -1,6 +1,6 @@
 import * as types from '../types';
 
-export default (state = {title: '', description: ''}, action) => {
+export default (state = { title: '', description: '' }, action) => {
   switch (action.type) {
     case types.INPUT_ISSUE_TITLE: {
       return Object.assign(
@@ -14,10 +14,17 @@ export default (state = {title: '', description: ''}, action) => {
         {},
         state,
         { description: action.description }
-    );
-  }
+      );
+    }
+    case types.CLEAR_INPUT: {
+      return Object.assign(
+        {},
+        state,
+        { title: '', description: '' }
+      );
+    }
 
     default:
       return state;
   }
-}
+};

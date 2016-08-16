@@ -16,6 +16,13 @@ export default (state = { loading: false, location: {} }, action) => {
         { loading: !state.loading }
       );
     }
+    case types.CLEAR_INPUT: {
+      return Object.assign(
+        {},
+        state,
+        { location: {} }
+      );
+    }
     default:
       return state;
   }

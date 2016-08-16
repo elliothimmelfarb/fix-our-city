@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
+import { Paper, RaisedButton, Dialog, FlatButton, TextField,
+  LinearProgress, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
-import LinearProgress from 'material-ui/LinearProgress';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
-import * as locationActions from '../../actions/locationActions';
+import * as inputActions from '../../actions/inputActions';
+import * as getCurrLocationActions from '../../actions/getCurrLocationActions';
+
 
 const pageStyle = {
   height: '40%',
@@ -34,14 +33,12 @@ const dropZoneStyle = {
   marginBottom: '2%',
   textAlign: 'center',
 };
-const bgDefault = {
-  background: 'url("http://research.larc.smu.edu.sg/ge2015/assets/img/default_photo.png")',
-  backgroundSize: '100%, 100%',
-};
+
 const test = {
   position: 'relative',
   left: '-5%',
 };
+
 class AddAnIssue extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -49,11 +46,14 @@ class AddAnIssue extends React.Component {
     this.state = {
       location: '',
       files: '',
-      open: false,
+      openDialog: false,
+      openSnackbar: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.redirect = this.redirect.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   onDrop(files) {
@@ -62,7 +62,7 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.setState({ open: true });
+    this.setState({ openDialog: true });
     const issueObj = {
       location: {
         coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
@@ -73,9 +73,8 @@ class AddAnIssue extends React.Component {
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
       .field('issueObj', JSON.stringify(issueObj))
-      .end((err, res) => {
-        if (err) console.log(err);
-        this.redirect();
+      .end((err) => {
+        if (err) this.setState({ openSnackbar: true });
       });
   }
 
@@ -86,6 +85,11 @@ class AddAnIssue extends React.Component {
     this.context.router.push('/view-issues');
   }
 
+  handleClose() {
+    this.setState({ openDialog: false, files: '', location: '' });
+    this.props.clearInputs();
+  }
+
   render() {
     let imgStyle = {
       width: '100%',
@@ -93,7 +97,26 @@ class AddAnIssue extends React.Component {
     };
     let imgPreview = this.state.files ? this.state.files.map((file, i) =>
       <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
-    console.log('userLocation: ', this.props.userLocation.lat);
+
+    const dialogActions = [
+      <FlatButton
+        label="Add New Issue"
+        primary
+        hoverColor="gray"
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="View Issues"
+        primary
+        hoverColor="gray"
+        onTouchTap={this.redirect}
+      />,
+    ];
+
+    const {
+      userLocation,
+      loading,
+    } = this.props;
     return (
 
       <div>
@@ -108,19 +131,22 @@ class AddAnIssue extends React.Component {
                       <TextField
                         hintText={Object.keys(this.props.userLocation).length > 0 ?
                            'Using your current location' : 'Location'}
-                        floatingLabelText={Object.keys(this.props.userLocation).length > 0 ?
-                            'Current Location at '+this.props.userLocation.lat.toFixed(2)+", "+this.props.userLocation.lng.toFixed(2) : 'Location'}
-                        fullWidth={true}
-                        disabled={Object.keys(this.props.userLocation).length > 0}
+                        floatingLabelText={Object.keys(userLocation).length > 0 ?
+                           'Current Location at ' + userLocation.lat.toFixed(2) + ','
+                           + userLocation.lng.toFixed(2) : 'Location'}
+                        fullWidth
+                        disabled={Object.keys(userLocation).length > 0}
                         value={this.state.location}
                         onChange={e => this.setState({ location: e.target.value })}
-                        required={Object.keys(this.props.userLocation).length === 0}
+                        required={Object.keys(userLocation).length === 0}
                       />
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <RaisedButton
-                        icon={this.props.loading ? <LinearProgress mode="indeterminate" style={test} /> : <ActionLocation />}
-                        label={this.props.loading ? 'Loading...' : 'Get Current Location'}
+                        icon={loading ?
+                          <LinearProgress mode="indeterminate" style={test} />
+                          : <ActionLocation />}
+                        label={loading ? 'Loading...' : 'Get Current Location'}
                         primary
                         style={buttonStyle}
                         onClick={this.getLocation}
@@ -144,17 +170,26 @@ class AddAnIssue extends React.Component {
                       <RaisedButton
                         type="Submit"
                         label="Submit"
-                        primary={true}
+                        primary
                         style={buttonStyle}
-                      />
-                      <Snackbar
-                        open={this.state.open}
-                        message='Issue Submitted'
-                        autoHideDuration={4000}
                       />
                     </Col>
                   </Row>
                 </form>
+                <Dialog
+                  title="Issue Submitted!"
+                  actions={dialogActions}
+                  modal={false}
+                  open={this.state.openDialog}
+                  onRequestClose={this.handleClose}
+                >
+                  Thank You for your submission.
+                </Dialog>
+                <Snackbar
+                  open={this.state.openSnackbar}
+                  message="Error adding Issue"
+                  autoHideDuration={4000}
+                />
               </Paper>
             </Row>
           </Col>
@@ -170,6 +205,7 @@ AddAnIssue.propTypes = {
   userLocation: PropTypes.object,
   loading: PropTypes.bool,
   getUserLocation: PropTypes.func,
+  clearInputs: PropTypes.func,
   title: PropTypes.string,
   description: PropTypes.string,
 };
@@ -178,7 +214,7 @@ AddAnIssue.contextTypes = {
   router: PropTypes.object,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     userLocation: state.location.location,
     loading: state.location.loading,
@@ -189,7 +225,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUserLocation: () => dispatch(locationActions.getUserLocation()),
+    getUserLocation: () => dispatch(getCurrLocationActions.getUserLocation()),
+    clearInputs: () => dispatch(inputActions.clearInputs()),
+
   };
 }
 

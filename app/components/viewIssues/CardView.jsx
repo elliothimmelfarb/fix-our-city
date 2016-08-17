@@ -1,24 +1,27 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux'
-import {Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
+import { Card, CardHeader, CardText, CardMedia } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
 import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
 
-import { Row, Col } from 'react-flexbox-grid';
-
 
 const styles = {
   image: {
-    maxHeight: 500,
-    maxWidth: 500,
+    // maxHeight: 500,
+    // maxWidth: 500,
+    width: '80%',
+    height: '80%',
+    margin: '0 auto',
     textAlign: 'center',
   },
   voting: {
-    position: 'relative',
-    bottom: '65px',
-    marginBottom: '-50px',
+    position: 'absolute',
+    top: '-10%',
+    right: '1%',
+    textAlign: 'right',
+    display: 'inline',
   },
 };
 
@@ -33,29 +36,36 @@ const CardView = (props) => {
         subtitle={props.description}
         actAsExpander
       >
-      </CardHeader>
-      <CardText>
-        <Col xsOffset={9} mdOffset={11} style={styles.voting}>
-          <IconButton disabled={upvoteStatus} onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
+        <CardText style={styles.voting}>
+          <IconButton
+            disabled={upvoteStatus}
+            onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}
+          >
             <FontIcon className="material-icons">thumb_up</FontIcon>
           </IconButton>
-          <Badge badgeContent={props.votes} secondary={true} badgeStyle={{top: 5, right: 5}} />
-          <IconButton disabled={downvoteStatus} onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
+          <Badge
+            badgeContent={props.votes}
+            secondary
+            badgeStyle={{ top: 5, right: 5 }}
+          />
+          <IconButton
+            disabled={downvoteStatus}
+            onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}
+          >
             <FontIcon className="material-icons">thumb_down</FontIcon>
           </IconButton>
-        </Col>
-      </CardText>
+        </CardText>
+      </CardHeader>
       <CardMedia
         expandable
         mediaStyle={styles.image}
       >
         <img src={`${props.imgUrl}`} alt="Issue" style={styles.image} />
       </CardMedia>
-      />
-    </Card>
 
-    );
-}
+    </Card>
+  );
+};
 
 CardView.propTypes = {
   title: PropTypes.string,

@@ -134,11 +134,11 @@ class AddAnIssue extends React.Component {
                         floatingLabelText={Object.keys(userLocation).length > 0 ?
                            'Current Location at ' + userLocation.lat.toFixed(2) + ','
                            + userLocation.lng.toFixed(2) : 'Location'}
-                        fullWidth
                         disabled={Object.keys(userLocation).length > 0}
                         value={this.state.location}
                         onChange={e => this.setState({ location: e.target.value })}
                         required={Object.keys(userLocation).length === 0}
+                        fullWidth
                       />
                     </Col>
                     <Col xs={12} md={4} lg={4}>

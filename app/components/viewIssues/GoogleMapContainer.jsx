@@ -4,7 +4,6 @@ import GoogleMap from 'google-map-react';
 import { mapBoundsChanged } from '../../actions/mapActions';
 import MapMarker from './MapMarker';
 
-
 const style = {
   map: {
     height: '500px',

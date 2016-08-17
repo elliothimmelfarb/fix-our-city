@@ -23,7 +23,13 @@ export default (state = { title: '', description: '' }, action) => {
         { title: '', description: '' }
       );
     }
-
+    case types.INPUT_LOCATION: {
+      return Object.assign(
+        {},
+        state,
+        { location: action.val }
+      );
+    }
     default:
       return state;
   }

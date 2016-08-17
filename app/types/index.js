@@ -15,7 +15,7 @@ export const ISSUE_HIGHLIGHTED = 'ISSUE_HIGHLIGHTED';
 // ISSUE INPUTS
 export const INPUT_ISSUE_TITLE = 'INPUT_ISSUE_TITLE';
 export const INPUT_ISSUE_DESCRIPTION = 'INPUT_ISSUE_DESCRIPTION';
-
+export const INPUT_LOCATION = 'INPUT_LOCATION';
 
 
 // View Issue actions
@@ -24,4 +24,3 @@ export const UPVOTE_ISSUE = 'UPVOTE_ISSUE';
 export const DOWNVOTE_ISSUE = 'DOWNVOTE_ISSUE';
 
 export const CLEAR_INPUT = 'CLEAR_INPUT';
-

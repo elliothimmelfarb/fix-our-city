@@ -15,3 +15,7 @@ export const inputDescription = (description) => ({
 export const clearInputs = () => ({
   type: types.CLEAR_INPUT,
 });
+export const inputLocation = (val) => ({
+  val,
+  type: types.INPUT_LOCATION,
+});

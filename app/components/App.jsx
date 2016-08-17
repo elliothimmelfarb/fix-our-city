@@ -17,15 +17,15 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  <Navigation />
  */
- const bgImage = {
-   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png'), url('http://www.ibox-security.co.uk/wp-content/uploads/2015/07/ss-2-bg.jpg')",
-   backgroundRepeat: 'repeat-x, repeat-y',
-   backgroundPosition: 'bottom',
-   height: '100%',
-   width: '100vw',
-   backgroundColor: 'skyblue',
-   padding: '5%',
- };
+const bgImage = {
+  backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png'), url('http://www.ibox-security.co.uk/wp-content/uploads/2015/07/ss-2-bg.jpg')",
+  backgroundRepeat: 'repeat-x, repeat-y',
+  backgroundPosition: 'bottom',
+  height: '100%',
+  width: '100vw',
+  backgroundColor: 'skyblue',
+  padding: '5%',
+};
 const App = ({ children }) => (
 
   <div className={cx('app')} style={bgImage}>

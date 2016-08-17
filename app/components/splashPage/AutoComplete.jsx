@@ -28,7 +28,6 @@ class AutoCompleteInput extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log("work");
     // send to backend
   }
 
@@ -36,16 +35,16 @@ class AutoCompleteInput extends React.Component {
     return (
       <div>
         <form onSubmit={this.onSubmit} className={styles.formStyle}>
-        <TextField
-          id={'splashPageInput'}
-          floatingLabelText={Object.keys(this.props.userLocation).length > 0 ? 'Current Location at '+this.props.userLocation.lat.toFixed(2)+', '+this.props.userLocation.lng.toFixed(2) : 'Location'}
-          value={this.state.city}
-          fullWidth
-          onChange={e => this.onInputUpdate(e)}
-          disabled={Object.keys(this.props.userLocation).length > 0}
-          required={Object.keys(this.props.userLocation).length === 0}
-          style={{ margingBottom: -40 }}
-        />
+          <TextField
+            id={'splashPageInput'}
+            floatingLabelText={Object.keys(this.props.userLocation).length > 0 ? 'Current Location at '+this.props.userLocation.lat.toFixed(2)+', '+this.props.userLocation.lng.toFixed(2) : 'Location'}
+            value={this.state.city}
+            fullWidth
+            onChange={e => this.onInputUpdate(e)}
+            disabled={Object.keys(this.props.userLocation).length > 0}
+            required={Object.keys(this.props.userLocation).length === 0}
+            style={{ margingBottom: -40 }}
+          />
         </form>
       </div>
     );

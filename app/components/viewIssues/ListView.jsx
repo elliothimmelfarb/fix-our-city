@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col } from 'react-flexbox-grid';
 import CardView from './CardView';
 
 class ListView extends React.Component {
@@ -15,20 +14,18 @@ class ListView extends React.Component {
   }
 
   render() {
-    
     const {
       issues,
-      issuesLoading,
     } = this.props;
 
     const cards = issues && this.createCards(issues);
-    console.log('loading?:', issuesLoading);
+
     return (
-     
-        <div>
-          {cards}
-        </div>
-      
+
+      <div>
+        {cards}
+      </div>
+
 
     );
   }

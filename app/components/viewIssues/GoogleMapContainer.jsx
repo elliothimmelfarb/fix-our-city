@@ -13,16 +13,23 @@ const style = {
 
 class GoogleMapContainer extends React.Component {
 
+
   createMarkers(issues) {
+    console.log('props', this.props); 
     /* eslint-disable no-underscore-dangle */
-    return issues.map(issue => (
-      <MapMarker
-        key={issue.obj._id}
-        id={issue.obj._id}
-        lat={issue.obj.location.coordinates[1]}
-        lng={issue.obj.location.coordinates[0]}
-      />
-    ));
+    return issues.map(issue => {
+      let isSelected = issue.obj._id === this.props.selectedId;
+      console.log('isSelected', isSelected); 
+      return (
+        <MapMarker
+          isSelected={isSelected}
+          key={issue.obj._id}
+          id={issue.obj._id}
+          lat={issue.obj.location.coordinates[1]}
+          lng={issue.obj.location.coordinates[0]}
+        />
+      );
+    });
     /* eslint-enable no-underscore-dangle */
   }
 
@@ -70,11 +77,13 @@ GoogleMapContainer.propTypes = {
   mapCenter: PropTypes.object,
   onBoundsChange: PropTypes.func,
   issues: PropTypes.array,
+  selectedId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   mapCenter: state.map.center,
   issues: state.issues.list,
+  selectedId: state.issues.selectedId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

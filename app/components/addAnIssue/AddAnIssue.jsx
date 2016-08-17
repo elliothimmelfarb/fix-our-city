@@ -18,7 +18,6 @@ const pageStyle = {
   width: '80%',
   margin: '0 auto',
   display: 'inline-block',
-  marginTop: '3%',
 };
 
 const buttonStyle = {

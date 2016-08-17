@@ -2,9 +2,8 @@ import React, { PropTypes } from 'react';
 import { Grid } from 'react-flexbox-grid';
 import classNames from 'classnames/bind';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MenuItem from 'material-ui/MenuItem';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
+import Navbar from './Navbar';
+// import AppBar from 'material-ui/AppBar';
 import styles from '../css/main.css';
 
 const cx = classNames.bind(styles);
@@ -41,7 +40,8 @@ const App = ({ children }) => (
   <div className={cx('app')} style={bgImage}>
     <MuiThemeProvider>
       <Grid>
-        <AppBar iconClassNameRight="muidocs-icon-navigation-expand-more" style={navbarStyle} />
+        <Navbar />
+        {/*<AppBar iconClassNameRight="muidocs-icon-navigation-expand-more" style={navbarStyle} /> */}
         {children}
       </Grid>
     </MuiThemeProvider>

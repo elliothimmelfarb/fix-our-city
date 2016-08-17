@@ -6,6 +6,7 @@ import { Paper, RaisedButton, Dialog, FlatButton, TextField,
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
+import Upload from 'material-ui/svg-icons/image/add-a-photo';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
 import * as inputActions from '../../actions/inputActions';
@@ -26,6 +27,12 @@ const buttonStyle = {
   marginBottom: '2%',
 };
 
+const button2Style = {
+  marginTop: '3%',
+  width: '50%',
+  marginBottom: '2%',
+};
+
 const dropZoneStyle = {
   width: '100%',
   height: '150px',
@@ -38,6 +45,17 @@ const test = {
   position: 'relative',
   left: '-5%',
 };
+
+const svgStyle = {
+  height: '100%',
+  width: '100%',
+  opacity: '0.6',
+  cursor: 'copy',
+};
+
+const cardStyle = {
+  textAlign: 'center',
+}
 
 class AddAnIssue extends React.Component {
   constructor(props, context) {
@@ -96,7 +114,8 @@ class AddAnIssue extends React.Component {
       height: '150px',
     };
     let imgPreview = this.state.files ? this.state.files.map((file, i) =>
-      <img key={i} role="presentation" src={file.preview} style={imgStyle} />) : 'Upload Image';
+      <img key={i} role="presentation" src={file.preview} style={imgStyle} />) :
+      <Upload style={svgStyle} />;
 
     const dialogActions = [
       <FlatButton
@@ -124,19 +143,18 @@ class AddAnIssue extends React.Component {
           <Col xs={12} md={12} lg={12}>
             <Row>
               <Paper style={pageStyle} zDepth={5}>
-                <CardTitle title="Add Issue" />
+                <CardTitle title="Add an Issue" style={cardStyle}/>
                 <form onSubmit={this.onSubmit}>
                   <Row>
                     <Col xs={12} md={8} lg={8}>
                       <TextField
-                        hintText={Object.keys(this.props.userLocation).length > 0 ?
-                           'Using your current location' : 'Location'}
+                        hintText={this.state.location ? '' : 'Location'}
                         floatingLabelText={Object.keys(userLocation).length > 0 ?
                            'Current Location at ' + userLocation.lat.toFixed(2) + ','
                            + userLocation.lng.toFixed(2) : 'Location'}
                         fullWidth
                         disabled={Object.keys(userLocation).length > 0}
-                        value={this.state.location}
+                        value={userLocation.location}
                         onChange={e => this.setState({ location: e.target.value })}
                         required={Object.keys(userLocation).length === 0}
                       />
@@ -168,10 +186,17 @@ class AddAnIssue extends React.Component {
                   <Row>
                     <Col xs={12} md={12} lg={12}>
                       <RaisedButton
+                        type="button"
+                        label="Cancel"
+                        default
+                        style={button2Style}
+                        onClick={this.handleClose}
+                      />
+                      <RaisedButton
                         type="Submit"
                         label="Submit"
                         primary
-                        style={buttonStyle}
+                        style={button2Style}
                       />
                     </Col>
                   </Row>

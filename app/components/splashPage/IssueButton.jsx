@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 const buttonStyle = {
   marginTop: '6%',

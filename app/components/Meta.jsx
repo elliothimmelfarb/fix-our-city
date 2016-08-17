@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import config from '../helmconfig.js';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import config from '../helmconfig.js';
 
 injectTapEventPlugin();
 

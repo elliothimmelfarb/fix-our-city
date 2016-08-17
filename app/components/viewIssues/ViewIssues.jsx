@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col } from 'react-flexbox-grid';
-import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 
 

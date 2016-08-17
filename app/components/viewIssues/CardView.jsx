@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux'
-import {Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
+import { connect } from 'react-redux';
+import { Card, CardHeader, CardText, CardMedia } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
+import { Col } from 'react-flexbox-grid';
 import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
-
-import { Row, Col } from 'react-flexbox-grid';
-
 
 const styles = {
   image: {
@@ -36,11 +34,19 @@ const CardView = (props) => {
       </CardHeader>
       <CardText>
         <Col xsOffset={9} mdOffset={11} style={styles.voting}>
-          <IconButton disabled={upvoteStatus} onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
+          <IconButton
+            disabled={upvoteStatus}
+            onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
             <FontIcon className="material-icons">thumb_up</FontIcon>
           </IconButton>
-          <Badge badgeContent={props.votes} secondary={true} badgeStyle={{top: 5, right: 5}} />
-          <IconButton disabled={downvoteStatus} onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
+          <Badge
+            badgeContent={props.votes}
+            secondary
+            badgeStyle={{ top: 5, right: 5 }}
+          />
+          <IconButton
+            disabled={downvoteStatus}
+            onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}>
             <FontIcon className="material-icons">thumb_down</FontIcon>
           </IconButton>
         </Col>
@@ -55,7 +61,7 @@ const CardView = (props) => {
     </Card>
 
     );
-}
+};
 
 CardView.propTypes = {
   title: PropTypes.string,
@@ -64,11 +70,9 @@ CardView.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   upvoteIssue(id, center, corner) {
-    console.log('in upvote ', id, center, corner);
     return dispatch(upvoteIssue(id, center, corner));
   },
   downvoteIssue(id, center, corner) {
-    console.log('in downvote ', id, center, corner);
     return dispatch(downvoteIssue(id, center, corner));
   },
 });

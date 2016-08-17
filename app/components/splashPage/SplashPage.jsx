@@ -5,8 +5,6 @@ import { CardMedia } from 'material-ui/Card';
 import AutoCompleteInput from './AutoComplete';
 import IssueButton from './IssueButton';
 import GetLocation from './GetLocation';
-import styles from '../../css/components/splash.css';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 // injectTapEventPlugin();
 const pageStyle = {
   height: '40%',
@@ -21,7 +19,7 @@ const titelImage = {
   height: '40%',
   marginBottom: '2%',
 };
-export default function SplashPage(props) {
+export default function SplashPage() {
   return (
     <div>
       <Row>

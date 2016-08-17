@@ -1,21 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import CircularProgress from 'material-ui/CircularProgress';
 import * as locationActions from '../../actions/locationActions';
-import styles from '../../css/components/splash.css';
 
 const getLocationButton = {
   width: '100%',
   marginBottom: '2%',
   marginTop: '12%',
 };
-const progress = {
-  position: 'relative',
-  left: '0',
-};
+
 class getLocation extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +46,11 @@ class getLocation extends React.Component {
   }
 }
 
-
+getLocation.propTypes = {
+  userLocation: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  getUserLocation: PropTypes.func,
+};
 
 function mapStateToProps(state) {
   return {

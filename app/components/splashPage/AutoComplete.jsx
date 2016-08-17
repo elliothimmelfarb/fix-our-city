@@ -29,7 +29,6 @@ class AutoCompleteInput extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log('event');
     // send to backend
   }
 

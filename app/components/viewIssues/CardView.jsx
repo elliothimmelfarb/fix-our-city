@@ -29,20 +29,11 @@ class CardView extends React.Component {
   constructor(props) {
     super(props);
     this.state = { shadow: 1 };
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
-    this.onExpandChange = this.onExpandChange.bind(this);
+    this.onCardClick = this.onCardClick.bind(this);
   }
 
-  onMouseOver() {
-    this.setState({ shadow: 5 });
-  }
-  onMouseOut() {
-    this.setState({ shadow: 1 });
-  }
-
-  onExpandChange() {
-    if (this.props.expanded) {
+  onCardClick() {
+    if (this.props._id === this.props.selected) {
       this.props.selectIssue(0);
     } else {
       this.props.selectIssue(this.props._id);
@@ -52,16 +43,15 @@ class CardView extends React.Component {
     const props = this.props;
     const upvoteStatus = props.upvoted.includes(props._id);
     const downvoteStatus = props.downvoted.includes(props._id);
-    
     return (
       <Card
-        zDepth={props.expanded ? 5 : 1}
-        onClick={this.onExpandChange}
-        expanded={props.expanded}
+        zDepth={props._id === props.selected ? 5 : 1}
+        expanded={props._id === props.selected}
       >
         <CardHeader
           title={props.title}
           avatar={props.imgUrl}
+          onClick={this.onCardClick}
           subtitle={props.description}
           actAsExpander
         >
@@ -101,6 +91,10 @@ CardView.propTypes = {
   title: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
   selectIssue: PropTypes.func.isRequired,
+  _id: PropTypes.string,
+  selected: PropTypes.string,
+
+
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,7 +115,7 @@ const mapStateToProps = (state) => ({
   mapCorner: state.map.bounds.nw,
   upvoted: state.issues.upvoted,
   downvoted: state.issues.downvoted,
-  selected: state.issues.selected,
+  selected: state.issues.selectedId,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardView);

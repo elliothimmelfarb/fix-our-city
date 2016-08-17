@@ -4,11 +4,11 @@ import CardView from './CardView';
 
 class ListView extends React.Component {
   createCards(issues) {
+    console.log(issues);
     return issues.map(issue => (
       <CardView
         key={issue.obj._id}
         {...issue.obj}
-        expanded={this.props.selected === issue._id}
       />
 
       ));
@@ -18,8 +18,8 @@ class ListView extends React.Component {
     const {
       issues,
     } = this.props;
-
-    const cards = issues && this.createCards(issues);
+    const input = this.props.selectedObj.length > 0 ? this.props.selectedObj : issues;
+    const cards = issues && this.createCards(input);
 
     return (
 
@@ -40,7 +40,8 @@ ListView.propTypes = {
 const mapStateToProps = (state) => ({
   issues: state.issues.list,
   issuesLoading: state.issues.issuesLoading,
-  selected: state.issues.selected
+  selected: state.issues.selected.Id,
+  selectedObj: state.issues.selected,
 
 });
 

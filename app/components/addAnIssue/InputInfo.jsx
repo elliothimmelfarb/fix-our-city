@@ -25,8 +25,6 @@ class InputInfo extends React.Component {
           hintText="Description"
           floatingLabelText="Description"
           multiLine
-          rows={2}
-          style={TextFieldStyle}
           fullWidth
           value={this.props.description}
           onChange={e => this.props.inputDescription(e.target.value)}

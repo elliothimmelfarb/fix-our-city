@@ -26,6 +26,7 @@ const buttonStyle = {
   width: '100%',
   marginBottom: '2%',
 };
+
 const button2Style = {
   marginTop: '3%',
   width: '50%',
@@ -48,7 +49,12 @@ const test = {
 const svgStyle = {
   height: '100%',
   width: '100%',
-  opacity: '0.5'
+  opacity: '0.5',
+  cursor: 'copy',
+};
+
+const loadingCursor = {
+
 }
 
 class AddAnIssue extends React.Component {

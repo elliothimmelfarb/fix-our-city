@@ -11,7 +11,7 @@ const TextFieldStyle = {
 class InputInfo extends React.Component {
   render() {
     return (
-      <Col xs={8} md={8} lg={8}>
+      <Col xs={12} md={12} lg={12}>
         <TextField
           hintText="Title"
           floatingLabelText="Title"

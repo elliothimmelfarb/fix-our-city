@@ -8,6 +8,7 @@ class ListView extends React.Component {
       <CardView
         key={issue.obj._id}
         {...issue.obj}
+        expanded={this.props.selected === issue._id}
       />
 
       ));
@@ -39,6 +40,8 @@ ListView.propTypes = {
 const mapStateToProps = (state) => ({
   issues: state.issues.list,
   issuesLoading: state.issues.issuesLoading,
+  selected: state.issues.selected
+
 });
 
 

@@ -5,6 +5,7 @@ const initialState = {
   issuesLoading: false,
   upvoted: [],
   downvoted: [],
+  selected: null,
 };
 
 export default (state = initialState, action) => {
@@ -17,8 +18,8 @@ export default (state = initialState, action) => {
     }
     case types.SELECT_ISSUE: {
       // eslint-disable-next-line no-underscore-dangle
-      const selected = state.list.filter(issue => issue.obj._id === action.id);
-      return Object.assign({}, state, { selected: selected[0] });
+      // const selected = state.list.filter(issue => issue.obj._id === action.id);
+      return Object.assign({}, state, { selected: action.id });
     }
     case types.ISSUE_HIGHLIGHTED: {
       // eslint-disable-next-line no-underscore-dangle

@@ -49,12 +49,12 @@ const test = {
 const svgStyle = {
   height: '100%',
   width: '100%',
-  opacity: '0.5',
+  opacity: '0.6',
   cursor: 'copy',
 };
 
-const loadingCursor = {
-
+const cardStyle = {
+  textAlign: 'center',
 }
 
 class AddAnIssue extends React.Component {
@@ -143,7 +143,7 @@ class AddAnIssue extends React.Component {
           <Col xs={12} md={12} lg={12}>
             <Row>
               <Paper style={pageStyle} zDepth={5}>
-                <CardTitle title="Add an Issue" />
+                <CardTitle title="Add an Issue" style={cardStyle}/>
                 <form onSubmit={this.onSubmit}>
                   <Row>
                     <Col xs={12} md={8} lg={8}>

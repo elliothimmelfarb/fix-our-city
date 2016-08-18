@@ -11,6 +11,7 @@ import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
+import AutoComplete from  '../splashPage/AutoComplete';
 
 
 const pageStyle = {
@@ -147,17 +148,7 @@ class AddAnIssue extends React.Component {
                 <form onSubmit={this.onSubmit}>
                   <Row>
                     <Col xs={12} md={8} lg={8}>
-                      <TextField
-                        hintText={this.state.location ? '' : 'Location'}
-                        floatingLabelText={Object.keys(userLocation).length > 0 ?
-                           'Current Location at ' + userLocation.lat.toFixed(2) + ','
-                           + userLocation.lng.toFixed(2) : 'Location'}
-                        disabled={Object.keys(userLocation).length > 0}
-                        value={userLocation.location}
-                        onChange={e => this.setState({ location: e.target.value })}
-                        required={Object.keys(userLocation).length === 0}
-                        fullWidth
-                      />
+                      <AutoComplete />
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <RaisedButton
@@ -262,3 +253,15 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddAnIssue);
+
+// <TextField
+//   hintText={this.state.location ? '' : 'Location'}
+//   floatingLabelText={Object.keys(userLocation).length > 0 ?
+//      'Current Location at ' + userLocation.lat.toFixed(2) + ','
+//      + userLocation.lng.toFixed(2) : 'Location'}
+//   disabled={Object.keys(userLocation).length > 0}
+//   value={userLocation.location}
+//   onChange={e => this.setState({ location: e.target.value })}
+//   required={Object.keys(userLocation).length === 0}
+//   fullWidth
+// />

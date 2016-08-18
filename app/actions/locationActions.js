@@ -4,7 +4,7 @@ import { addIssue } from '../api';
 
 polyfill();
 
-const setUserLocation = (coords) => ({
+export const setUserLocation = (coords) => ({
   coords,
   type: types.GET_USER_LOCATION,
 });

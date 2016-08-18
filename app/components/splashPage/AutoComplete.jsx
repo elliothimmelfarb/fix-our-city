@@ -12,7 +12,6 @@ class AutoCompleteInput extends React.Component {
     this.state = {
       city: '',
     };
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onInputFocus() {
@@ -27,38 +26,31 @@ class AutoCompleteInput extends React.Component {
     this.setState({ city: e.target.value });
   }
 
-  onSubmit(event) {
-    event.preventDefault();
-    // send to backend
-  }
-
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit} className={styles.formStyle}>
-          <TextField
-            floatingLabelText={
-              Object.keys(this.props.userLocation).length > 0 ?
-              `Current Location at ${this.props.userLocation.lat.toFixed(2)}
-              ${this.props.userLocation.lng.toFixed(2)}` :
-              'Location'
-            }
-            onChange={e => this.onInputUpdate(e)}
-            value={this.state.city}
-            fullWidth
-            disabled={Object.keys(this.props.userLocation).length > 0}
-            required={Object.keys(this.props.userLocation).length === 0}
-            style={{ margingBottom: -40 }}
-          >
-            <input
-              id={'splashPageInput'}
-              placeholder={''}
-              type={'text'}
-              onFocus={() => this.onInputFocus()}
-              onBlur={e => this.onInputUpdate(e)}
-            />
-          </TextField>
-        </form>
+        <TextField
+          floatingLabelText={
+            Object.keys(this.props.userLocation).length > 0 ?
+            `Current Location at ${this.props.userLocation.lat.toFixed(2)}
+            ${this.props.userLocation.lng.toFixed(2)}` :
+            'Location'
+          }
+          onChange={e => this.onInputUpdate(e)}
+          value={this.state.city}
+          fullWidth
+          disabled={Object.keys(this.props.userLocation).length > 0}
+          required={Object.keys(this.props.userLocation).length === 0}
+          style={{ margingBottom: -40 }}
+        >
+          <input
+            id={'splashPageInput'}
+            placeholder={''}
+            type={'text'}
+            onFocus={() => this.onInputFocus()}
+            onBlur={e => this.onInputUpdate(e)}
+          />
+        </TextField>
       </div>
     );
   }

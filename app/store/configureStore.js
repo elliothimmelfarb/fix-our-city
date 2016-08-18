@@ -21,7 +21,7 @@ export default function configureStore(initialState, history) {
     middleware.push(createLogger());
     store = createStore(rootReducer, initialState, compose(
       applyMiddleware(...middleware),
-      persistState(['issues', 'map', 'location']),
+      persistState(['issues']),
       typeof window === 'object' &&
         typeof window.devToolsExtension !== 'undefined' ?
         window.devToolsExtension() : f => f

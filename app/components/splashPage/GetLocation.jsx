@@ -31,7 +31,6 @@ class getLocation extends React.Component {
     const {
       userLocation,
       loading,
-      getUserLocation,
     } = this.props;
 
     const buttonGetLocation = Object.keys(userLocation).length > 0 ?

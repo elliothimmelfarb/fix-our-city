@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
 import { Link } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
+import { RaisedButton, Snackbar } from 'material-ui';
 import geocode from '../../api/geocoder';
 import { setUserLocation } from '../../actions/locationActions'
 
@@ -16,6 +16,10 @@ const buttonStyle = {
 class IssueButton extends React.Component {
   constructor(props, context) {
     super(props, context);
+
+    this.state = {
+      snackBarOpen: false,
+    };
 
     this.validateGeocode = this.validateGeocode.bind(this);
   }
@@ -32,7 +36,7 @@ class IssueButton extends React.Component {
         this.context.router.push('/view-issues');
       })
       .catch(status => {
-        console.log(status);
+        this.setState({ snackBarOpen: true });
       });
   }
   render() {
@@ -54,6 +58,12 @@ class IssueButton extends React.Component {
             />
           </Col>
         </Row>
+        <Snackbar
+          open={this.state.snackBarOpen}
+          message="Please add an address"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
     );
   }
@@ -62,7 +72,7 @@ class IssueButton extends React.Component {
 // </Link>
 
 IssueButton.propTypes = {
-  locationInput: PropTypes.func.isRequired,
+  locationInput: PropTypes.string,
   locationValidated: PropTypes.func.isRequired,
 };
 

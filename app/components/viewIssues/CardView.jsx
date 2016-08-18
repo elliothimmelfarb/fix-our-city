@@ -60,6 +60,7 @@ class CardView extends React.Component {
     };
 
     const props = this.props;
+    const day = moment(props.dateAdded).format('l') + "\nexp. " + moment("20160822").startOf('day').from(props.dateAdded);
     const upvoteStatus = props.upvoted.includes(props._id);
     const downvoteStatus = props.downvoted.includes(props._id);
     return (
@@ -71,7 +72,8 @@ class CardView extends React.Component {
           title={props.title}
           avatar={props.imgUrl}
           onClick={this.onCardClick}
-          subtitle={props.description}
+          subtitle={day}
+          subtitleStyle={subStyle}
           actAsExpander
         >
           <CardText style={styles.voting}>

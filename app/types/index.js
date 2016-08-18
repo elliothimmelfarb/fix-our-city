@@ -24,3 +24,6 @@ export const UPVOTE_ISSUE = 'UPVOTE_ISSUE';
 export const DOWNVOTE_ISSUE = 'DOWNVOTE_ISSUE';
 
 export const CLEAR_INPUT = 'CLEAR_INPUT';
+
+// TOGGLE ALERT
+export const TOGGLE_ALERT = 'TOGGLE_ALERT';

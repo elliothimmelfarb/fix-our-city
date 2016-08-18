@@ -9,6 +9,7 @@ import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
+import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 
@@ -160,15 +161,7 @@ class AddAnIssue extends React.Component {
                       />
                     </Col>
                     <Col xs={12} md={4} lg={4}>
-                      <RaisedButton
-                        icon={loading ?
-                          <LinearProgress mode="indeterminate" style={linear} />
-                          : <ActionLocation />}
-                        label={loading ? 'Loading...' : 'Get Current Location'}
-                        primary
-                        style={buttonStyle}
-                        onClick={this.getLocation}
-                      />
+                      <GetLocation />
                     </Col>
                   </Row>
                   <Row>

@@ -1,6 +1,6 @@
 import * as types from '../types';
 
-export default (state = { loading: false, location: {} }, action) => {
+export default (state = { loading: false, location: {}, alert: false }, action) => {
   switch (action.type) {
     case types.GET_USER_LOCATION: {
       return Object.assign(
@@ -21,6 +21,13 @@ export default (state = { loading: false, location: {} }, action) => {
         {},
         state,
         { location: {} }
+      );
+    }
+    case types.TOGGLE_ALERT: {
+      return Object.assign(
+        {},
+        state,
+        { alert: !state.alert }
       );
     }
     default:

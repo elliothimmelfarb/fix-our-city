@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import RaisedButton from 'material-ui/RaisedButton';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
-import LinearProgress from 'material-ui/LinearProgress';
+import { RaisedButton, LinearProgress, Snackbar } from 'material-ui';
 import * as locationActions from '../../actions/locationActions';
 import * as inputActions from '../../actions/inputActions';
 
@@ -15,6 +14,10 @@ const getLocationButton = {
 const linear = {
   position: 'relative',
   left: '-4%',
+};
+const snackbarStyle = {
+  backgroundColor: 'rgb(0, 188, 212)',
+  animation: 'popout 1s ease',
 };
 
 class getLocation extends React.Component {
@@ -35,6 +38,7 @@ class getLocation extends React.Component {
     const {
       userLocation,
       loading,
+      alert,
     } = this.props;
 
     const buttonGetLocation = Object.keys(userLocation).length > 0 ?
@@ -58,6 +62,13 @@ class getLocation extends React.Component {
             {buttonGetLocation}
           </Col>
         </Row>
+        <Snackbar
+          open={alert}
+          message="Now using your current location."
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+          bodyStyle={snackbarStyle}
+        />
       </div>
     );
   }
@@ -68,12 +79,14 @@ getLocation.propTypes = {
   loading: PropTypes.bool.isRequired,
   getUserLocation: PropTypes.func,
   clearInputs: PropTypes.func,
+  alert: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
     userLocation: state.location.location,
     loading: state.location.loading,
+    alert: state.location.alert,
   };
 }
 

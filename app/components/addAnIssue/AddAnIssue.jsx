@@ -184,17 +184,21 @@ class AddAnIssue extends React.Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col xs={12} md={12} lg={12}>
+                    <Col xs={6} md={6} lg={6}>
                       <RaisedButton
                         type="button"
                         label="Cancel"
                         default
+                        fullWidth
                         style={button2Style}
                         onClick={this.handleClose}
                       />
+                    </Col>
+                    <Col xs={6} md={6} lg={6}>
                       <RaisedButton
                         type="Submit"
                         label="Submit"
+                        fullWidth
                         primary
                         style={button2Style}
                       />

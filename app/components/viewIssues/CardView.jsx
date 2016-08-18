@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardHeader, CardText, CardMedia, CardActions, CardTitle } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
+import { Card, CardHeader, CardText, CardMedia, CardActions, CardTitle } from 'material-ui/Card';
 import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
 import Toggle from 'material-ui/Toggle';
-import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
+import { upvoteIssue, downvoteIssue, selectIssue } from '../../actions/issueActions';
+
 
 const styles = {
   image: {
@@ -27,36 +28,53 @@ const styles = {
   },
 };
 
-const CardView = (props) => {
-  const upvoteStatus = props.upvoted.includes(props._id);
-  const downvoteStatus = props.downvoted.includes(props._id);
-  const tagStyle = {
-    backgroundColor: '#eee',
-    borderRadius: '20px',
-    border: '1px solid #eee',
-    wordWrap: 'break-word',
-  };
-  const toggleStyles = {
-    marginBottom: 16,
-  };
-  const descriptionStyle = {
-    wordWrap: 'break-word',
-  };
-  const subStyle = {
-    whiteSpace: 'pre-line',
-  };
-  const day = moment(props.dateAdded).format('l') + "\nexp. " + moment("20160822").startOf('day').from(props.dateAdded);
-  console.log('day: ', day);
-  return (
-    <Card>
-      <CardHeader
-        title={props.title}
-        subtitle={day}
-        subtitleStyle={subStyle}
-        avatar={props.imgUrl}
-        actAsExpander
+class CardView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { shadow: 1 };
+    this.onCardClick = this.onCardClick.bind(this);
+  }
+
+  onCardClick() {
+    if (this.props._id === this.props.selected) {
+      this.props.selectIssue(0);
+    } else {
+      this.props.selectIssue(this.props._id);
+    }
+  }
+  render() {
+    const tagStyle = {
+      backgroundColor: '#eee',
+      borderRadius: '20px',
+      border: '1px solid #eee',
+      wordWrap: 'break-word',
+    };
+    const toggleStyles = {
+      marginBottom: 16,
+    };
+    const descriptionStyle = {
+      wordWrap: 'break-word',
+    };
+    const subStyle = {
+      whiteSpace: 'pre-line',
+    };
+
+    const props = this.props;
+    const upvoteStatus = props.upvoted.includes(props._id);
+    const downvoteStatus = props.downvoted.includes(props._id);
+    return (
+      <Card
+        zDepth={props._id === props.selected ? 5 : 1}
+        expanded={props._id === props.selected}
       >
-        <CardText style={styles.voting}>
+        <CardHeader
+          title={props.title}
+          avatar={props.imgUrl}
+          onClick={this.onCardClick}
+          subtitle={props.description}
+          actAsExpander
+        >
+          <CardText style={styles.voting}>
           <IconButton
             disabled={upvoteStatus}
             onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}
@@ -100,9 +118,10 @@ const CardView = (props) => {
       <CardActions>
         <button style={tagStyle}>test</button>
       </CardActions>
-    </Card>
-  );
-};
+      </Card>
+    );
+  }
+}
 
 
 CardView.propTypes = {

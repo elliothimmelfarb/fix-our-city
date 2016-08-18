@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import { Paper, RaisedButton, Dialog, FlatButton, TextField,
-  LinearProgress, Snackbar } from 'material-ui';
+import { Paper, RaisedButton, Dialog, FlatButton, TextField, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
-import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
+import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 import AutoComplete from  '../splashPage/AutoComplete';
@@ -20,12 +19,6 @@ const pageStyle = {
   width: '80%',
   margin: '0 auto',
   display: 'inline-block',
-};
-
-const buttonStyle = {
-  marginTop: '3%',
-  width: '100%',
-  marginBottom: '2%',
 };
 
 const button2Style = {
@@ -42,10 +35,6 @@ const dropZoneStyle = {
   textAlign: 'center',
 };
 
-const linear = {
-  position: 'relative',
-  left: '-5%',
-};
 
 const svgStyle = {
   height: '100%',
@@ -135,7 +124,6 @@ class AddAnIssue extends React.Component {
 
     const {
       userLocation,
-      loading,
     } = this.props;
     return (
 
@@ -151,15 +139,7 @@ class AddAnIssue extends React.Component {
                       <AutoComplete />
                     </Col>
                     <Col xs={12} md={4} lg={4}>
-                      <RaisedButton
-                        icon={loading ?
-                          <LinearProgress mode="indeterminate" style={linear} />
-                          : <ActionLocation />}
-                        label={loading ? 'Loading...' : 'Get Current Location'}
-                        primary
-                        style={buttonStyle}
-                        onClick={this.getLocation}
-                      />
+                      <GetLocation />
                     </Col>
                   </Row>
                   <Row>

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Col } from 'react-flexbox-grid';
 import TextField from 'material-ui/TextField';
+import Tags from './dropdownTags';
 import * as inputActions from '../../actions/inputActions';
 
 const TextFieldStyle = {
@@ -20,7 +21,6 @@ class InputInfo extends React.Component {
           onChange={e => this.props.inputTitle(e.target.value)}
           required
         />
-
         <TextField
           hintText="Description"
           floatingLabelText="Description"
@@ -30,6 +30,7 @@ class InputInfo extends React.Component {
           onChange={e => this.props.inputDescription(e.target.value)}
           required
         />
+        <Tags />
       </Col>
 
     );

@@ -10,7 +10,7 @@ import GetLocation from './GetLocation';
 
 const pageStyle = {
   height: '40%',
-  width: '80%',
+  width: '85%',
   margin: '0 auto',
   textAlign: 'center',
   display: 'inline-block',

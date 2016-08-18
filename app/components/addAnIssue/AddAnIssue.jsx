@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import { Paper, RaisedButton, Dialog, FlatButton, TextField,
-  LinearProgress, Snackbar } from 'material-ui';
+import { Paper, RaisedButton, Dialog, FlatButton, TextField, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
-import ActionLocation from 'material-ui/svg-icons/maps/my-location';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
@@ -22,12 +20,6 @@ const pageStyle = {
   display: 'inline-block',
 };
 
-const buttonStyle = {
-  marginTop: '3%',
-  width: '100%',
-  marginBottom: '2%',
-};
-
 const button2Style = {
   marginTop: '3%',
   width: '50%',
@@ -42,10 +34,6 @@ const dropZoneStyle = {
   textAlign: 'center',
 };
 
-const linear = {
-  position: 'relative',
-  left: '-5%',
-};
 
 const svgStyle = {
   height: '100%',
@@ -135,7 +123,6 @@ class AddAnIssue extends React.Component {
 
     const {
       userLocation,
-      loading,
     } = this.props;
     return (
 

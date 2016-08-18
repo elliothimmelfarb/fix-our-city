@@ -4,6 +4,7 @@ import map from './mapReducer';
 import location from './locationReducer';
 import issues from './issuesReducer';
 import input from './inputReducer';
+import tags from './tagsReducer';
 // Combine reducers with routeReducer which keeps track of
 // router state
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   location,
   routing,
   input,
+  tags,
 });
 
 export default rootReducer;

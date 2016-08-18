@@ -4,6 +4,7 @@ import GoogleMap from 'google-map-react';
 import { mapBoundsChanged } from '../../actions/mapActions';
 import MapMarker from './MapMarker';
 
+
 const style = {
   map: {
     height: '500px',
@@ -15,11 +16,9 @@ class GoogleMapContainer extends React.Component {
 
 
   createMarkers(issues) {
-    console.log('props', this.props); 
     /* eslint-disable no-underscore-dangle */
     return issues.map(issue => {
       let isSelected = issue.obj._id === this.props.selectedId;
-      console.log('isSelected', isSelected); 
       return (
         <MapMarker
           isSelected={isSelected}
@@ -36,6 +35,7 @@ class GoogleMapContainer extends React.Component {
   createMapOptions() {
     return {
       mapTypeControl: true,
+      panControl: false,
       styles: [{
         stylers: [
           { saturation: -50 },
@@ -56,10 +56,10 @@ class GoogleMapContainer extends React.Component {
 
     const markers = issues && this.createMarkers(issues);
 
+    // bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_KEY }}
     return (
       <div style={style.map}>
         <GoogleMap
-          bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_KEY }}
           center={mapCenter}
           defaultZoom={15}
           minZoom={5}

@@ -18,11 +18,6 @@ const issuesLoading = () => ({
   type: types.ISSUES_LOADING,
 });
 
-export const selectMarker = (id) => ({
-  id,
-  type: types.SELECT_ISSUE,
-});
-
 export const mapBoundsChanged = (newMapInfo) =>
   dispatch => {
     console.log(newMapInfo.center);

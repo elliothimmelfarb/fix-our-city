@@ -36,6 +36,12 @@ export const downvoteIssue = (id, center, corner) =>
     });
   };
 
+export const selectIssue = (id) => ({
+  id,
+  type: types.SELECT_ISSUE,
+});
+
+
 export const upvoteIssue = (id, center, corner) =>
   dispatch => {
     console.log('cneter corner:', center, corner);

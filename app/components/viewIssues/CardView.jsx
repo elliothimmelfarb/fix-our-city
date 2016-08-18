@@ -8,6 +8,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
 import Toggle from 'material-ui/Toggle';
 import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
+
 const styles = {
   image: {
     // maxHeight: 500,
@@ -103,9 +104,15 @@ const CardView = (props) => {
   );
 };
 
+
 CardView.propTypes = {
   title: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
+  selectIssue: PropTypes.func.isRequired,
+  _id: PropTypes.string,
+  selected: PropTypes.string,
+
+
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -115,6 +122,10 @@ const mapDispatchToProps = (dispatch) => ({
   downvoteIssue(id, center, corner) {
     return dispatch(downvoteIssue(id, center, corner));
   },
+  selectIssue(id) {
+    console.log('hi', id);
+    return dispatch(selectIssue(id));
+  },
 });
 
 const mapStateToProps = (state) => ({
@@ -122,6 +133,7 @@ const mapStateToProps = (state) => ({
   mapCorner: state.map.bounds.nw,
   upvoted: state.issues.upvoted,
   downvoted: state.issues.downvoted,
+  selected: state.issues.selectedId,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardView);

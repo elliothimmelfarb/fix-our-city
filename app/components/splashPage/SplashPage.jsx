@@ -48,7 +48,5 @@ export default function SplashPage() {
         </Col>
       </Row>
     </div>
-
-
   );
 }

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardHeader, CardText, CardMedia, CardActions } from 'material-ui/Card';
+import { Card, CardHeader, CardText, CardMedia, CardActions, CardTitle } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
@@ -41,12 +41,17 @@ const CardView = (props) => {
   const descriptionStyle = {
     wordWrap: 'break-word',
   };
-
+  const subStyle = {
+    whiteSpace: 'pre-line',
+  };
+  const day = moment(props.dateAdded).format('l') + "\nexp. " + moment("20160822").startOf('day').from(props.dateAdded);
+  console.log('day: ', day);
   return (
     <Card>
       <CardHeader
         title={props.title}
-        subtitle={moment(props.dateAdded).format('l')}
+        subtitle={day}
+        subtitleStyle={subStyle}
         avatar={props.imgUrl}
         actAsExpander
       >
@@ -79,10 +84,10 @@ const CardView = (props) => {
       </CardMedia>
       <CardText expandable>
         <Row >
-          <Col xs={8} md={10} lg={10} style={descriptionStyle}>
+          <Col xs={7} md={10} lg={10} style={descriptionStyle}>
             {props.description}
           </Col>
-          <Col xs={4} md={2} lg={2}>
+          <Col xs={5} md={2} lg={2}>
             <Toggle
               style={toggleStyles}
               labelPosition="right"

@@ -7,7 +7,7 @@ import { Card, CardHeader, CardText, CardMedia, CardActions, CardTitle } from 'm
 import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
 import Toggle from 'material-ui/Toggle';
-import { upvoteIssue, downvoteIssue, selectIssue } from '../../actions/issueActions';
+import { upvoteIssue, downvoteIssue, selectIssue, toggleFixedIssue } from '../../actions/issueActions';
 
 
 const styles = {
@@ -36,6 +36,7 @@ class CardView extends React.Component {
   }
 
   onCardClick() {
+    console.log('card clicked !');
     if (this.props._id === this.props.selected) {
       this.props.selectIssue(0);
     } else {
@@ -60,18 +61,23 @@ class CardView extends React.Component {
     };
 
     const props = this.props;
-    const day = moment(props.dateAdded).format('l') + "\nexp. " + moment("20160822").startOf('day').from(props.dateAdded);
+    let day;
+    if(props.isFixed) {
+      day = `exp. ${moment(props.dateMarkedFixed).add(7, 'days').fromNow()}`;
+    } else {
+      day = moment(props.dateAdded).format('l');
+    }
     const upvoteStatus = props.upvoted.includes(props._id);
     const downvoteStatus = props.downvoted.includes(props._id);
     return (
       <Card
         zDepth={props._id === props.selected ? 5 : 1}
         expanded={props._id === props.selected}
+        onClick={this.onCardClick}
       >
         <CardHeader
           title={props.title}
           avatar={props.imgUrl}
-          onClick={this.onCardClick}
           subtitle={day}
           subtitleStyle={subStyle}
           actAsExpander
@@ -113,6 +119,8 @@ class CardView extends React.Component {
               style={toggleStyles}
               labelPosition="right"
               label="Fixed?"
+              toggled={props.isFixed}
+              onToggle={() => props.toggleFixedIssue(props._id, props.mapCenter, props.mapCorner)}
             />
           </Col>
         </Row>
@@ -146,6 +154,9 @@ const mapDispatchToProps = (dispatch) => ({
   selectIssue(id) {
     console.log('hi', id);
     return dispatch(selectIssue(id));
+  },
+  toggleFixedIssue(id, center, corner) {
+    return dispatch(toggleFixedIssue(id, center, corner));
   },
 });
 

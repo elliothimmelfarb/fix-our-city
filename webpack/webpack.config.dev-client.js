@@ -117,7 +117,11 @@ module.exports = {
       files: '**/*.?(sa|sc|c)ss'
     }),
     new webpack.EnvironmentPlugin([
-      "GOOGLE_MAPS_KEY"
+      "GOOGLE_MAPS_KEY", 
+      "AWS_SECRET_ACCESS_KEY",
+      "AWS_ACCESS_KEY_ID",
+
+
     ])
   ],
   postcss: postCSSConfig

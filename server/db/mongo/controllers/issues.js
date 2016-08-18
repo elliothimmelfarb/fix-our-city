@@ -12,6 +12,7 @@ AWS.config.update(
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     subregion: 'us-west-2',
   });
+console.log('**********aws cred***********', process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY, process.env.GOOGLE_MAPS_KEY);
 
 export function all(req, res) {
   Issue.find({}).exec((err, issues) => {
@@ -45,7 +46,9 @@ export function add(req, res) {
       Body: req.file.buffer,
       ACL: 'public-read',
     }, (err) => { // eslint-disable-line consistent-return
+      console.log('*******aws err:', err);
       if (err) return res.status(400).send(err);
+
 
       // add the s3 url to the db
       savedIssue.imgUrl = s3BaseUrl + savedIssue._id + fileExt;  // eslint-disable-line no-underscore-dangle,max-len,no-param-reassign
@@ -107,12 +110,17 @@ export function toggleFixed(req, res) {
       return res.status(500).send('Something went wrong getting the data');
     }
     if (issue) {
+      if (issue.isFixed) {
+        issue.dateMarkedFixed = null; // eslint-disable-line no-param-reassign
+      } else {
+        issue.dateMarkedFixed = Date.now(); // eslint-disable-line no-param-reassign
+      }
       issue.isFixed = !issue.isFixed; // eslint-disable-line no-param-reassign
-      issue.save((err, savedIssue) => {
+      issue.save((err) => {
         if (err) {
           return res.status(400).send('Something went wrong saving the data');
         }
-        return res.json(savedIssue);
+        return findNearLocation(req, res);
       });
     } else {
       return res.status(500).send('No issue with that ID found');

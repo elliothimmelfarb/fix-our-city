@@ -19,7 +19,6 @@ class GoogleMapContainer extends React.Component {
     /* eslint-disable no-underscore-dangle */
     return issues.map(issue => {
       let isSelected = issue.obj._id === this.props.selectedId;
-      console.log('isSelected', isSelected); 
       return (
         <MapMarker
           isSelected={isSelected}

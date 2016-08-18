@@ -5,7 +5,9 @@ import { CardMedia } from 'material-ui/Card';
 import AutoCompleteInput from './AutoComplete';
 import IssueButton from './IssueButton';
 import GetLocation from './GetLocation';
-// injectTapEventPlugin();
+
+
+
 const pageStyle = {
   height: '40%',
   width: '80%',

@@ -7,8 +7,8 @@ export const findIssues = (center, corner) =>
 export const addIssue = (issue) =>
   axios.post('/api/issues/add-issue', issue);
 
-export const toggleFixed = (id) =>
-  axios.put('/api/issues/toggle-fixed', { id });
+export const toggleFixed = (id, center, corner) =>
+  axios.put('/api/issues/toggle-fixed', { id, center, corner });
 
 export const upvote = (id, center, corner) =>
   axios.put('/api/issues/upvote', { id, center, corner });

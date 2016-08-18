@@ -69,6 +69,7 @@ module.exports = {
           __DEVSERVER__: true,
           "global.GENTLY": false
         }),
+        
         new webpack.IgnorePlugin(/vertx/)
     ]
 };

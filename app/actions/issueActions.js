@@ -1,5 +1,5 @@
 import { polyfill } from 'es6-promise';
-import { upvote, downvote } from '../api';
+import { upvote, downvote, toggleFixed } from '../api';
 import * as types from '../types';
 
 polyfill();
@@ -32,7 +32,6 @@ export const downvoteIssue = (id, center, corner) =>
     .then(response => {
       dispatch(updateIssues(response.data.issues));
       dispatch(addToDownvoted(id));
-
     });
   };
 
@@ -41,6 +40,13 @@ export const selectIssue = (id) => ({
   type: types.SELECT_ISSUE,
 });
 
+export const toggleFixedIssue = (id, center, corner) =>
+  dispatch => {
+    toggleFixed(id, center, corner)
+    .then(response => {
+      dispatch(updateIssues(response.data.issues));
+    });
+  };
 
 export const upvoteIssue = (id, center, corner) =>
   dispatch => {
@@ -57,4 +63,5 @@ export default {
   highlightIssue,
   upvoteIssue,
   downvoteIssue,
+  toggleFixedIssue,
 };

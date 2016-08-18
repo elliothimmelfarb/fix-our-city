@@ -27,6 +27,11 @@ const styles = {
     display: 'inline',
   },
 };
+const voteStyle = {
+  position: 'absolute',
+  right: '0',
+  top: '0',
+};
 
 class CardView extends React.Component {
   constructor(props) {
@@ -58,25 +63,39 @@ class CardView extends React.Component {
     const subStyle = {
       whiteSpace: 'pre-line',
     };
+    const divStyle = {
+      position: 'relative',
+    };
+    const arrowStyle = {
+      position: 'absolute',
+      left: '50%',
+      bottom: '0',
+      transform: 'translate(-50%, 0%)',
+    };
 
     const props = this.props;
     const day = moment(props.dateAdded).format('l') + "\nexp. " + moment("20160822").startOf('day').from(props.dateAdded);
     const upvoteStatus = props.upvoted.includes(props._id);
     const downvoteStatus = props.downvoted.includes(props._id);
+    const arrow = props._id === props.selected ? <FontIcon className="material-icons">keyboard_arrow_up</FontIcon> : <FontIcon className="material-icons">keyboard_arrow_down</FontIcon>;
     return (
+      <div style={divStyle}>
       <Card
         zDepth={props._id === props.selected ? 5 : 1}
         expanded={props._id === props.selected}
       >
+
         <CardHeader
           title={props.title}
           avatar={props.imgUrl}
-          onClick={this.onCardClick}
           subtitle={day}
           subtitleStyle={subStyle}
-          actAsExpander
+
         >
-          <CardText style={styles.voting}>
+
+      </CardHeader>
+
+      <CardText style={voteStyle}>
           <IconButton
             disabled={upvoteStatus}
             onClick={() => props.upvoteIssue(props._id, props.mapCenter, props.mapCorner)}
@@ -95,7 +114,8 @@ class CardView extends React.Component {
             <FontIcon className="material-icons">thumb_down</FontIcon>
           </IconButton>
         </CardText>
-      </CardHeader>
+
+
 
       <CardMedia
         expandable
@@ -117,10 +137,18 @@ class CardView extends React.Component {
           </Col>
         </Row>
       </CardText>
+
       <CardActions>
         <button style={tagStyle}>test</button>
+          <IconButton
+            style={arrowStyle}
+            onClick={this.onCardClick}>
+            {arrow}
+          </IconButton>
       </CardActions>
+
       </Card>
+    </div>
     );
   }
 }

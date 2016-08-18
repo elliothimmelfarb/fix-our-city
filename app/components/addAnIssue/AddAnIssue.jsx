@@ -41,7 +41,7 @@ const dropZoneStyle = {
   textAlign: 'center',
 };
 
-const test = {
+const linear = {
   position: 'relative',
   left: '-5%',
 };
@@ -162,7 +162,7 @@ class AddAnIssue extends React.Component {
                     <Col xs={12} md={4} lg={4}>
                       <RaisedButton
                         icon={loading ?
-                          <LinearProgress mode="indeterminate" style={test} />
+                          <LinearProgress mode="indeterminate" style={linear} />
                           : <ActionLocation />}
                         label={loading ? 'Loading...' : 'Get Current Location'}
                         primary

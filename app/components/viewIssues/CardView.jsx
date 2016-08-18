@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardHeader, CardText, CardMedia } from 'material-ui/Card';
+import { Card, CardHeader, CardText, CardMedia, CardActions } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
-import { Col } from 'react-flexbox-grid';
+import { Row, Col } from 'react-flexbox-grid';
+import moment from 'moment';
+import Toggle from 'material-ui/Toggle';
 import { upvoteIssue, downvoteIssue } from '../../actions/issueActions';
-
 const styles = {
   image: {
     // maxHeight: 500,
     // maxWidth: 500,
-    width: '80%',
-    height: '80%',
+    width: '90%',
+    height: '90%',
     margin: '0 auto',
     textAlign: 'center',
   },
@@ -28,12 +29,25 @@ const styles = {
 const CardView = (props) => {
   const upvoteStatus = props.upvoted.includes(props._id);
   const downvoteStatus = props.downvoted.includes(props._id);
+  const tagStyle = {
+    backgroundColor: '#eee',
+    borderRadius: '20px',
+    border: '1px solid #eee',
+    wordWrap: 'break-word',
+  };
+  const toggleStyles = {
+    marginBottom: 16,
+  };
+  const descriptionStyle = {
+    wordWrap: 'break-word',
+  };
+
   return (
     <Card>
       <CardHeader
         title={props.title}
+        subtitle={moment(props.dateAdded).format('l')}
         avatar={props.imgUrl}
-        subtitle={props.description}
         actAsExpander
       >
         <CardText style={styles.voting}>
@@ -52,17 +66,34 @@ const CardView = (props) => {
             disabled={downvoteStatus}
             onClick={() => props.downvoteIssue(props._id, props.mapCenter, props.mapCorner)}
           >
-
             <FontIcon className="material-icons">thumb_down</FontIcon>
           </IconButton>
         </CardText>
       </CardHeader>
+
       <CardMedia
         expandable
         mediaStyle={styles.image}
       >
         <img src={`${props.imgUrl}`} alt="Issue" style={styles.image} />
       </CardMedia>
+      <CardText expandable>
+        <Row >
+          <Col xs={8} md={10} lg={10} style={descriptionStyle}>
+            {props.description}
+          </Col>
+          <Col xs={4} md={2} lg={2}>
+            <Toggle
+              style={toggleStyles}
+              labelPosition="right"
+              label="Fixed?"
+            />
+          </Col>
+        </Row>
+      </CardText>
+      <CardActions>
+        <button style={tagStyle}>test</button>
+      </CardActions>
     </Card>
   );
 };

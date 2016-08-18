@@ -55,7 +55,7 @@ const svgStyle = {
 
 const cardStyle = {
   textAlign: 'center',
-}
+};
 
 class AddAnIssue extends React.Component {
   constructor(props, context) {

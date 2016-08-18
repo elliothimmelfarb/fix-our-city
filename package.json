@@ -102,6 +102,7 @@
     "material-design-icons": "^2.2.3",
     "material-ui": "^0.15.3",
     "method-override": "^2.3.5",
+    "moment": "^2.14.1",
     "mongoose": "^4.4.7",
     "multer": "^1.2.0",
     "node-libs-browser": "^1.0.0",

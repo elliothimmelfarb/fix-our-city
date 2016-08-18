@@ -27,7 +27,7 @@ const cx = classNames.bind(styles);
    minHeight: '100vh',
    width: '100vw',
    backgroundColor: '#00bcd4',
-   padding: '5%',
+   paddingTop: '7%',
  };
  const navbarStyle = {
    position: 'fixed',

@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navbar from './Navbar';
 import styles from '../css/main.css';
 
+
 const cx = classNames.bind(styles);
 
 
@@ -18,30 +19,32 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  <Navigation />
  */
- const bgImage = {
-   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
-   backgroundRepeat: 'repeat-x',
+const bgImage = {
+  backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
+  backgroundRepeat: 'repeat-x',
   //  backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png'), url('http://www.ibox-security.co.uk/wp-content/uploads/2015/07/ss-2-bg.jpg')",
   //  backgroundRepeat: 'repeat-x, repeat-y',
-   backgroundPosition: 'bottom',
-   minHeight: '100vh',
-   width: '100vw',
-   backgroundColor: '#00bcd4',
-   paddingTop: '7%',
- };
- const navbarStyle = {
-   position: 'fixed',
-   top: '0px',
-   left: '0px',
- };
-const App = ({ children }) => (
+  backgroundPosition: 'bottom',
+  minHeight: '100vh',
+  width: '100vw',
+  backgroundColor: '#00bcd4',
+  paddingTop: '7%',
+};
+const navbarStyle = {
+  position: 'fixed',
+  top: '0px',
+  left: '0px',
+};
+const App = ({ children, location }) => (
 
   <div className={cx('app')} style={bgImage}>
     <MuiThemeProvider>
-      <Grid>
-        <Navbar />
-        {children}
-      </Grid>
+        <Grid>
+          <Navbar />
+     
+          {children}
+ 
+        </Grid>
     </MuiThemeProvider>
   </div>
 

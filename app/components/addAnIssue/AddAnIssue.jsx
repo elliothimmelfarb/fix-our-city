@@ -11,6 +11,8 @@ import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 import AutoComplete from '../splashPage/AutoComplete';
+import { RouteTransition } from 'react-router-transition';
+
 
 
 const pageStyle = {
@@ -146,82 +148,90 @@ class AddAnIssue extends React.Component {
     return (
 
       <div>
-        <Row>
-          <Col xs={12} md={12} lg={12}>
-            <Row>
-              <Paper style={pageStyle} zDepth={5}>
-                <CardTitle title="Add an Issue" style={cardStyle}/>
-                <form onSubmit={this.onSubmit}>
-                  <Row>
-                    <Col xs={12} md={8} lg={8}>
-                      <AutoComplete />
-                    </Col>
-                    <Col xs={12} md={4} lg={4}>
-                      <GetLocation />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12} md={8} lg={8}>
-                      <InputInfo />
-                    </Col>
-                    <Col xs={12} md={4} lg={4}>
-                      <Card style={imgStyle}>
-                        <Dropzone
-                          onDrop={this.onDrop}
-                          style={this.state.imageError ? errorDropZoneStyle : dropZoneStyle}
-                        >
-                          {imgPreview}
-                        </Dropzone>
-                      </Card>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={6} md={6} lg={6}>
-                      <RaisedButton
-                        type="button"
-                        label="Cancel"
-                        default
-                        fullWidth
-                        style={button2Style}
-                        onClick={this.handleClose}
-                      />
-                    </Col>
-                    <Col xs={6} md={6} lg={6}>
-                      <RaisedButton
-                        type="Submit"
-                        label="Submit"
-                        fullWidth
-                        primary
-                        style={button2Style}
-                      />
-                    </Col>
-                  </Row>
-                </form>
-                <Dialog
-                  title="Issue Submitted!"
-                  actions={dialogActions}
-                  modal={false}
-                  open={this.state.openDialog}
-                  onRequestClose={this.handleClose}
-                >
-                  Thank You for your submission.
-                </Dialog>
-                <Snackbar
-                  open={this.state.openSnackbar}
-                  message="Error adding Issue"
-                  autoHideDuration={4000}
-                />
-                <Snackbar
-                  open={this.state.imageError}
-                  message="Please upload an image."
-                  autoHideDuration={4000}
-                  bodyStyle={{ backgroundColor: 'red' }}
-                  onRequestClose={this.closeError}
-                />
-              </Paper>
-            </Row>
-          </Col>
-        </Row>
+        <RouteTransition
+          pathname={location.pathname}
+          atEnter={{ translateX: 120 }}
+          atLeave={{ translateX: -120 }}
+          atActive={{ translateX: 0 }}
+          mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
+        >
+          <Row>
+            <Col xs={12} md={12} lg={12}>
+              <Row>
+                <Paper style={pageStyle} zDepth={5}>
+                  <CardTitle title="Add an Issue" style={cardStyle}/>
+                  <form onSubmit={this.onSubmit}>
+                    <Row>
+                      <Col xs={12} md={8} lg={8}>
+                        <AutoComplete />
+                      </Col>
+                      <Col xs={12} md={4} lg={4}>
+                        <GetLocation />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={12} md={8} lg={8}>
+                        <InputInfo />
+                      </Col>
+                      <Col xs={12} md={4} lg={4}>
+                        <Card style={imgStyle}>
+                          <Dropzone
+                            onDrop={this.onDrop}
+                            style={this.state.imageError ? errorDropZoneStyle : dropZoneStyle}
+                          >
+                            {imgPreview}
+                          </Dropzone>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={6} md={6} lg={6}>
+                        <RaisedButton
+                          type="button"
+                          label="Cancel"
+                          default
+                          fullWidth
+                          style={button2Style}
+                          onClick={this.handleClose}
+                        />
+                      </Col>
+                      <Col xs={6} md={6} lg={6}>
+                        <RaisedButton
+                          type="Submit"
+                          label="Submit"
+                          fullWidth
+                          primary
+                          style={button2Style}
+                        />
+                      </Col>
+                    </Row>
+                  </form>
+                  <Dialog
+                    title="Issue Submitted!"
+                    actions={dialogActions}
+                    modal={false}
+                    open={this.state.openDialog}
+                    onRequestClose={this.handleClose}
+                  >
+                    Thank You for your submission.
+                  </Dialog>
+                  <Snackbar
+                    open={this.state.openSnackbar}
+                    message="Error adding Issue"
+                    autoHideDuration={4000}
+                  />
+                  <Snackbar
+                    open={this.state.imageError}
+                    message="Please upload an image."
+                    autoHideDuration={4000}
+                    bodyStyle={{ backgroundColor: 'red' }}
+                    onRequestClose={this.closeError}
+                  />
+                </Paper>
+              </Row>
+            </Col>
+          </Row>
+        </RouteTransition>
       </div>
 
 

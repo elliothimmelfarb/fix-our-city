@@ -1,9 +1,23 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinearProgress from 'material-ui/LinearProgress';
+
+
+
+
+
 import CardView from './CardView';
 
 class ListView extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.redirect = this.redirect.bind(this);
+  }
+
+  redirect() {
+    console.log('hi in redirect');
+    this.context.router.push('/add-an-issue');
+  }
   createCards(issues) {
     console.log(issues);
     return issues.map(issue => (
@@ -25,7 +39,7 @@ class ListView extends React.Component {
     const input = this.props.selectedObj.length > 0 ? this.props.selectedObj : issues;
     const cards = issues && this.createCards(input);
     const loading = issuesLoading ? <LinearProgress mode="indeterminate" /> : '';
-
+    
 
     return (
 
@@ -38,6 +52,8 @@ class ListView extends React.Component {
     );
   }
 }
+
+
 
 ListView.propTypes = {
   issues: PropTypes.array,

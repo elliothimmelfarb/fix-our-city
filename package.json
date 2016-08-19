@@ -125,6 +125,7 @@
     "react-redux": "^4.4.1",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.0",
+    "react-router-transition": "0.0.5",
     "react-s3-uploader": "^3.3.0",
     "react-tap-event-plugin": "^1.0.0",
     "react-transform-hmr": "^1.0.4",

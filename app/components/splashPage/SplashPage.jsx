@@ -7,7 +7,6 @@ import IssueButton from './IssueButton';
 import GetLocation from './GetLocation';
 
 
-
 const pageStyle = {
   height: '40%',
   width: '85%',

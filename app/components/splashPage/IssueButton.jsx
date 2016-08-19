@@ -4,7 +4,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import { Link } from 'react-router';
 import { RaisedButton, Snackbar } from 'material-ui';
 import geocode from '../../api/geocoder';
-import { setUserLocation } from '../../actions/locationActions'
+import { setUserLocation } from '../../actions/locationActions';
 
 
 const buttonStyle = {

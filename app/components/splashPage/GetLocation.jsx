@@ -10,11 +10,14 @@ import * as inputActions from '../../actions/inputActions';
 const getLocationButton = {
   width: '100%',
   marginBottom: '2%',
-  marginTop: '12%',
+  marginTop: '9%',
 };
 const linear = {
   position: 'relative',
   left: '-4%',
+  width: '100%',
+  marginBottom: '2%',
+  marginTop: '15%',
 };
 const snackbarStyle = {
   backgroundColor: 'rgb(0, 188, 212)',
@@ -47,6 +50,7 @@ class getLocation extends React.Component {
       alert,
     } = this.props;
 
+
     const buttonGetLocation = Object.keys(userLocation).length > 0 ?
       <RaisedButton
         icon={<ClearLocation />}
@@ -56,17 +60,19 @@ class getLocation extends React.Component {
         onClick={this.clearLocation}
       /> :
       <RaisedButton
-        icon={loading ? <LinearProgress mode="indeterminate" style={linear} /> : <ActionLocation />}
+        icon={<ActionLocation />}
         label={loading ? 'LOADING...' : ''}
         primary
         style={getLocationButton}
         onClick={this.getLocation}
       />;
+    const loadingButton = loading ?
+      <LinearProgress mode="indeterminate" style={linear} /> : buttonGetLocation;
     return (
       <div>
         <Row bottom="xs">
           <Col xs={12} md={12} lg={12}>
-            {buttonGetLocation}
+            {loadingButton}
           </Col>
         </Row>
         <Snackbar

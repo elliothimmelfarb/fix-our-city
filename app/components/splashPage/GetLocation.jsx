@@ -25,6 +25,7 @@ class getLocation extends React.Component {
     super(props);
     this.getLocation = this.getLocation.bind(this);
     this.clearLocation = this.clearLocation.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   getLocation() {
     this.props.getUserLocation();
@@ -32,6 +33,10 @@ class getLocation extends React.Component {
 
   clearLocation() {
     this.props.clearInputs();
+  }
+
+  handleClose() {
+    this.props.toggleAlert();
   }
 
   render() {
@@ -66,7 +71,7 @@ class getLocation extends React.Component {
           open={alert}
           message="Now using your current location."
           autoHideDuration={5000}
-          onRequestClose={this.handleRequestClose}
+          onRequestClose={this.handleClose}
           bodyStyle={snackbarStyle}
         />
       </div>
@@ -80,6 +85,7 @@ getLocation.propTypes = {
   getUserLocation: PropTypes.func,
   clearInputs: PropTypes.func,
   alert: PropTypes.bool,
+  toggleAlert: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -94,6 +100,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getUserLocation: () => dispatch(locationActions.getUserLocation()),
     clearInputs: () => dispatch(inputActions.clearInputs()),
+    toggleAlert: () => dispatch(locationActions.toggleAlert())
   };
 }
 

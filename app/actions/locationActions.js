@@ -1,6 +1,5 @@
 import { polyfill } from 'es6-promise';
 import * as types from '../types';
-import { addIssue } from '../api';
 
 polyfill();
 
@@ -13,7 +12,9 @@ const toggleLoading = () => ({
   type: types.TOGGLE_LOADING,
 });
 
-
+export const toggleAlert = () => ({
+  type: types.TOGGLE_ALERT,
+});
 
 export const getUserLocation = () =>
   dispatch => {
@@ -23,9 +24,11 @@ export const getUserLocation = () =>
         if (res === undefined) {
           navigator.geolocation.getCurrentPosition(() => {
             dispatch(setUserLocation(res.coords));
+            dispatch(toggleAlert());
           });
         } else {
           dispatch(setUserLocation(res.coords));
+          dispatch(toggleAlert());
         }
       });
     }

@@ -12,6 +12,7 @@ import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 import AutoComplete from '../splashPage/AutoComplete';
+import styles from '../../css/main.css';
 
 
 const pageStyle = {
@@ -141,8 +142,6 @@ class AddAnIssue extends React.Component {
       />,
     ];
     return (
-
-      <div>
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>
@@ -219,7 +218,6 @@ class AddAnIssue extends React.Component {
             </Row>
           </Col>
         </Row>
-      </div>
 
 
     );

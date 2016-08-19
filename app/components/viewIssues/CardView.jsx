@@ -7,6 +7,8 @@ import { Card, CardHeader, CardText, CardMedia, CardActions, CardTitle } from 'm
 import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
 import Toggle from 'material-ui/Toggle';
+import Chip from 'material-ui/Chip';
+import { indigo300 } from 'material-ui/styles/colors';
 import { upvoteIssue, downvoteIssue, selectIssue, toggleFixedIssue } from '../../actions/issueActions';
 
 
@@ -89,7 +91,6 @@ class CardView extends React.Component {
       <Card
         zDepth={props._id === props.selected ? 5 : 1}
         expanded={props._id === props.selected}
-        onClick={this.onCardClick}
       >
 
         <CardHeader
@@ -148,7 +149,7 @@ class CardView extends React.Component {
       </CardText>
 
       <CardActions>
-        <button style={tagStyle}>test</button>
+        <Chip backgroundColor={indigo300}>{props.tag || 'test'}</Chip>
           <IconButton
             style={arrowStyle}
             onClick={this.onCardClick}>

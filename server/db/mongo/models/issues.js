@@ -16,6 +16,7 @@ const IssueSchema = new mongoose.Schema({
     type: { type: String, default: 'Point' },
     coordinates: { type: [Number], required: true },
   },
+  tag: { type: String },
 });
 
 IssueSchema.index({ location: '2dsphere' });

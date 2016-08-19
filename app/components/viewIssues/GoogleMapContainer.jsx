@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import GoogleMap from 'google-map-react';
+import GoogleMap from '../../lib/google-map-react';
 import { mapBoundsChanged } from '../../actions/mapActions';
 import MapMarker from './MapMarker';
 
@@ -32,11 +32,11 @@ class GoogleMapContainer extends React.Component {
     /* eslint-enable no-underscore-dangle */
   }
 
-  // componentWillMount() {
-  //   if (typeof google === 'undefined') {
-  //     this.context.router.push('/');
-  //   }
-  // }
+  componentWillMount() {
+    if (typeof google === 'undefined') {
+      this.context.router.push('/');
+    }
+  }
 
   createMapOptions() {
     return {

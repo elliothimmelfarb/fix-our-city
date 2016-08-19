@@ -14,24 +14,24 @@ class AutoCompleteInput extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const input = document.getElementById('splashPageInput');
-    googlePlacesLoader(process.env.GOOGLE_MAPS_KEY)
-      .then(places => {
-        const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
-        this.searchBox = new places.Autocomplete(input, options);
-      });
-  }
-
   onInputFocus() {
-    // const input = document.getElementById('splashPageInput');
-    // const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
-    // this.searchBox = new google.maps.places.Autocomplete(input, options);
+    const input = document.getElementById('locationInput');
+    googlePlacesLoader()
+      .then(google => {
+        console.log(google);
+        const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
+        this.searchBox = new google.places.Autocomplete(input, options);
+      });
   }
 
   onInputUpdate(e) {
     this.props.updateInput(e.target.value);
     this.setState({ city: e.target.value });
+  }
+
+  unfocus(e) {
+    this.onInputUpdate(e);
+    this.searchBox = null;
   }
 
   render() {
@@ -52,11 +52,11 @@ class AutoCompleteInput extends React.Component {
           style={{ margingBottom: -40 }}
         >
           <input
-            id={'splashPageInput'}
+            id={'locationInput'}
             placeholder={''}
             type={'text'}
             onFocus={() => this.onInputFocus()}
-            onBlur={e => this.onInputUpdate(e)}
+            onBlur={e => this.unfocus(e)}
             required
           />
         </TextField>

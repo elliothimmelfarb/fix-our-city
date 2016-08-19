@@ -1,13 +1,15 @@
-const GoogleMapsLoader = require('google-maps');
+import googleMapLoader from './google_map_loader';
 
-const googlePlacesLoader = (key) =>
-  new Promise((resolve) => {
-    GoogleMapsLoader.KEY = key;
-    GoogleMapsLoader.LIBRARIES = ['places'];
-    GoogleMapsLoader.REGION = 'US';
-    GoogleMapsLoader.load(google => {
-      resolve(google.maps.places);
-    });
+const googlePlacesLoader = () => {
+  return new Promise((resolve) => {
+    googleMapLoader('key')
+      .then(google => {
+        resolve(google);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   });
+};
 
 export default googlePlacesLoader;

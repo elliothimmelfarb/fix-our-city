@@ -15,16 +15,31 @@ const cardStyle = {
   textAlign: 'center',
 };
 
-const AboutUs = () => (
-  <Row>
-    <Col xs={12} md={12} lg={12}>
+class AboutUs extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { expanded: false };
+  }
+
+  handleExpand = () => {
+    this.setState({ expanded: true })
+  }
+
+  render() {
+    return (
       <Row>
-        <Paper style={pageStyle} zDepth={5}>
-          <CardTitle title="Meet The Team" style={cardStyle} />
-        </Paper>
+        <Col xs={12} md={12} lg={12}>
+          <Row>
+            <Paper style={pageStyle} zDepth={5}>
+              <CardTitle title="Meet The Team" style={cardStyle} />
+
+            </Paper>
+          </Row>
+        </Col>
       </Row>
-    </Col>
-  </Row>
-);
+    );
+  }
+};
 
 export default AboutUs;

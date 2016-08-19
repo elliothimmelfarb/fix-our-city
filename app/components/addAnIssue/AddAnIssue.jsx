@@ -5,6 +5,7 @@ import { Paper, RaisedButton, Dialog, FlatButton, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
+import Cancel from 'material-ui/svg-icons/navigation/cancel';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
 import GetLocation from '../splashPage/GetLocation';
@@ -174,8 +175,8 @@ class AddAnIssue extends React.Component {
                   <Row>
                     <Col xs={6} md={6} lg={6}>
                       <RaisedButton
+                        icon={<Cancel />}
                         type="button"
-                        label="Cancel"
                         default
                         fullWidth
                         style={button2Style}

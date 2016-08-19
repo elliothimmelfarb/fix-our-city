@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
 import ActionLocation from 'material-ui/svg-icons/maps/my-location';
+import ClearLocation from 'material-ui/svg-icons/communication/location-off';
 import { RaisedButton, LinearProgress, Snackbar } from 'material-ui';
 import * as locationActions from '../../actions/locationActions';
 import * as inputActions from '../../actions/inputActions';
@@ -48,14 +49,15 @@ class getLocation extends React.Component {
 
     const buttonGetLocation = Object.keys(userLocation).length > 0 ?
       <RaisedButton
-        label="Cancel"
+        icon={<ClearLocation />}
+        label=""
         default
         style={getLocationButton}
         onClick={this.clearLocation}
       /> :
       <RaisedButton
         icon={loading ? <LinearProgress mode="indeterminate" style={linear} /> : <ActionLocation />}
-        label={loading ? 'LOADING...' : 'GET CURRENT LOCATION'}
+        label={loading ? 'LOADING...' : ''}
         primary
         style={getLocationButton}
         onClick={this.getLocation}

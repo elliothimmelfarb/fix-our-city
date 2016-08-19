@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
-
+import FloatingButton from './FloatingButton';
 
 import GoogleMapContainer from './GoogleMapContainer';
 import ListView from './ListView';
@@ -36,6 +36,8 @@ function ViewIssues() {
           </Row>
         </Col>
       </Row>
+      <FloatingButton />
+
     </div>
   );
 }

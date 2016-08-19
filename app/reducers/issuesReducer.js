@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { list: action.issues, issuesLoading: false });
     }
     case types.ISSUES_LOADING: {
-      return Object.assign({}, state, { issuesLoading: true });
+      return Object.assign({}, state, { issuesLoading: !state.issuesLoading });
     }
     case types.SELECT_ISSUE: {
       // eslint-disable-next-line no-underscore-dangle

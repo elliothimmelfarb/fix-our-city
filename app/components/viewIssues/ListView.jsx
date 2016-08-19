@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import LinearProgress from 'material-ui/LinearProgress';
 import CardView from './CardView';
 
 class ListView extends React.Component {
@@ -15,16 +16,22 @@ class ListView extends React.Component {
   }
 
   render() {
+    console.log('loading', this.props.issuesLoading);
     const {
       issues,
+      issuesLoading,
     } = this.props;
+    // show all cards or one if selected
     const input = this.props.selectedObj.length > 0 ? this.props.selectedObj : issues;
     const cards = issues && this.createCards(input);
+    const loading = issuesLoading ? <LinearProgress mode="indeterminate" /> : '';
+
 
     return (
 
       <div>
         {cards}
+        {loading}
       </div>
 
 

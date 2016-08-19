@@ -32,6 +32,12 @@ class GoogleMapContainer extends React.Component {
     /* eslint-enable no-underscore-dangle */
   }
 
+  componentWillMount() {
+    if (typeof google === 'undefined') {
+      this.context.router.push('/');
+    }
+  }
+
   createMapOptions() {
     return {
       mapTypeControl: true,
@@ -53,13 +59,14 @@ class GoogleMapContainer extends React.Component {
       onBoundsChange,
       issues,
     } = this.props;
-
     const markers = issues && this.createMarkers(issues);
 
-    // bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_KEY }}
+    const key = process.env.GOOGLE_MAPS_KEY;
+
     return (
       <div style={style.map}>
         <GoogleMap
+          bootstrapURLKeys={{ key }}
           center={mapCenter}
           defaultZoom={15}
           minZoom={5}
@@ -78,6 +85,10 @@ GoogleMapContainer.propTypes = {
   onBoundsChange: PropTypes.func,
   issues: PropTypes.array,
   selectedId: PropTypes.string,
+};
+
+GoogleMapContainer.contextTypes = {
+  router: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

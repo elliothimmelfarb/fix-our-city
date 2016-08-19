@@ -118,12 +118,6 @@ export default function render(req, res) {
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
               ${analtyicsScript}
               <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
-              <script
-                type="text/javascript"
-                src="https://maps.google.com/maps/api/js?libraries=places&key=${process.env.GOOGLE_MAPS_KEY}"
-                async
-                defer
-              ></script>
             </body>
           </html>
         `);
@@ -136,3 +130,11 @@ export default function render(req, res) {
     }
   });
 }
+
+
+// <script
+//   type="text/javascript"
+//   src="https://maps.google.com/maps/api/js?libraries=places&key=${process.env.GOOGLE_MAPS_KEY}"
+//   async
+//   defer
+//   ></script>

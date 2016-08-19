@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import { Paper, RaisedButton, Dialog, FlatButton, TextField, Snackbar } from 'material-ui';
+import { Paper, RaisedButton, Dialog, FlatButton, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
@@ -10,7 +10,7 @@ import InputInfo from './InputInfo';
 import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
-import AutoComplete from  '../splashPage/AutoComplete';
+import AutoComplete from '../splashPage/AutoComplete';
 
 
 const pageStyle = {
@@ -56,6 +56,7 @@ class AddAnIssue extends React.Component {
       files: '',
       openDialog: false,
       openSnackbar: false,
+      imageError: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -70,21 +71,25 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.setState({ openDialog: true });
-    const issueObj = {
-      location: {
-        coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
-      },
-      title: this.props.title,
-      description: this.props.description,
-      tag: this.props.tag,
-    };
-    superagent.post('/api/issues/add-issue')
-      .attach('file', this.state.files[0])
-      .field('issueObj', JSON.stringify(issueObj))
-      .end((err) => {
-        if (err) this.setState({ openSnackbar: true });
-      });
+    if (this.state.files) {
+      this.setState({ openDialog: true });
+      const issueObj = {
+        location: {
+          coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
+        },
+        title: this.props.title,
+        description: this.props.description,
+        tag: this.props.tag,
+      };
+      superagent.post('/api/issues/add-issue')
+        .attach('file', this.state.files[0])
+        .field('issueObj', JSON.stringify(issueObj))
+        .end((err) => {
+          if (err) this.setState({ openSnackbar: true });
+        });
+    } else {
+      this.setState({ imageError: true })
+    }
   }
 
   getLocation() {
@@ -189,6 +194,11 @@ class AddAnIssue extends React.Component {
                 <Snackbar
                   open={this.state.openSnackbar}
                   message="Error adding Issue"
+                  autoHideDuration={4000}
+                />
+                <Snackbar
+                  open={this.state.imageError}
+                  message="Please upload an image."
                   autoHideDuration={4000}
                 />
               </Paper>

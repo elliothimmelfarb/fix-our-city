@@ -13,6 +13,7 @@ import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 import AutoComplete from '../splashPage/AutoComplete';
 import styles from '../../css/main.css';
+import { RouteTransition } from 'react-router-transition';
 
 
 const pageStyle = {
@@ -143,6 +144,13 @@ class AddAnIssue extends React.Component {
       />,
     ];
     return (
+      <div>
+        <RouteTransition
+          atEnter={{ translateX: 120 }}
+          atLeave={{ translateX: -120 }}
+          atActive={{ translateX: 0 }}
+          mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
+        >
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>
@@ -166,7 +174,7 @@ class AddAnIssue extends React.Component {
                         <Dropzone
                           onDrop={this.onDrop}
                           style={this.state.imageError ? errorDropZoneStyle : dropZoneStyle}
-                        >
+                          >
                           {imgPreview}
                         </Dropzone>
                       </Card>
@@ -181,7 +189,7 @@ class AddAnIssue extends React.Component {
                         fullWidth
                         style={button2Style}
                         onClick={this.handleClose}
-                      />
+                        />
                     </Col>
                     <Col xs={6} md={6} lg={6}>
                       <RaisedButton
@@ -190,7 +198,7 @@ class AddAnIssue extends React.Component {
                         fullWidth
                         primary
                         style={button2Style}
-                      />
+                        />
                     </Col>
                   </Row>
                 </form>
@@ -200,27 +208,27 @@ class AddAnIssue extends React.Component {
                   modal={false}
                   open={this.state.openDialog}
                   onRequestClose={this.handleClose}
-                >
+                  >
                   Thank You for your submission.
                 </Dialog>
                 <Snackbar
                   open={this.state.openSnackbar}
                   message="Error adding Issue"
                   autoHideDuration={4000}
-                />
+                  />
                 <Snackbar
                   open={this.state.imageError}
                   message="Please upload an image."
                   autoHideDuration={4000}
                   bodyStyle={{ backgroundColor: 'red' }}
                   onRequestClose={this.closeError}
-                />
+                  />
               </Paper>
             </Row>
           </Col>
         </Row>
-
-
+        </RouteTransition>
+      </div>
     );
   }
 }

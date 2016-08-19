@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navbar from './Navbar';
 import styles from '../css/main.css';
 
+
 const cx = classNames.bind(styles);
 
 
@@ -18,6 +19,7 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  <Navigation />
  */
+
 // const bgImage = {
 //   backgroundImage: "url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png')",
 //   backgroundRepeat: 'repeat-x',

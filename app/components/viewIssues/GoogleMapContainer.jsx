@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from '../../lib/google-map-react';
+import Snackbar from 'material-ui/Snackbar';
 import { mapBoundsChanged } from '../../actions/mapActions';
 import MapMarker from './MapMarker';
 
@@ -9,6 +10,13 @@ const style = {
   map: {
     height: '500px',
     width: '100%',
+  },
+  snackbar: {
+    position: 'absolute',
+    bottom: 110,
+  },
+  snackBody: {
+    backgroundColor: '#FF4081',
   },
 };
 
@@ -60,6 +68,15 @@ class GoogleMapContainer extends React.Component {
       issues,
     } = this.props;
     const markers = issues && this.createMarkers(issues);
+    const noIssuesError = (
+      <Snackbar
+        style={style.snackbar}
+        bodyStyle={style.snackBody}
+        open={issues.length === 0}
+        message="No issues in this area"
+
+      />
+    );
 
     const key = process.env.GOOGLE_MAPS_KEY;
 
@@ -75,6 +92,7 @@ class GoogleMapContainer extends React.Component {
         >
           {markers}
         < /GoogleMap>
+          {noIssuesError}
       </div>
     );
   }

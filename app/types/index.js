@@ -17,7 +17,6 @@ export const INPUT_ISSUE_TITLE = 'INPUT_ISSUE_TITLE';
 export const INPUT_ISSUE_DESCRIPTION = 'INPUT_ISSUE_DESCRIPTION';
 export const INPUT_LOCATION = 'INPUT_LOCATION';
 
-
 // View Issue actions
 export const UPDATE_VOTES = 'UPDATE_VOTES';
 export const UPVOTE_ISSUE = 'UPVOTE_ISSUE';
@@ -27,3 +26,6 @@ export const CLEAR_INPUT = 'CLEAR_INPUT';
 
 // TOGGLE ALERT
 export const TOGGLE_ALERT = 'TOGGLE_ALERT';
+
+// SELECT TAG
+export const SELECT_TAG = 'SELECT_TAG';

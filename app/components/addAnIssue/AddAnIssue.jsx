@@ -77,6 +77,7 @@ class AddAnIssue extends React.Component {
       },
       title: this.props.title,
       description: this.props.description,
+      tag: this.props.tag,
     };
     superagent.post('/api/issues/add-issue')
       .attach('file', this.state.files[0])
@@ -208,6 +209,7 @@ AddAnIssue.propTypes = {
   clearInputs: PropTypes.func,
   title: PropTypes.string,
   description: PropTypes.string,
+  tag: PropTypes.string,
 };
 
 AddAnIssue.contextTypes = {
@@ -220,6 +222,7 @@ function mapStateToProps(state) {
     loading: state.location.loading,
     title: state.input.title,
     description: state.input.description,
+    tag: state.tags.selectedTag,
   };
 }
 

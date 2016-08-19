@@ -9,6 +9,7 @@ import App from './components/App';
 import SplashPage from './components/splashPage/SplashPage';
 import ViewIssues from './components/viewIssues/ViewIssues';
 import AddAnIssue from './components/addAnIssue/AddAnIssue';
+import AboutUs from './components/AboutUs';
 
 /*
  * @param {Redux Store}
@@ -42,6 +43,7 @@ export default () => (
     <IndexRoute component={SplashPage} />
     <Route path="/view-issues" component={ViewIssues} />
     <Route path="/add-an-issue" component={AddAnIssue} />
+    <Route path="/about-us" component={AboutUs} />
 
   </Route>
 );

@@ -20,6 +20,46 @@ body {
   font-smoothing: antialiased;
 }
 
+.bgImage {
+  background-image: url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png');
+  background-color: #00bcd4;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  min-height: 100vh;
+  width: 100vw;
+  padding-top: 7%;
+  -webkit-animation-name: example;
+  -webkit-animation-duration: 10s;
+  animation-name: example;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+  0%   {background-color: #00bcd4;}
+  50%  {background-color: #00008B;}
+  100% {background-color: ##00BFFF;}
+}
+
+/* Standard syntax */
+@keyframes example {
+  0%   {background-color: #00bcd4;}
+  50%  {background-color: #00008B;}
+  100% {background-color: ##00BFFF;}
+}
+
+.bgImageNoAnimation {
+  background-image: url('https://image.pbs.org/poster_images/assets/01mpmdkk0npu1svmvp6s_1.png.resize.710x399.png');
+  background-color: #00bcd4;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  min-height: 100vh;
+  width: 100vw;
+  padding-top: 7%;
+}
+
 
 /* Add your global styles below... */
 

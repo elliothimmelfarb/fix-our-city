@@ -5,12 +5,14 @@ import { Paper, RaisedButton, Dialog, FlatButton, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
+import Cancel from 'material-ui/svg-icons/navigation/cancel';
 import { Card, CardTitle } from 'material-ui/Card';
 import InputInfo from './InputInfo';
 import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 import AutoComplete from '../splashPage/AutoComplete';
+import styles from '../../css/main.css';
 
 
 const pageStyle = {
@@ -110,6 +112,7 @@ class AddAnIssue extends React.Component {
   handleClose() {
     this.setState({ openDialog: false, files: '', location: '' });
     this.props.clearInputs();
+    this.context.router.push('/');
   }
 
   closeError() {
@@ -139,13 +142,7 @@ class AddAnIssue extends React.Component {
         onTouchTap={this.redirect}
       />,
     ];
-
-    const {
-      userLocation,
-    } = this.props;
     return (
-
-      <div>
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>
@@ -178,8 +175,8 @@ class AddAnIssue extends React.Component {
                   <Row>
                     <Col xs={6} md={6} lg={6}>
                       <RaisedButton
+                        icon={<Cancel />}
                         type="button"
-                        label="Cancel"
                         default
                         fullWidth
                         style={button2Style}
@@ -222,7 +219,6 @@ class AddAnIssue extends React.Component {
             </Row>
           </Col>
         </Row>
-      </div>
 
 
     );

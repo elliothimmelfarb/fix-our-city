@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
 import { Link } from 'react-router';
 import { RaisedButton, Snackbar } from 'material-ui';
+import geocode from '../../api/geocoder';
 import { setUserLocation } from '../../actions/locationActions';
-import geocode from '../../api/google/geocoder';
 
 
 const buttonStyle = {

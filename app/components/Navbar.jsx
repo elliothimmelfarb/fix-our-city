@@ -37,6 +37,10 @@ class Navbar extends React.Component {
     this.setState({open: false});
     this.context.router.push('/add-an-issue');
   }
+  handleToAboutUs = () => {
+    this.setState({open: false});
+    this.context.router.push('/about-us');
+  }
   handleToViewIssue = () => {
     if (this.props.location.hasOwnProperty('lat')) {
       this.setState({open: false});
@@ -81,8 +85,9 @@ class Navbar extends React.Component {
           <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
             Fix Our City
           </div>
-          <MenuItem onTouchTap={() => this.handleToAddAnIssue()}>Add Issue</MenuItem>
-          <MenuItem onTouchTap={() => this.handleToViewIssue()}>View Issue</MenuItem>
+          <MenuItem onTouchTap={this.handleToAddAnIssue}>Add Issue</MenuItem>
+          <MenuItem onTouchTap={this.handleToAboutUs}>AboutUs</MenuItem>
+          <MenuItem onTouchTap={this.handleToViewIssue}>View Issue</MenuItem>
         </Drawer>
         <Snackbar
           open={this.state.snackOpen}

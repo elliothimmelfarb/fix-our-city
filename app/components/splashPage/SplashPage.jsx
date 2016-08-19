@@ -5,7 +5,7 @@ import { CardMedia } from 'material-ui/Card';
 import AutoCompleteInput from './AutoComplete';
 import IssueButton from './IssueButton';
 import GetLocation from './GetLocation';
-
+import styles from '../../css/main.css';
 
 
 const pageStyle = {

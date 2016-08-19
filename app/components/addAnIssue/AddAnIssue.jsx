@@ -112,6 +112,7 @@ class AddAnIssue extends React.Component {
   handleClose() {
     this.setState({ openDialog: false, files: '', location: '' });
     this.props.clearInputs();
+    this.context.router.push('/');
   }
 
   closeError() {

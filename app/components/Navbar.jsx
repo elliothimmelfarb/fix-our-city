@@ -34,6 +34,10 @@ export default class Navbar extends React.Component {
     this.setState({open: false});
     this.context.router.push('/add-an-issue');
   }
+  handleToAboutUs = () => {
+    this.setState({open: false});
+    this.context.router.push('/about-us');
+  }
   handleToViewIssue = () => {
     this.setState({open: false});
     this.context.router.push('/view-issues');
@@ -71,6 +75,7 @@ export default class Navbar extends React.Component {
             Fix Our City
           </div>
           <MenuItem onTouchTap={this.handleToAddAnIssue}>Add Issue</MenuItem>
+          <MenuItem onTouchTap={this.handleToAboutUs}>AboutUs</MenuItem>
           <MenuItem onTouchTap={this.handleToViewIssue}>View Issue</MenuItem>
         </Drawer>
       </div>

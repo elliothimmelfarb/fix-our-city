@@ -22,22 +22,30 @@ class IssueButton extends React.Component {
     };
 
     this.validateGeocode = this.validateGeocode.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
+  handleRequestClose() {
+    this.setState({ snackBarOpen: false });
+  }
   validateGeocode(address) {
-    const { locationValidated } = this.props;
-    geocode(address)
-      .then(location => {
-        const coords = {
-          latitude: location.lat(),
-          longitude: location.lng(),
-        };
-        locationValidated(coords);
-        this.context.router.push('/view-issues');
-      })
-      .catch(status => {
-        this.setState({ snackBarOpen: true });
-      });
+    const { locationValidated, location } = this.props;
+    if (location.lat) {
+      this.context.router.push('/view-issues');
+    } else {
+      geocode(address)
+        .then(location => {
+          const coords = {
+            latitude: location.lat(),
+            longitude: location.lng(),
+          };
+          locationValidated(coords);
+          this.context.router.push('/view-issues');
+        })
+        .catch(status => {
+          this.setState({ snackBarOpen: true });
+        });
+    }
   }
   render() {
     const { locationInput } = this.props;
@@ -63,6 +71,7 @@ class IssueButton extends React.Component {
           message="Please add an address"
           autoHideDuration={4000}
           onRequestClose={this.handleRequestClose}
+          bodyStyle={{ backgroundColor: '#F44336' }}
         />
       </div>
     );
@@ -82,6 +91,7 @@ IssueButton.contextTypes = {
 
 const mapStateToProps = (state) => ({
   locationInput: state.input.location,
+  location: state.location.location,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -26,12 +26,12 @@ export const getUserLocation = () =>
           navigator.geolocation.getCurrentPosition(() => {
             dispatch(setUserLocation(res.coords));
             dispatch(toggleAlert());
-            setTimeout(() => dispatch(toggleAlert()), 1000);
+            setTimeout(() => dispatch(toggleAlert()), 5000);
           });
         } else {
           dispatch(setUserLocation(res.coords));
           dispatch(toggleAlert());
-          setTimeout(() => dispatch(toggleAlert()), 1000);
+          setTimeout(() => dispatch(toggleAlert()), 5000);
         }
       });
     }

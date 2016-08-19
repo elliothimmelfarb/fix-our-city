@@ -65,7 +65,7 @@ class getLocation extends React.Component {
         <Snackbar
           open={alert}
           message="Now using your current location."
-          autoHideDuration={4000}
+          autoHideDuration={5000}
           onRequestClose={this.handleRequestClose}
           bodyStyle={snackbarStyle}
         />

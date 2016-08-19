@@ -35,6 +35,7 @@ class IssueButton extends React.Component {
     } else {
       geocode(address)
         .then(location => {
+          console.log('location', location);
           const coords = {
             latitude: location.lat(),
             longitude: location.lng(),
@@ -83,6 +84,7 @@ class IssueButton extends React.Component {
 IssueButton.propTypes = {
   locationInput: PropTypes.string,
   locationValidated: PropTypes.func.isRequired,
+  address: PropTypes.string
 };
 
 IssueButton.contextTypes = {

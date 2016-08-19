@@ -6,7 +6,7 @@ const initialState = {
   upvoted: [],
   downvoted: [],
   selected: [],
-  selectedId: 0,
+  selectedId: '',
 };
 
 export default (state = initialState, action) => {
@@ -38,8 +38,8 @@ export default (state = initialState, action) => {
     case types.DOWNVOTE_ISSUE: {
       console.log('downvoted:', state);
       const upvotedIndex = state.upvoted.indexOf(action.id);
-      return Object.assign({}, state, 
-        { 
+      return Object.assign({}, state,
+        {
           downvoted: state.downvoted.concat(action.id),
           upvoted: upvotedIndex === -1 ? state.upvoted : [...state.upvoted.slice(0, upvotedIndex), ...state.upvoted.slice(upvotedIndex + 1)],
         });

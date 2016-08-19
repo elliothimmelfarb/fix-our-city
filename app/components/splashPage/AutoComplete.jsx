@@ -21,7 +21,6 @@ class AutoCompleteInput extends React.Component {
   }
 
   onInputUpdate(e) {
-    console.log(this.searchBox);
     this.props.updateInput(e.target.value);
     this.setState({ city: e.target.value });
   }

@@ -150,7 +150,7 @@ class AddAnIssue extends React.Component {
           <Col xs={12} md={12} lg={12}>
             <Row>
               <Paper style={pageStyle} zDepth={5}>
-                <CardTitle title="Add an Issue" style={cardStyle}/>
+                <CardTitle title="Add an Issue" style={cardStyle} />
                 <form onSubmit={this.onSubmit}>
                   <Row>
                     <Col xs={12} md={8} lg={8}>

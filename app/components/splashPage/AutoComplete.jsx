@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
-import styles from '../../css/components/splash.css';
+import googlePlacesLoader from '../../api/google/googlePlacesLoader';
 import { inputLocation } from '../../actions/inputActions';
 
 
@@ -14,10 +14,19 @@ class AutoCompleteInput extends React.Component {
     };
   }
 
-  onInputFocus() {
+  componentDidMount() {
     const input = document.getElementById('splashPageInput');
-    const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
-    this.searchBox = new google.maps.places.Autocomplete(input, options);
+    googlePlacesLoader(process.env.GOOGLE_MAPS_KEY)
+      .then(places => {
+        const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
+        this.searchBox = new places.Autocomplete(input, options);
+      });
+  }
+
+  onInputFocus() {
+    // const input = document.getElementById('splashPageInput');
+    // const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
+    // this.searchBox = new google.maps.places.Autocomplete(input, options);
   }
 
   onInputUpdate(e) {

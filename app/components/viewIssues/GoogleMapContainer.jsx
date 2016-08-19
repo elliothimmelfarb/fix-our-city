@@ -32,11 +32,11 @@ class GoogleMapContainer extends React.Component {
     /* eslint-enable no-underscore-dangle */
   }
 
-  componentWillMount() {
-    if (typeof google === 'undefined') {
-      this.context.router.push('/');
-    }
-  }
+  // componentWillMount() {
+  //   if (typeof google === 'undefined') {
+  //     this.context.router.push('/');
+  //   }
+  // }
 
   createMapOptions() {
     return {

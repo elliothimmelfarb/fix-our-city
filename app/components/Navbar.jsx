@@ -1,25 +1,28 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
+import Snackbar from 'material-ui/Snackbar';
 import {cyan500} from 'material-ui/styles/colors';
 import {spacing, typography, zIndex} from 'material-ui/styles';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {open: false};
+    this.state = {
+      open: false,
+      snackOpen: false,
+    };
 
     this.handleTouchTapHeader = this.handleTouchTapHeader.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-
-
 
   handleToggle = () => this.setState({open: !this.state.open});
 
@@ -35,8 +38,16 @@ export default class Navbar extends React.Component {
     this.context.router.push('/add-an-issue');
   }
   handleToViewIssue = () => {
-    this.setState({open: false});
-    this.context.router.push('/view-issues');
+    if (this.props.location.hasOwnProperty('lat')) {
+      this.setState({open: false});
+      this.context.router.push('/view-issues');
+    } else {
+      this.setState({ snackOpen: true });
+    }
+  }
+
+  handleRequestClose = () => {
+    this.setState({ snackOpen: false });
   }
 
   render() {
@@ -70,9 +81,16 @@ export default class Navbar extends React.Component {
           <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
             Fix Our City
           </div>
-          <MenuItem onTouchTap={this.handleToAddAnIssue}>Add Issue</MenuItem>
-          <MenuItem onTouchTap={this.handleToViewIssue}>View Issue</MenuItem>
+          <MenuItem onTouchTap={() => this.handleToAddAnIssue()}>Add Issue</MenuItem>
+          <MenuItem onTouchTap={() => this.handleToViewIssue()}>View Issue</MenuItem>
         </Drawer>
+        <Snackbar
+          open={this.state.snackOpen}
+          message="Please add an address"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+          bodyStyle={{ backgroundColor: '#F44336' }}
+        />
       </div>
     );
   }
@@ -81,3 +99,13 @@ export default class Navbar extends React.Component {
 Navbar.contextTypes = {
   router: PropTypes.object,
 };
+
+Navbar.propTypes = {
+  location: PropTypes.object,
+}
+
+const mapStateToProps = (state) => ({
+  location: state.location.location,
+})
+
+export default connect(mapStateToProps)(Navbar);

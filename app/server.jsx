@@ -131,7 +131,6 @@ export default function render(req, res) {
   });
 }
 
-
 // <script
 //   type="text/javascript"
 //   src="https://maps.google.com/maps/api/js?libraries=places&key=${process.env.GOOGLE_MAPS_KEY}"

@@ -48,6 +48,7 @@ class AutoCompleteInput extends React.Component {
             type={'text'}
             onFocus={() => this.onInputFocus()}
             onBlur={e => this.onInputUpdate(e)}
+            required
           />
         </TextField>
       </div>

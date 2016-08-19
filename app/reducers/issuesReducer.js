@@ -12,7 +12,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.UPDATE_ISSUES: {
-      return Object.assign({}, state, { list: action.issues, issuesLoading: false });
+      return Object.assign({}, state, { list: action.issues, issuesLoading: false, selected: [] });
     }
     case types.ISSUES_LOADING: {
       return Object.assign({}, state, { issuesLoading: !state.issuesLoading });

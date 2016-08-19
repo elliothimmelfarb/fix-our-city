@@ -30,7 +30,14 @@ const button2Style = {
 const dropZoneStyle = {
   width: '100%',
   height: '150px',
-  border: '2px solid #eee',
+  border: '2px dashed #eee',
+  marginBottom: '2%',
+  textAlign: 'center',
+};
+const errorDropZoneStyle = {
+  width: '100%',
+  height: '150px',
+  border: '2px dashed #FF0000',
   marginBottom: '2%',
   textAlign: 'center',
 };
@@ -63,6 +70,7 @@ class AddAnIssue extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.redirect = this.redirect.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.closeError = this.closeError.bind(this);
   }
 
   onDrop(files) {
@@ -88,7 +96,7 @@ class AddAnIssue extends React.Component {
           if (err) this.setState({ openSnackbar: true });
         });
     } else {
-      this.setState({ imageError: true })
+      this.setState({ imageError: true });
     }
   }
 
@@ -102,6 +110,10 @@ class AddAnIssue extends React.Component {
   handleClose() {
     this.setState({ openDialog: false, files: '', location: '' });
     this.props.clearInputs();
+  }
+
+  closeError() {
+    this.setState({ imageError: false });
   }
 
   render() {
@@ -154,7 +166,10 @@ class AddAnIssue extends React.Component {
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <Card style={imgStyle}>
-                        <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
+                        <Dropzone
+                          onDrop={this.onDrop}
+                          style={this.state.imageError ? errorDropZoneStyle : dropZoneStyle}
+                        >
                           {imgPreview}
                         </Dropzone>
                       </Card>
@@ -200,6 +215,8 @@ class AddAnIssue extends React.Component {
                   open={this.state.imageError}
                   message="Please upload an image."
                   autoHideDuration={4000}
+                  bodyStyle={{ backgroundColor: 'red' }}
+                  onRequestClose={this.closeError}
                 />
               </Paper>
             </Row>

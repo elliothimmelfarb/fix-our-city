@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-flexbox-grid';
-import { Paper, RaisedButton, Dialog, FlatButton, TextField, Snackbar } from 'material-ui';
+import { Paper, RaisedButton, Dialog, FlatButton, Snackbar } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import superagent from 'superagent';
 import Upload from 'material-ui/svg-icons/image/add-a-photo';
@@ -10,7 +10,7 @@ import InputInfo from './InputInfo';
 import GetLocation from '../splashPage/GetLocation';
 import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
-import AutoComplete from  '../splashPage/AutoComplete';
+import AutoComplete from '../splashPage/AutoComplete';
 
 
 const pageStyle = {
@@ -30,7 +30,14 @@ const button2Style = {
 const dropZoneStyle = {
   width: '100%',
   height: '150px',
-  border: '2px solid #eee',
+  border: '2px dashed #eee',
+  marginBottom: '2%',
+  textAlign: 'center',
+};
+const errorDropZoneStyle = {
+  width: '100%',
+  height: '150px',
+  border: '2px dashed #FF0000',
   marginBottom: '2%',
   textAlign: 'center',
 };
@@ -56,12 +63,14 @@ class AddAnIssue extends React.Component {
       files: '',
       openDialog: false,
       openSnackbar: false,
+      imageError: false,
     };
     this.getLocation = this.getLocation.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.redirect = this.redirect.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.closeError = this.closeError.bind(this);
   }
 
   onDrop(files) {
@@ -70,20 +79,25 @@ class AddAnIssue extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.setState({ openDialog: true });
-    const issueObj = {
-      location: {
-        coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
-      },
-      title: this.props.title,
-      description: this.props.description,
-    };
-    superagent.post('/api/issues/add-issue')
-      .attach('file', this.state.files[0])
-      .field('issueObj', JSON.stringify(issueObj))
-      .end((err) => {
-        if (err) this.setState({ openSnackbar: true });
-      });
+    if (this.state.files) {
+      this.setState({ openDialog: true });
+      const issueObj = {
+        location: {
+          coordinates: [this.props.userLocation.lng, this.props.userLocation.lat],
+        },
+        title: this.props.title,
+        description: this.props.description,
+        tag: this.props.tag,
+      };
+      superagent.post('/api/issues/add-issue')
+        .attach('file', this.state.files[0])
+        .field('issueObj', JSON.stringify(issueObj))
+        .end((err) => {
+          if (err) this.setState({ openSnackbar: true });
+        });
+    } else {
+      this.setState({ imageError: true });
+    }
   }
 
   getLocation() {
@@ -96,6 +110,10 @@ class AddAnIssue extends React.Component {
   handleClose() {
     this.setState({ openDialog: false, files: '', location: '' });
     this.props.clearInputs();
+  }
+
+  closeError() {
+    this.setState({ imageError: false });
   }
 
   render() {
@@ -148,7 +166,10 @@ class AddAnIssue extends React.Component {
                     </Col>
                     <Col xs={12} md={4} lg={4}>
                       <Card style={imgStyle}>
-                        <Dropzone onDrop={this.onDrop} style={dropZoneStyle}>
+                        <Dropzone
+                          onDrop={this.onDrop}
+                          style={this.state.imageError ? errorDropZoneStyle : dropZoneStyle}
+                        >
                           {imgPreview}
                         </Dropzone>
                       </Card>
@@ -190,6 +211,13 @@ class AddAnIssue extends React.Component {
                   message="Error adding Issue"
                   autoHideDuration={4000}
                 />
+                <Snackbar
+                  open={this.state.imageError}
+                  message="Please upload an image."
+                  autoHideDuration={4000}
+                  bodyStyle={{ backgroundColor: 'red' }}
+                  onRequestClose={this.closeError}
+                />
               </Paper>
             </Row>
           </Col>
@@ -208,6 +236,7 @@ AddAnIssue.propTypes = {
   clearInputs: PropTypes.func,
   title: PropTypes.string,
   description: PropTypes.string,
+  tag: PropTypes.string,
 };
 
 AddAnIssue.contextTypes = {
@@ -220,6 +249,7 @@ function mapStateToProps(state) {
     loading: state.location.loading,
     title: state.input.title,
     description: state.input.description,
+    tag: state.tags.selectedTag,
   };
 }
 

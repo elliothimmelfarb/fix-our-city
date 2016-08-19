@@ -19,3 +19,8 @@ export const inputLocation = (val) => ({
   val,
   type: types.INPUT_LOCATION,
 });
+
+export const selectedTag = (tag) => ({
+  tag,
+  type: types.SELECT_TAG,
+});

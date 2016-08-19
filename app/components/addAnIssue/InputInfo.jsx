@@ -5,37 +5,30 @@ import TextField from 'material-ui/TextField';
 import Tags from './dropdownTags';
 import * as inputActions from '../../actions/inputActions';
 
-const TextFieldStyle = {
-  marginBottom: '5%',
-};
 
-class InputInfo extends React.Component {
-  render() {
-    return (
-      <Col xs={12} md={12} lg={12}>
-        <TextField
-          hintText="Title"
-          floatingLabelText="Title"
-          fullWidth
-          value={this.props.title}
-          onChange={e => this.props.inputTitle(e.target.value)}
-          required
-        />
-        <TextField
-          hintText="Description"
-          floatingLabelText="Description"
-          multiLine
-          fullWidth
-          value={this.props.description}
-          onChange={e => this.props.inputDescription(e.target.value)}
-          required
-        />
-        <Tags />
-      </Col>
+const InputInfo = (props) => (
+  <Col xs={12} md={12} lg={12}>
+    <TextField
+      hintText="Title"
+      floatingLabelText="Title"
+      fullWidth
+      value={props.title}
+      onChange={e => props.inputTitle(e.target.value)}
+      required
+    />
+    <TextField
+      hintText="Description"
+      floatingLabelText="Description"
+      multiLine
+      fullWidth
+      value={props.description}
+      onChange={e => props.inputDescription(e.target.value)}
+      required
+    />
+    <Tags />
+  </Col>
 
     );
-  }
-}
 
 InputInfo.propTypes = {
   inputTitle: PropTypes.func.isRequired,

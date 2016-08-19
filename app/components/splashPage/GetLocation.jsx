@@ -100,7 +100,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getUserLocation: () => dispatch(locationActions.getUserLocation()),
     clearInputs: () => dispatch(inputActions.clearInputs()),
-    toggleAlert: () => dispatch(locationActions.toggleAlert())
+    toggleAlert: () => dispatch(locationActions.toggleAlert()),
   };
 }
 

@@ -32,22 +32,47 @@ class AboutUs extends React.Component {
               <CardTitle title="Meet The Team" style={cardStyle} />
               <NameCard
                 title={"Somtida Sinkamnoonsak"}
-                subtitle={"Amy"}
-                avatar={"http://i.imgur.com/0u0pAmE.png"}
+                subtitle={"@AmySkns "}
+                avatar={"http://i.imgur.com/6GbIeyt.jpg"}
                 linkedin={"https://www.linkedin.com/in/somtida-sinkamnoonsak-b40949101"}
+                twitter={"https://twitter.com/AmySkns"}
+                github={"https://github.com/Somtida"}
+                body={"If you can dream it, you can do it."}
+                author={"Walt Disney"}
               />
               <NameCard
                 title={"Elliot Himmelfarb"}
-                subtitle={""}
+                subtitle={"@e_himmelfarb"}
+                avatar={"http://i.imgur.com/1NwRHk6.jpg"}
+                linkedin={"https://www.linkedin.com/in/elliot-himmelfarb-14347976"}
+                twitter={"https://twitter.com/e_himmelfarb"}
+                github={"https://github.com/elliothimmelfarb"}
+                body={`The way Aaron always saw it, is that programming is magic.
+                       You can accomplish these things that normal humans can\'t,
+                       by being able to program. So if you had magical powers, would
+                       you use them for good, or to make you mountains of cash?`}
+                author={"Ben Swartz"}
               />
+
               <NameCard
                 title={"Lyndon La Rosa"}
-                subtitble={""}
+                subtitle={"@lyndon_larosa"}
+                avatar={"http://i.imgur.com/nnq3p8L.jpg"}
                 linkedin={"https://www.linkedin.com/in/lyndonlarosa"}
+                twitter={"https://twitter.com/lyndon_larosa"}
+                github={"https://github.com/lyndonl3091"}
+                body={"A genuine, affectionate smile is very important in our day-to-day lives."}
+                author={"Dalai Lama XIV"}
               />
               <NameCard
                 title={"Thomas Wolfe"}
-                subtitle={""}
+                subtitle={"@tewolfe2"}
+                avatar={"http://i.imgur.com/zaHqy4q.jpg"}
+                linkedin={"https://www.linkedin.com/in/twolfe2"}
+                twitter={"https://twitter.com/tewolfe2"}
+                github={"https://github.com/twolfe2"}
+                body={"Strive not to be a success, but rather to be of value"}
+                author={"Albert Einstein"}
               />
             </Paper>
           </Row>

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Card, CardTitle, CardText, CardHeader } from 'material-ui/Card';
+import { Card, CardTitle, CardMedia, CardHeader, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 
 const imgStyle = {
-  width: '25px',
-  height: '25px',
+  width: '35px',
+  height: '35px',
+  borderRadius: '5px',
+  marginRight:'7px',
 }
 
 class NameCard extends React.Component {
@@ -32,18 +34,23 @@ class NameCard extends React.Component {
           subtitle={this.props.subtitle}
           avatar={<Avatar
                     src={this.props.avatar}
-                    size={50}
+                    size={88}
                   />}
           actAsExpander
           showExpandableButton
         />
-
-        <CardTitle title="Card title" expandable={true} />
-        <CardText expandable>
-          <div>
-            <a href={this.props.linkedin} target="_blank"><img src="http://icons.iconarchive.com/icons/danleech/simple/1024/linkedin-icon.png" style={imgStyle} /></a>
+        <CardMedia expandable style={{ textAlign: 'center'}}>
+          <div style={{ marginLeft: '20' }}>
+            <a href={this.props.linkedin} target="_blank"><img src="http://i.imgur.com/T24Z0Jx.png" style={imgStyle} /></a>
+            <a href={this.props.github} target="_blank"><img src="http://i.imgur.com/FLDnGkc.png" style={imgStyle} /></a>
+            <a href={this.props.twitter} target="_blank"><img src="http://i.imgur.com/LU77jNo.png" style={imgStyle} /></a>
           </div>
+        </CardMedia>
+        <CardText expandable={true} style={{ textAlign: 'center'}}>
+        <em>"{this.props.body}"</em> <br />
+        <i>-{this.props.author}</i>
         </CardText>
+
       </Card>
     )
   }

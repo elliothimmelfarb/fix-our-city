@@ -42,7 +42,7 @@ class GoogleMapContainer extends React.Component {
 
   componentWillMount() {
     if (typeof google === 'undefined') {
-      this.context.router.push('/');
+      // this.context.router.push('/');
     }
   }
 

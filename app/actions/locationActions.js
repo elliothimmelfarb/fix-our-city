@@ -21,15 +21,7 @@ export const getUserLocation = () =>
     dispatch(toggleLoading());
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(res => {
-        if (res === undefined) {
-          navigator.geolocation.getCurrentPosition(() => {
             dispatch(setUserLocation(res.coords));
-            dispatch(toggleAlert());
-          });
-        } else {
-          dispatch(setUserLocation(res.coords));
-          dispatch(toggleAlert());
-        }
       });
     }
   };

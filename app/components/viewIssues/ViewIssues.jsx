@@ -52,5 +52,4 @@ function ViewIssues() {
   );
 }
 
-
 export default ViewIssues;

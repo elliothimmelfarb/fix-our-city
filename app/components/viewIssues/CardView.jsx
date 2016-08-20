@@ -149,7 +149,7 @@ class CardView extends React.Component {
       </CardText>
 
       <CardActions>
-        <Chip backgroundColor={indigo300}>{props.tag || 'test'}</Chip>
+        <Chip backgroundColor={indigo300}>{props.tag}</Chip>
           <IconButton
             style={arrowStyle}
             onClick={this.onCardClick}>

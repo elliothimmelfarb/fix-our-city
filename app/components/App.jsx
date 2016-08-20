@@ -3,6 +3,7 @@ import { Grid } from 'react-flexbox-grid';
 import classNames from 'classnames/bind';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navbar from './Navbar';
+import { RouteTransition } from 'react-router-transition';
 import styles from '../css/main.css';
 
 const cx = classNames.bind(styles);
@@ -37,13 +38,26 @@ const cx = classNames.bind(styles);
    zIndex: '10',
 };
 
-const App = ({ children }) => (
+const App = ({ children, location }) => (
 
   <div className={cx('app')} style={bgImage}>
     <MuiThemeProvider>
       <Grid>
         <Navbar style={navbarStyle} />
+        <RouteTransition
+          pathname={location.pathname}
+          atEnter={{ opacity: 0, translateX: 100 }}
+          atLeave={{ opacity: 2, translateX: -100 }}
+          atActive={{ opacity: 1, translateX: 0 }}
+          mapStyles={styles => {
+            if (styles.opacity > 1) {
+              return { display: 'none' };
+            }
+            return { opacity: styles.opacity, transform: `translateX(${styles.translateX}%)` };
+          }}
+        >
         {children}
+        </RouteTransition>
       </Grid>
     </MuiThemeProvider>
   </div>

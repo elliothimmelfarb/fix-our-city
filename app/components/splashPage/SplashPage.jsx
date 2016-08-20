@@ -15,7 +15,7 @@ const pageStyle = {
   textAlign: 'center',
   display: 'inline-block',
   padding: '5%',
-  marginTop: '8%',
+  marginTop: '5%',
 };
 const titelImage = {
   width: '100%',

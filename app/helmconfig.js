@@ -52,7 +52,7 @@ const config = {
     // Mobile Safari introduced this tag to let web developers control the viewport's size and scale
     // The width property controls the size of the viewport, the initial-scale property controls
     // the zoom level when the page is first loaded
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1' },
     // Add to homescreen for Chrome on Android
     { name: 'mobile-web-app-capable', content: 'yes' },
     // Add to homescreen for Safari on IOS

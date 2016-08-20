@@ -4,13 +4,6 @@ import * as types from '../types';
 
 polyfill();
 
-
-export const highlightIssue = (id) => ({
-  id,
-  type: types.ISSUE_HIGHLIGHTED,
-});
-
-
 const updateIssues = (issues) => ({
   issues,
   type: types.UPDATE_ISSUES,
@@ -50,7 +43,6 @@ export const toggleFixedIssue = (id, center, corner) =>
 
 export const upvoteIssue = (id, center, corner) =>
   dispatch => {
-    console.log('cneter corner:', center, corner);
     upvote(id, center, corner)
     .then(response => {
       console.log('res data:', response.data);
@@ -60,7 +52,6 @@ export const upvoteIssue = (id, center, corner) =>
   };
 
 export default {
-  highlightIssue,
   upvoteIssue,
   downvoteIssue,
   toggleFixedIssue,

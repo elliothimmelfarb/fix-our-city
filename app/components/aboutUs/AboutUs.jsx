@@ -1,7 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
-import { Card, CardTitle } from 'material-ui/Card';
+import { CardTitle } from 'material-ui/Card';
+import NameCard from './NameCard';
+
 
 const pageStyle = {
   height: '40%',
@@ -21,11 +23,6 @@ class AboutUs extends React.Component {
 
     this.state = { expanded: false };
   }
-
-  handleExpand = () => {
-    this.setState({ expanded: true })
-  }
-
   render() {
     return (
       <Row>
@@ -33,13 +30,24 @@ class AboutUs extends React.Component {
           <Row>
             <Paper style={pageStyle} zDepth={5}>
               <CardTitle title="Meet The Team" style={cardStyle} />
-
+              <NameCard
+                title={"Somtida"}
+              />
+              <NameCard
+                title={"Elliot"}
+              />
+              <NameCard
+                title={"Lyndon"}
+            />
+              <NameCard
+                title={"Thomas"}
+            />
             </Paper>
           </Row>
         </Col>
       </Row>
     );
   }
-};
+}
 
 export default AboutUs;

@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
-import FloatingButton from './FloatingButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 // import { RouteTransition } from 'react-router-transition';
 import GoogleMapContainer from './GoogleMapContainer';
@@ -21,16 +19,15 @@ const style = {
 const listViewStyle = {
   textAlign: 'left',
 };
-const floatbuttonStyle = {
-  left: '0',
-  top: '50',
-  marginLeft: '20%',
 
+const page = {
+  position: 'relative',
 };
 
 function ViewIssues() {
   return (
-    <div>
+    <div style={page}>
+      <div>
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row center="xs">
@@ -41,12 +38,13 @@ function ViewIssues() {
                     <ListView />
                   </Col>
                 </Row>
-                <FloatingButton style={floatbuttonStyle} />
               </Paper>
             </Row>
           </Col>
         </Row>
+      </div>
     </div>
+
   );
 }
 

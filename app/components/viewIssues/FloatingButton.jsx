@@ -15,11 +15,16 @@ export default class FloatingButton extends React.Component {
   };
 
   render() {
-    
+    const floatStyle = {
+      position: 'fixed',
+      right: '5%',
+      bottom: '5%',
+    };
     return (
       <FloatingActionButton
         onClick={this.handleToAddAnIssue}
         secondary
+        style={floatStyle}
         >
         <ContentAdd />
       </FloatingActionButton>

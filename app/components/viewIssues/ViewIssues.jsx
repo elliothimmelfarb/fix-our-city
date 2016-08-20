@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import FloatingButton from './FloatingButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { RouteTransition } from 'react-router-transition';
+// import { RouteTransition } from 'react-router-transition';
 import GoogleMapContainer from './GoogleMapContainer';
 import ListView from './ListView';
 
@@ -31,12 +31,7 @@ const floatbuttonStyle = {
 function ViewIssues() {
   return (
     <div>
-      <RouteTransition
-        atEnter={{ translateX: 120 }}
-        atLeave={{ translateX: -120 }}
-        atActive={{ translateX: 0 }}
-        mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
-      >
+  
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row center="xs">
@@ -52,7 +47,7 @@ function ViewIssues() {
             </Row>
           </Col>
         </Row>
-      </RouteTransition>
+      
 
 
     </div>

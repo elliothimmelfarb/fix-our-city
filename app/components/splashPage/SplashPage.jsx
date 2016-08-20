@@ -6,7 +6,7 @@ import AutoCompleteInput from './AutoComplete';
 import IssueButton from './IssueButton';
 import GetLocation from './GetLocation';
 import styles from '../../css/main.css';
-import { RouteTransition } from 'react-router-transition';
+// import { RouteTransition } from 'react-router-transition';
 
 const pageStyle = {
   height: '40%',
@@ -25,12 +25,6 @@ const titelImage = {
 export default function SplashPage() {
   return (
     <div>
-      <RouteTransition
-        atEnter={{ translateX: 120 }}
-        atLeave={{ translateX: -120 }}
-        atActive={{ translateX: 0 }}
-        mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
-      >
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row center="xs">
@@ -56,7 +50,6 @@ export default function SplashPage() {
             </Row>
           </Col>
         </Row>
-      </RouteTransition>
     </div>
   );
 }

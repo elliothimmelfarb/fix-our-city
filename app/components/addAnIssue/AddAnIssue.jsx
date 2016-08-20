@@ -112,7 +112,7 @@ class AddAnIssue extends React.Component {
     event.preventDefault();
     const { locationValidated, userLocation } = this.props;
     if (userLocation.lat) {
-      this.context.router.push('/view-issues');
+      this.onSubmit();
     } else {
       console.log(address);
       geocode(address)
@@ -233,7 +233,7 @@ class AddAnIssue extends React.Component {
                 </Dialog>
                 <Snackbar
                   open={this.state.openSnackbar}
-                  message="Error adding Issue"
+                  message="Cannot Parse Location."
                   autoHideDuration={4000}
                 />
                 <Snackbar

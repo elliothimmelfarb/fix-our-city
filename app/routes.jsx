@@ -9,7 +9,7 @@ import App from './components/App';
 import SplashPage from './components/splashPage/SplashPage';
 import ViewIssues from './components/viewIssues/ViewIssues';
 import AddAnIssue from './components/addAnIssue/AddAnIssue';
-import AboutUs from './components/AboutUs';
+import AboutUs from './components/aboutUs/AboutUs';
 
 /*
  * @param {Redux Store}

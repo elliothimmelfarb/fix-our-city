@@ -25,13 +25,12 @@ const floatbuttonStyle = {
   left: '0',
   top: '50',
   marginLeft: '20%',
-  
+
 };
 
 function ViewIssues() {
   return (
     <div>
-  
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row center="xs">
@@ -47,9 +46,6 @@ function ViewIssues() {
             </Row>
           </Col>
         </Row>
-      
-
-
     </div>
   );
 }

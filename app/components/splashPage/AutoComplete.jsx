@@ -6,14 +6,6 @@ import { inputLocation } from '../../actions/inputActions';
 
 
 class AutoCompleteInput extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      city: '',
-    };
-  }
-
   onInputFocus() {
     const input = document.getElementById('locationInput');
     googlePlacesLoader()
@@ -25,12 +17,14 @@ class AutoCompleteInput extends React.Component {
 
   onInputUpdate(e) {
     this.props.updateInput(e.target.value);
-    this.setState({ city: e.target.value });
   }
 
-  unfocus(e) {
-    this.onInputUpdate(e);
+  unfocus() {
     this.searchBox = null;
+    setTimeout(() => {
+      const location = document.getElementById('locationInput').value;
+      this.props.updateInput(location);
+    }, 10);
   }
 
   render() {
@@ -55,7 +49,7 @@ class AutoCompleteInput extends React.Component {
             placeholder={''}
             type={'text'}
             onFocus={() => this.onInputFocus()}
-            onBlur={e => this.unfocus(e)}
+            onBlur={() => this.unfocus()}
             required
           />
         </TextField>

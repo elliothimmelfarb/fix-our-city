@@ -93,7 +93,7 @@ class Navbar extends React.Component {
           </div>
           <MenuItem onTouchTap={this.handleToAddAnIssue}>Add Issue</MenuItem>
           <MenuItem onTouchTap={this.handleToAboutUs}>About Us</MenuItem>
-          <MenuItem onTouchTap={this.handleToViewIssue}>View Issue</MenuItem>
+          <MenuItem onTouchTap={this.handleToViewIssue}>View Issues</MenuItem>
         </Drawer>
         <Snackbar
           open={this.state.snackOpen}

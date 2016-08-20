@@ -35,16 +35,14 @@ class IssueButton extends React.Component {
     } else {
       geocode(address)
         .then(location => {
-          console.log('location', location);
           const coords = {
             latitude: location.lat(),
             longitude: location.lng(),
           };
-          console.log(coords);
           locationValidated(coords);
           this.context.router.push('/view-issues');
         })
-        .catch(status => {
+        .catch(() => {
           this.setState({ snackBarOpen: true });
         });
     }

@@ -5,6 +5,10 @@ import TextField from 'material-ui/TextField';
 import Tags from './dropdownTags';
 import * as inputActions from '../../actions/inputActions';
 
+const tagStyle = {
+  float: 'left',
+  textAlign: 'left',
+};
 
 const InputInfo = (props) => (
   <Col xs={12} md={12} lg={12}>
@@ -25,7 +29,7 @@ const InputInfo = (props) => (
       onChange={e => props.inputDescription(e.target.value)}
       required
     />
-    <Tags />
+    <Tags style={tagStyle} />
   </Col>
 
     );

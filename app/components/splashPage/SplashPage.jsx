@@ -10,11 +10,12 @@ import { RouteTransition } from 'react-router-transition';
 
 const pageStyle = {
   height: '40%',
-  width: '85%',
+  width: '100%',
   margin: '0 auto',
   textAlign: 'center',
   display: 'inline-block',
   padding: '5%',
+  marginTop: '8%',
 };
 const titelImage = {
   width: '100%',

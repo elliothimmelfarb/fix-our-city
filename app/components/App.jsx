@@ -28,18 +28,21 @@ const cx = classNames.bind(styles);
    width: '100vw',
    backgroundColor: '#00bcd4',
    paddingTop: '7%',
+
  };
  const navbarStyle = {
    position: 'fixed',
-   top: '0px',
+   top: '-1px',
    left: '0px',
- };
+   zIndex: '10',
+};
+
 const App = ({ children }) => (
 
   <div className={cx('app')} style={bgImage}>
     <MuiThemeProvider>
       <Grid>
-        <Navbar />
+        <Navbar style={navbarStyle} />
         {children}
       </Grid>
     </MuiThemeProvider>

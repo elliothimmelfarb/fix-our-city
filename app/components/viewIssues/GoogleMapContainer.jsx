@@ -20,6 +20,7 @@ const style = {
   },
 };
 
+
 class GoogleMapContainer extends React.Component {
 
 
@@ -92,6 +93,7 @@ class GoogleMapContainer extends React.Component {
         >
           {markers}
         < /GoogleMap>
+
           {noIssuesError}
       </div>
     );

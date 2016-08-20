@@ -19,9 +19,10 @@ import { RouteTransition } from 'react-router-transition';
 const pageStyle = {
   height: '40%',
   padding: '5%',
-  width: '80%',
+  width: '100%',
   margin: '0 auto',
   display: 'inline-block',
+  marginTop: '5%',
 };
 
 const button2Style = {

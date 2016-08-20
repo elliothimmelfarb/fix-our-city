@@ -9,6 +9,12 @@ const imgStyle = {
   marginRight:'7px',
 }
 
+const quoteStyle = {
+  fontSize: '25px',
+  fontStyle: 'italic',
+}
+
+
 class NameCard extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +53,7 @@ class NameCard extends React.Component {
           </div>
         </CardMedia>
         <CardText expandable={true} style={{ textAlign: 'center'}}>
-        <p style={{ fontSize: '25'}}><em>"{this.props.body}"</em></p> <br />
+        <p style={ quoteStyle }>"{this.props.body}"</p> <br />
         <i>-{this.props.author}</i>
         </CardText>
 

@@ -24,7 +24,7 @@
         "react/jsx-closing-bracket-location" : 2,
         "object-curly-spacing" : 2,
         "arrow-body-style": 2,
-        "no-console": 1,
+        "no-console": 2,
         "max-len": 2,
         "prefer-template": 2,
         "import/no-unresolved": 2,

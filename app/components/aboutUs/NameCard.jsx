@@ -6,13 +6,13 @@ const imgStyle = {
   width: '35px',
   height: '35px',
   borderRadius: '5px',
-  marginRight:'7px',
-}
+  marginRight: '7px',
+};
 
 const quoteStyle = {
   fontSize: '25px',
   fontStyle: 'italic',
-}
+};
 
 
 class NameCard extends React.Component {
@@ -24,12 +24,12 @@ class NameCard extends React.Component {
     this.handleExpandChange = this.handleExpandChange.bind(this);
   }
 
-  handleExpandChange = (expanded) => {
-    this.setState({expanded: expanded});
-  };
+  handleExpandChange(expanded) {
+    this.setState({ expanded });
+  }
 
-  handleExpand = () => {
-    this.setState({ expanded: true })
+  handleExpand() {
+    this.setState({ expanded: true });
   }
 
   render() {
@@ -58,9 +58,9 @@ class NameCard extends React.Component {
         </CardText>
 
       </Card>
-    )
+    );
   }
-};
+}
 
 
 export default NameCard;

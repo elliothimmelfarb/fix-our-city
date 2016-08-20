@@ -31,17 +31,24 @@ class AboutUs extends React.Component {
             <Paper style={pageStyle} zDepth={5}>
               <CardTitle title="Meet The Team" style={cardStyle} />
               <NameCard
-                title={"Somtida"}
+                title={"Somtida Sinkamnoonsak"}
+                subtitle={"Amy"}
+                avatar={"http://i.imgur.com/0u0pAmE.png"}
+                linkedin={"https://www.linkedin.com/in/somtida-sinkamnoonsak-b40949101"}
               />
               <NameCard
-                title={"Elliot"}
+                title={"Elliot Himmelfarb"}
+                subtitle={""}
               />
               <NameCard
-                title={"Lyndon"}
-            />
+                title={"Lyndon La Rosa"}
+                subtitble={""}
+                linkedin={"https://www.linkedin.com/in/lyndonlarosa"}
+              />
               <NameCard
-                title={"Thomas"}
-            />
+                title={"Thomas Wolfe"}
+                subtitle={""}
+              />
             </Paper>
           </Row>
         </Col>

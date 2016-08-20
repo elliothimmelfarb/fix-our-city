@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectIssue } from '../../actions/issueActions';
-// import styles from '../../css/components/mapMarker.css';
+import styles from '../../css/components/mapMarker.css';
 
 const MapMarker = (props) => {
-  // const style = props.isSelected ? styles.hover : styles.noHover;
+  const style = props.isSelected ? styles.hover : styles.noHover;
   return (
     <div
-      
+      className={style}
       onClick={() => props.markerClicked(props.id)}
     >
       {props.text}

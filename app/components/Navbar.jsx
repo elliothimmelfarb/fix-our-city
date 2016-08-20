@@ -57,9 +57,12 @@ class Navbar extends React.Component {
   render() {
     const navbarStyle = {
       position: 'fixed',
-      top: '5px',
+      top: '0',
       left: '5px',
-      background: 'none',
+      background: '#00bcd4',
+      zIndex: '20',
+      width: '100%',
+      height: '8%',
     };
     const styles = {
       logo: {
@@ -73,11 +76,14 @@ class Navbar extends React.Component {
         marginBottom: 8,
       },
     };
+    const nav = {
+      float: 'left',
+    }
     return (
-      <div>
+      <div style={navbarStyle}>
         <IconButton
           onTouchTap={this.handleToggle}
-          style={navbarStyle}
+          style={nav}
         >
           <FontIcon className="material-icons">menu</FontIcon>
         </IconButton>

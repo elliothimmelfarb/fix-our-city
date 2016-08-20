@@ -10,15 +10,22 @@ import ListView from './ListView';
 
 const style = {
   height: '100%',
-  width: '80%',
+  width: '100%',
   margin: '0 auto',
   padding: '1%',
   display: 'inline-block',
   marginBottom: '10em',
+  marginTop: '8%',
 };
 
 const listViewStyle = {
   textAlign: 'left',
+};
+const floatbuttonStyle = {
+  left: '0',
+  top: '50',
+  marginLeft: '20%',
+  
 };
 
 function ViewIssues() {
@@ -40,11 +47,11 @@ function ViewIssues() {
                     <ListView />
                   </Col>
                 </Row>
+                <FloatingButton style={floatbuttonStyle} />
               </Paper>
             </Row>
           </Col>
         </Row>
-        <FloatingButton />
       </RouteTransition>
 
 

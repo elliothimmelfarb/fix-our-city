@@ -14,7 +14,6 @@ const getLocationButton = {
 };
 const linear = {
   position: 'relative',
-  left: '-4%',
   width: '100%',
   marginBottom: '2%',
   marginTop: '15%',
@@ -75,13 +74,6 @@ class getLocation extends React.Component {
             {loadingButton}
           </Col>
         </Row>
-        <Snackbar
-          open={alert}
-          message="Now using your current location."
-          autoHideDuration={5000}
-          onRequestClose={this.handleClose}
-          bodyStyle={snackbarStyle}
-        />
       </div>
     );
   }

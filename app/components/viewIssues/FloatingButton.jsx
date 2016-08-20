@@ -15,23 +15,14 @@ export default class FloatingButton extends React.Component {
   };
 
   render() {
-    const addButtonStyle = {
-      marginRight: 20,
-      position: 'fixed',
-      right: '0',
-      bottom: '5%',
-    };
-
+    
     return (
-      <div>
-        <FloatingActionButton
-          onClick={this.handleToAddAnIssue}
-          secondary
-          style={addButtonStyle}
-          >
-          <ContentAdd />
-        </FloatingActionButton>
-      </div>
+      <FloatingActionButton
+        onClick={this.handleToAddAnIssue}
+        secondary
+        >
+        <ContentAdd />
+      </FloatingActionButton>
     );
   }
 }

@@ -40,7 +40,7 @@ class AutoCompleteInput extends React.Component {
         <TextField
           floatingLabelText={
             Object.keys(this.props.userLocation).length > 0 ?
-            `Current Location at ${this.props.userLocation.lat.toFixed(2)}
+            `Location at ${this.props.userLocation.lat.toFixed(2)}
             ${this.props.userLocation.lng.toFixed(2)}` :
             'Location'
           }

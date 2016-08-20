@@ -41,8 +41,7 @@ class NameCard extends React.Component {
         <CardTitle title="Card title" expandable={true} />
         <CardText expandable>
           <div>
-          <img src="http://icons.iconarchive.com/icons/danleech/simple/1024/linkedin-icon.png" style={imgStyle} />
-            <a href={this.props.linkedin}></a>
+            <a href={this.props.linkedin} target="_blank"><img src="http://icons.iconarchive.com/icons/danleech/simple/1024/linkedin-icon.png" style={imgStyle} /></a>
           </div>
         </CardText>
       </Card>

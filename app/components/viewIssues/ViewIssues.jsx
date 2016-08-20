@@ -15,7 +15,7 @@ const style = {
   padding: '1%',
   display: 'inline-block',
   marginBottom: '10em',
-  marginTop: '5%',
+  marginTop: '50px',
 };
 
 const listViewStyle = {

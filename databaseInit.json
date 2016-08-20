@@ -1,9 +1,8 @@
 [
   {
-    "_id": "57ae3acea315bf5a128a987b",
     "title": "Pothole",
     "description": "This pothole has been on my street for the last month :(",
-    "imgUrl": "google.com",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/pothole.jpg",
     "tag":"Broken",
     "__v": 0,
     "location": {
@@ -18,10 +17,9 @@
     "isFixed": false
   },
   {
-    "_id": "57ae3af646bdcf7712e085d0",
-    "title": "Test2",
+    "title": "Street lamp out",
     "description": "Broken lamp",
-    "imgUrl": "test.com",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/maxresdefault.jpg",
     "tag":"Broken",
     "__v": 0,
     "location": {
@@ -36,9 +34,9 @@
     "isFixed": false
   },
   {
-    "_id": "57af6967bd52b40b2d13f664",
-    "title": "this is a test",
-    "description": "hello world",
+    "title": "Fallen Tree!",
+    "description": "This has been here all week",
+    "imgUrl" : "https://s3-us-west-2.amazonaws.com/fix-our-city/eucalyptus_car_041615_01.jpg",
     "tag":"Broken",
     "__v": 0,
     "dateMarkedFixed": "2016-08-18T23:16:10.639Z",
@@ -54,12 +52,11 @@
     "isFixed": true
   },
   {
-    "_id": "57af6a4e13131f6e2d196378",
     "tag":"Broken",
-    "title": "this is a test",
-    "description": "hello world",
+    "title": "Tree in road",
+    "description": "Somebody move this tree.",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af6a4e13131f6e2d196378.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/treenorthbeachholly.jpg",
     "dateMarkedFixed": null,
     "location": {
       "coordinates": [
@@ -73,12 +70,11 @@
     "isFixed": false
   },
   {
-    "_id": "57af6ee4a989cdf72f7c93c0",
-    "title": "Hello",
-    "description": "This is a test",
+    "title": "Tree down",
+    "description": "That car got crushed",
     "tag":"Broken",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af6ee4a989cdf72f7c93c0.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/eucalyptus_car_041615_01.jpg",
     "dateMarkedFixed": "2016-08-18T23:18:07.018Z",
     "location": {
       "coordinates": [
@@ -92,12 +88,11 @@
     "isFixed": true
   },
   {
-    "_id": "57af7a9e212ffd5732097202",
-    "title": "test65",
-    "description": "fdsaf",
-    "tag":"Broken",
+    "title": "Pothole",
+    "description": "This is dangerous and needs to be fixed immediately.",
+    "tag":"Pothole",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af7a9e212ffd5732097202.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/pothole4.jpg",
     "dateMarkedFixed": "2016-08-18T23:52:32.548Z",
     "location": {
       "coordinates": [
@@ -111,12 +106,11 @@
     "isFixed": true
   },
   {
-    "_id": "57af8790ceffa4a83619189e",
-    "title": "test23",
-    "description": "tesr",
+    "title": "Big hole",
+    "description": "Please upvote this!",
     "tag":"Broken",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af8790ceffa4a83619189e.jpeg",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/pothole.jpg",
     "dateMarkedFixed": "2016-08-18T23:16:09.435Z",
     "location": {
       "coordinates": [
@@ -130,12 +124,11 @@
     "isFixed": true
   },
   {
-    "_id": "57af8c430d376d9438b86746",
-    "title": "fdsafsda",
-    "description": "fdsa",
-    "tag":"Broken",
+    "title": "Hole in road",
+    "description": "Please fix.",
+    "tag":"Pothole",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af8c430d376d9438b86746.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/pothole1.jpg",
     "dateMarkedFixed": null,
     "location": {
       "coordinates": [
@@ -150,12 +143,11 @@
     "isFixed": false
   },
   {
-    "_id": "57af8c5f0d376d9438b86747",
-    "title": "fdsa",
-    "description": "fds",
-    "tag":"Broken",
+    "title": "Pothole",
+    "description": "Please fix",
+    "tag":"Pothole",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af8c5f0d376d9438b86747.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/sfbc02_custom-631a2294695dcb8537a2a312804fea3ed27dad6b-s300-c85.jpg",
     "dateMarkedFixed": "2016-08-19T05:15:40.132Z",
     "location": {
       "coordinates": [
@@ -169,12 +161,11 @@
     "isFixed": true
   },
   {
-    "_id": "57af8c90b2c9dcb638a328ad",
-    "title": "fdsasaddsaddsads",
-    "description": "fds",
-    "tag":"Broken",
+    "title": "Fallen Tree",
+    "description": "Please remove this.",
+    "tag":"Overgrown",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af8c90b2c9dcb638a328ad.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/image.jpg",
     "dateMarkedFixed": "2016-08-19T05:16:44.197Z",
     "location": {
       "coordinates": [
@@ -188,12 +179,11 @@
     "isFixed": true
   },
   {
-    "_id": "57af8d9f3552b94739036796",
-    "title": "fdsjalk",
-    "description": "fkasd",
-    "tag":"Broken",
+    "title": "Please trim",
+    "description": "A little overgrown",
+    "tag":"Overgrown",
     "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af8d9f3552b94739036796.png",
+    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/jungle_full_stairs.jpg",
     "dateMarkedFixed": null,
     "location": {
       "coordinates": [
@@ -204,204 +194,6 @@
     },
     "votes": 8,
     "dateAdded": "2016-08-13T21:14:07.759Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57af9208eecc28793b72a606",
-    "title": "testing",
-    "description": "hello testing",
-    "tag":"Broken",
-    "__v": 0,
-    "imgUrl": "https://s3-us-west-2.amazonaws.com/fix-our-city/57af9208eecc28793b72a606.png",
-    "dateMarkedFixed": "2016-08-19T05:16:27.923Z",
-    "location": {
-      "coordinates": [
-        -122.424946,
-        37.786703
-      ],
-      "type": "Point"
-    },
-    "votes": 40,
-    "dateAdded": "2016-08-13T21:32:56.759Z",
-    "isFixed": true
-  },
-  {
-    "_id": "57b6204daed8278ec7bd60af",
-    "title": "test",
-    "description": "jfsdalkjflksdajfldksajjklfajkljdsakljlksdajlkjdsalkjfdslkjsdfa",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": "2016-08-19T05:15:34.365Z",
-    "location": {
-      "coordinates": [
-        -122.409947,
-         37.787110
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T20:53:33.268Z",
-    "isFixed": true
-  },
-  {
-    "_id": "57b62546aed8278ec7bd632e",
-    "title": "the test",
-    "description": "the test",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": "2016-08-18T23:28:05.352Z",
-    "location": {
-      "coordinates": [
-        -122.395034,
-        37.794351
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T21:14:46.968Z",
-    "isFixed": true
-  },
-  {
-    "_id": "57b62643aed8278ec7bd633b",
-    "title": "the test 5",
-    "description": "the test",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": null,
-    "location": {
-      "coordinates": [
-        -122.424946,
-        37.805289
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T21:18:59.196Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57b627897adee2fcc98917e5",
-    "title": "thettests",
-    "description": "fjdksal",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": null,
-    "location": {
-      "coordinates": [
-        -122.448463,
-        37.804340
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T21:24:25.462Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57b627c97adee2fcc98917e6",
-    "title": "jlkj",
-    "description": "jkljlk",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": null,
-    "location": {
-      "coordinates": [
-        -121.8000623,
-        37.6398625
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T21:25:29.171Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57b6281244a42533ca659a16",
-    "title": "klj",
-    "description": "nkln.jl",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": null,
-    "location": {
-      "coordinates": [
-        -122.435417,
-        37.805628
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T21:26:42.696Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57b6285b0616894aca26adbe",
-    "title": "jlk",
-    "description": "yuou",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": "2016-08-19T05:14:20.641Z",
-    "location": {
-      "coordinates": [
-        -122.451124,
-        37.786638
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T21:27:55.237Z",
-    "isFixed": true
-  },
-  {
-    "_id": "57b64b72cac7c646d497fba8",
-    "title": "helloo thereeeeeeee",
-    "description": "fdsajklfjsdalkjfds",
-    "tag":"Broken",
-    "__v": 0,
-    "location": {
-      "coordinates": [
-        -122.414904,
-        37.761061
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-18T23:57:38.821Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57b650430f4be369d62117a9",
-    "title": "teh test 421",
-    "description": "dfjsalkj",
-    "tag":"Broken",
-    "__v": 0,
-    "dateMarkedFixed": null,
-    "location": {
-      "coordinates": [
-        -122.434988,
-        37.758686
-      ],
-      "type": "Point"
-    },
-    "votes": -1,
-    "dateAdded": "2016-08-19T00:18:11.398Z",
-    "isFixed": false
-  },
-  {
-    "_id": "57b69475a94ba90fe291bb2c",
-    "title": "fjsdkal",
-    "description": "dfjslka",
-    "tag": "Overgrown",
-    "__v": 0,
-    "dateMarkedFixed": null,
-    "location": {
-      "coordinates": [
-        -122.422028,
-        37.745249
-      ],
-      "type": "Point"
-    },
-    "votes": 0,
-    "dateAdded": "2016-08-19T05:09:09.863Z",
     "isFixed": false
   }
 ]

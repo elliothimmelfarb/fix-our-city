@@ -28,14 +28,14 @@ const cx = classNames.bind(styles);
    minHeight: '100vh',
    width: '100vw',
    backgroundColor: '#00bcd4',
-   paddingTop: '7%',
+   paddingTop: '5%',
 
  };
  const navbarStyle = {
    position: 'fixed',
    top: '-1px',
    left: '0px',
-   zIndex: '10',
+   zIndex: '10'
 };
 
 const App = ({ children, location }) => (

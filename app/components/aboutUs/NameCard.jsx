@@ -47,7 +47,7 @@ class NameCard extends React.Component {
           </div>
         </CardMedia>
         <CardText expandable={true} style={{ textAlign: 'center'}}>
-        <em>"{this.props.body}"</em> <br />
+        <p style={{ fontSize: '25'}}><em>"{this.props.body}"</em></p> <br />
         <i>-{this.props.author}</i>
         </CardText>
 

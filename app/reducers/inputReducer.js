@@ -1,6 +1,12 @@
 import * as types from '../types';
 
-export default (state = { title: '', description: '' }, action) => {
+const initialState = {
+  title: '',
+  description: '',
+  location: '',
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case types.INPUT_ISSUE_TITLE: {
       return Object.assign(

@@ -18,7 +18,6 @@ class AutoCompleteInput extends React.Component {
     const input = document.getElementById('locationInput');
     googlePlacesLoader()
       .then(google => {
-        console.log(google);
         const options = { types: ['geocode'], componentRestrictions: { country: 'us' } };
         this.searchBox = new google.places.Autocomplete(input, options);
       });
@@ -45,7 +44,6 @@ class AutoCompleteInput extends React.Component {
             'Location'
           }
           onChange={e => this.onInputUpdate(e)}
-          value={this.state.city}
           fullWidth
           disabled={Object.keys(this.props.userLocation).length > 0}
           required={Object.keys(this.props.userLocation).length === 0}
@@ -53,6 +51,7 @@ class AutoCompleteInput extends React.Component {
         >
           <input
             id={'locationInput'}
+            value={this.props.locationInput}
             placeholder={''}
             type={'text'}
             onFocus={() => this.onInputFocus()}
@@ -68,10 +67,12 @@ class AutoCompleteInput extends React.Component {
 AutoCompleteInput.propTypes = {
   userLocation: PropTypes.object,
   updateInput: PropTypes.func.isRequired,
+  locationInput: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   userLocation: state.location.location,
+  locationInput: state.input.location,
 });
 
 const mapDispatchToProps = (dispatch) => ({

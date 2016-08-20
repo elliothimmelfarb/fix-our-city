@@ -40,6 +40,7 @@ class IssueButton extends React.Component {
             latitude: location.lat(),
             longitude: location.lng(),
           };
+          console.log(coords);
           locationValidated(coords);
           this.context.router.push('/view-issues');
         })

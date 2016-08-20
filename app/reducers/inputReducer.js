@@ -9,6 +9,13 @@ export default (state = { title: '', description: '' }, action) => {
         { title: action.title }
       );
     }
+    case types.GET_USER_LOCATION: {
+      return Object.assign(
+        {},
+        state,
+        { location: '' }
+      );
+    }
     case types.INPUT_ISSUE_DESCRIPTION: {
       return Object.assign(
         {},
@@ -20,7 +27,7 @@ export default (state = { title: '', description: '' }, action) => {
       return Object.assign(
         {},
         state,
-        { title: '', description: '' }
+        { title: '', description: '', location: '' }
       );
     }
     case types.INPUT_LOCATION: {

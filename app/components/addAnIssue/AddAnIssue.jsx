@@ -13,6 +13,7 @@ import * as inputActions from '../../actions/inputActions';
 import * as locationActions from '../../actions/locationActions';
 import AutoComplete from '../splashPage/AutoComplete';
 import styles from '../../css/main.css';
+import geocode from '../../api/google/geocoder'
 // import { RouteTransition } from 'react-router-transition';
 
 
@@ -81,8 +82,7 @@ class AddAnIssue extends React.Component {
     this.setState({ files });
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit() {
     if (this.state.files) {
       this.setState({ openDialog: true });
       const issueObj = {
@@ -107,6 +107,29 @@ class AddAnIssue extends React.Component {
   getLocation() {
     this.props.getUserLocation();
   }
+
+  validateGeocode(address, event) {
+    event.preventDefault();
+    const { locationValidated, userLocation } = this.props;
+    if (userLocation.lat) {
+      this.context.router.push('/view-issues');
+    } else {
+      console.log(address);
+      geocode(address)
+        .then(location => {
+          const coords = {
+            latitude: location.lat(),
+            longitude: location.lng(),
+          };
+          locationValidated(coords);
+          this.onSubmit();
+        })
+        .catch(status => {
+          this.setState({ openSnackbar: true });
+        });
+    }
+  }
+
   redirect() {
     this.context.router.push('/view-issues');
   }
@@ -146,13 +169,14 @@ class AddAnIssue extends React.Component {
     ];
     return (
       <div>
-       
         <Row>
           <Col xs={12} md={12} lg={12}>
             <Row>
               <Paper style={pageStyle} zDepth={5}>
                 <CardTitle title="Add an Issue" style={cardStyle} />
-                <form onSubmit={this.onSubmit}>
+                <form
+                  onSubmit={e => this.validateGeocode(this.props.locationInput, e)}
+                >
                   <Row>
                     <Col xs={12} md={8} lg={8}>
                       <AutoComplete />
@@ -170,7 +194,7 @@ class AddAnIssue extends React.Component {
                         <Dropzone
                           onDrop={this.onDrop}
                           style={this.state.imageError ? errorDropZoneStyle : dropZoneStyle}
-                          >
+                        >
                           {imgPreview}
                         </Dropzone>
                       </Card>
@@ -185,7 +209,7 @@ class AddAnIssue extends React.Component {
                         fullWidth
                         style={button2Style}
                         onClick={this.handleClose}
-                        />
+                      />
                     </Col>
                     <Col xs={6} md={6} lg={6}>
                       <RaisedButton
@@ -194,7 +218,7 @@ class AddAnIssue extends React.Component {
                         fullWidth
                         primary
                         style={button2Style}
-                        />
+                      />
                     </Col>
                   </Row>
                 </form>
@@ -204,26 +228,25 @@ class AddAnIssue extends React.Component {
                   modal={false}
                   open={this.state.openDialog}
                   onRequestClose={this.handleClose}
-                  >
+                >
                   Thank You for your submission.
                 </Dialog>
                 <Snackbar
                   open={this.state.openSnackbar}
                   message="Error adding Issue"
                   autoHideDuration={4000}
-                  />
+                />
                 <Snackbar
                   open={this.state.imageError}
                   message="Please upload an image."
                   autoHideDuration={4000}
                   bodyStyle={{ backgroundColor: 'red' }}
                   onRequestClose={this.closeError}
-                  />
+                />
               </Paper>
             </Row>
           </Col>
         </Row>
-        
       </div>
     );
   }
@@ -237,6 +260,8 @@ AddAnIssue.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   tag: PropTypes.string,
+  locationValidated: PropTypes.func.isRequired,
+  locationInput: PropTypes.string,
 };
 
 AddAnIssue.contextTypes = {
@@ -250,6 +275,7 @@ function mapStateToProps(state) {
     title: state.input.title,
     description: state.input.description,
     tag: state.tags.selectedTag,
+    locationInput: state.input.location,
   };
 }
 
@@ -257,7 +283,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getUserLocation: () => dispatch(locationActions.getUserLocation()),
     clearInputs: () => dispatch(inputActions.clearInputs()),
-
+    locationValidated: (coords) => dispatch(locationActions.setUserLocation(coords)),
   };
 }
 

@@ -10,7 +10,7 @@ export default class FloatingButton extends React.Component {
     this.handleToAddAnIssue = this.handleToAddAnIssue.bind(this);
   }
 
-  handleToAddAnIssue = () => {
+  handleToAddAnIssue() {
     this.context.router.push('/add-an-issue');
   };
 

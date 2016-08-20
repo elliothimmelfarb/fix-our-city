@@ -97,8 +97,9 @@ class AddAnIssue extends React.Component {
         .attach('file', this.state.files[0])
         .field('issueObj', JSON.stringify(issueObj))
         .end((err) => {
-          if (err) this.setState({ openSnackbar: true });
+          if (err) return this.setState({ openSnackbar: true });
         });
+      this.props.clearInputs();
     } else {
       this.setState({ imageError: true });
     }
@@ -114,7 +115,6 @@ class AddAnIssue extends React.Component {
     if (userLocation.lat) {
       this.onSubmit();
     } else {
-      console.log(address);
       geocode(address)
         .then(location => {
           const coords = {

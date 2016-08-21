@@ -33,6 +33,9 @@ export default (state = initialState, action) => {
             ],
         });
     }
+    case types.DESELECT_ISSUES: {
+      return Object.assign({}, state, { selected: {}, selectedId: '' });
+    }
     case types.DOWNVOTE_ISSUE: {
       const upvotedIndex = state.upvoted.indexOf(action.id);
       return Object.assign({}, state,

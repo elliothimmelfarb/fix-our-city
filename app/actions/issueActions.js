@@ -19,6 +19,10 @@ const addToDownvoted = (id) => ({
   type: types.DOWNVOTE_ISSUE,
 });
 
+export const deselectIssues = () => ({
+  type: types.DESELECT_ISSUES,
+});
+
 export const downvoteIssue = (id, center, corner) =>
   dispatch => {
     downvote(id, center, corner)

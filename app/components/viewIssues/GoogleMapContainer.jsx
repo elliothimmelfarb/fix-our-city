@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GoogleMap from '../../lib/google-map-react';
 import Snackbar from 'material-ui/Snackbar';
 import { mapBoundsChanged } from '../../actions/mapActions';
+import { deselectIssues } from '../../actions/issueActions';
 import MapMarker from './MapMarker';
 
 
@@ -41,12 +42,6 @@ class GoogleMapContainer extends React.Component {
     /* eslint-enable no-underscore-dangle */
   }
 
-  componentWillMount() {
-    if (typeof google === 'undefined') {
-      // this.context.router.push('/');
-    }
-  }
-
   createMapOptions() {
     return {
       mapTypeControl: true,
@@ -67,6 +62,7 @@ class GoogleMapContainer extends React.Component {
       mapCenter,
       onBoundsChange,
       issues,
+      deselectIssues,
     } = this.props;
     const markers = issues && this.createMarkers(issues);
     const noIssuesError = (
@@ -90,6 +86,7 @@ class GoogleMapContainer extends React.Component {
           minZoom={5}
           onChange={onBoundsChange}
           options={this.createMapOptions}
+          onClick={() => deselectIssues()}
         >
           {markers}
         < /GoogleMap>
@@ -105,6 +102,7 @@ GoogleMapContainer.propTypes = {
   onBoundsChange: PropTypes.func,
   issues: PropTypes.array,
   selectedId: PropTypes.string,
+  deselectIssues: PropTypes.func.isRequired,
 };
 
 GoogleMapContainer.contextTypes = {
@@ -120,6 +118,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onBoundsChange(mapInfo) {
     return dispatch(mapBoundsChanged(mapInfo));
+  },
+  deselectIssues() {
+    return dispatch(deselectIssues());
   },
 });
 

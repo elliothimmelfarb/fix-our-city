@@ -7,7 +7,7 @@
 
 ### Built Using:
 - React and Redux
-- Google Maps api (google-map-react)
+- Google Maps api ([google-map-react](https://github.com/istarkov/google-map-react))
 - Express
 - MongoDB Geospatial Services
 - Paired Programming

@@ -16,9 +16,9 @@
 
 ### Features
 - Automatic location discovery
-- upvote and downvote issues
-- mark issues as fixed
-- mobile friendly (take picture from your phone in-browser)
+- Upvote and downvote issues
+- Mark issues as fixed
+- Mobile friendly (take pictures from your phone in-browser)
 
 
 

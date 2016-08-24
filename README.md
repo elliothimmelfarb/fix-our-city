@@ -9,11 +9,16 @@
 - MongoDB Geospatial Services
 
 
+
+
 ### Features
 - Automatic location discovery
 - upvote and downvote issues
 - mark issues as fixed
 - mobile friendly (take picture from your phone in-browser)
+
+
+
 
 ![Fix Our City](https://cloud.githubusercontent.com/assets/11192126/17914174/c47d1c74-6954-11e6-8a5e-bec33a66a1b4.png 'Home Screen')
 ![Fix Our City](https://cloud.githubusercontent.com/assets/11192126/17914173/c1f671f8-6954-11e6-9da7-f6f9a5161cff.png 'View Issues')

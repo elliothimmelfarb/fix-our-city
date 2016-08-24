@@ -1,6 +1,9 @@
 # Fix Our City
 ### Crowd-Sourced City Maintenance Reporting App
 
+### [www.FixOur.City](https://www.fixour.city/)
+
+
 
 ### Built With:
 - react-redux
@@ -8,8 +11,6 @@
 - Express
 - MongoDB Geospatial Services
 
-
-### [www.FixOur.City](https://www.fixour.city/)
 
 
 ### Features

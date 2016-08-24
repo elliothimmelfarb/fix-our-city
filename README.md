@@ -5,11 +5,12 @@
 
 
 
-### Built With:
-- react-redux
+### Built Using:
+- React and Redux
 - Google Maps api (google-map-react)
 - Express
 - MongoDB Geospatial Services
+- Paired Programming
 
 
 

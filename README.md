@@ -21,10 +21,10 @@
 ![Fix Our City](https://cloud.githubusercontent.com/assets/11192126/17914379/744082e4-6956-11e6-9f97-8eaff2a105f8.png 'Home Screen')
 
 ### Collaborators
-(Somtida)[https://github.com/Somtida]
-(Lyndon)[https://github.com/lyndonl3091]
-(Thomas)[https://github.com/twolfe2]
-(Elliot)[https://github.com/elliothimmelfarb]
+[Somtida](https://github.com/Somtida)
+[Lyndon](https://github.com/lyndonl3091)
+[Thomas](https://github.com/twolfe2)
+[Elliot](https://github.com/elliothimmelfarb)
 
 
 License
